@@ -86,27 +86,27 @@ TBD
 ### Post Install
 
 #### Download Clover Configurator:
-http://mackie100projects.altervista.org/download-clover-configurator/
+<br>http://mackie100projects.altervista.org/download-clover-configurator/
 
 #### Download Kext Utility:
-http://cvad-mac.narod.ru/index/0-4
+<br>http://cvad-mac.narod.ru/index/0-4
 
 
 ### SSDT
-Generate your SSDT with ssdtPRGen https://github.com/Piker-Alpha/ssdtPRGen.sh
+Generate your SSDT with ssdtPRGen: https://github.com/Piker-Alpha/ssdtPRGen.sh
 TBD
 
 ### Kexts
 
 #### AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1:
-http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/
+<br>http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/
 
 #### WiFi:
 Copy latest LiLu.kext (requires v1.2.0) to EFI/CLOVER/kexts/other:
-https://github.com/vit9696/Lilu/releases
+<br>https://github.com/vit9696/Lilu/releases
 
 Copy AirportBrcmFixup.kext to kexts folder:
-https://sourceforge.net/projects/airportbrcmfixup/files/
+<br>https://sourceforge.net/projects/airportbrcmfixup/files/
 
 Add following entries to EFI/CLOVER/config.plist:
 - ACPI > Fixes > AddDTGP
@@ -115,23 +115,23 @@ Add following entries to EFI/CLOVER/config.plist:
 
 #### Bluetooth:
 Copy BrcmFirmwareRepo.kext and BrcmPatchRAM2.kext to EFI/CLOVER/kexts/other:
-http://forum.osxlatitude.com/index.php?app=core&module=attach&section=attach&attach_id=12117
+<br>http://forum.osxlatitude.com/index.php?app=core&module=attach&section=attach&attach_id=12117
 
 
 ### Kext Ressources:
 
 Broadcom BCM4352 802.11 ac wifi and bluetooth combo card
-http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/
+<br>http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/
 
 FakeSMC
-https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/
+<br>https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/
 
 NullCPUPowerManagement.kext
-https://www.tonymacx86.com/resources/nullcpupowermanagement.268/
+<br>https://www.tonymacx86.com/resources/nullcpupowermanagement.268/
 
 VoodooHDA + AppleHDADisabler
-https://sourceforge.net/projects/voodoohda/files/
-https://www.hackintosh.zone/file/1023-voodoohda-290d10/
+<br>https://sourceforge.net/projects/voodoohda/files/
+<br>https://www.hackintosh.zone/file/1023-voodoohda-290d10/
 
 KextToPatch Einträge für High Sierra:
-https://www.hackintosh-forum.de/index.php/Thread/28676-Neue-Clover-KextsToPatch-Eintr%C3%A4ge-f%C3%BCr-Sierra-High-Sierra/
+<br>https://www.hackintosh-forum.de/index.php/Thread/28676-Neue-Clover-KextsToPatch-Eintr%C3%A4ge-f%C3%BCr-Sierra-High-Sierra/
