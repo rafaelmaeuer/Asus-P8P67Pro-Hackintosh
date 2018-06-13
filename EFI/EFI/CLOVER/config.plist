@@ -701,12 +701,14 @@
 		</dict>
 		<key>#TextOnly</key>
 		<false/>
+		<key>Language</key>
+		<string>de:0</string>
 		<key>ScreenResolution</key>
-		<string>1280x1024</string>
+		<string>1920x1080</string>
 		<key>ShowOptimus</key>
 		<false/>
 		<key>Theme</key>
-		<string>embedded</string>
+		<string>High Sierra</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
