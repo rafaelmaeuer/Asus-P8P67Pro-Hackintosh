@@ -2,7 +2,7 @@
 
 ### Info
 
-#### Common Problems in 10.13 High Sierra: [Link](https://www.tonymacx86.com/threads/readme-common-problems-in-10-13-high-sierra.233582/)
+#### Common Problems in 10.13 High Sierra: [tonymacx86.com](https://www.tonymacx86.com/threads/readme-common-problems-in-10-13-high-sierra.233582/)
 
 ### Install High Sierra
 
@@ -18,9 +18,9 @@
 	```
 	diskutil partitionDisk /dev/disk{#} 1 GPT HFS+ {Volume} R
 	```
-- Download Clover: [Link](https://sourceforge.net/projects/cloverefiboot/)
+- Download Clover: [sourceforge.net](https://sourceforge.net/projects/cloverefiboot/)
 
-##### b) Clover Install [Link](https://clover-wiki.zetam.org/Installation)
+##### b) Clover Install [clover-wiki](https://clover-wiki.zetam.org/Installation)
 - Install Clover r4497
 	- Select USB-Drive as install target
 	- Open custom install settings
@@ -83,7 +83,7 @@ Use [DiskMaker X](http://diskmakerx.com/), [Install Disk Creator](https://macdad
 
 ### Update High Sierra
 - Make a full backup
-- Check [Guides](https://hackintosher.com/guides/) for the latest OS X Update Guide
+- Check [hackintosher.com](https://hackintosher.com/guides/) for the latest OS X Update Guide
 - Check all kexts for updates
 - Make a new Clover USB-Drive for testing purpose
 	- Use updated kexts and drivers in post install (apfs.efi and lilu.kext)
@@ -113,17 +113,17 @@ Use [DiskMaker X](http://diskmakerx.com/), [Install Disk Creator](https://macdad
 
 
 ### SSDT
-Generate your SSDT with ssdtPRGen: [Link](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 <br>*TBD*
 
 ### Kexts
 
-#### AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1: [Link](http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/)
+#### AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/)
 
 #### WiFi:
-Copy latest LiLu.kext (requires v1.2.0) to EFI/CLOVER/kexts/other: [Link](https://github.com/vit9696/Lilu/releases)
+Copy latest LiLu.kext (requires v1.2.0) to EFI/CLOVER/kexts/other: [github.com/vit9696](https://github.com/vit9696/Lilu/releases)
 
-Copy AirportBrcmFixup.kext to kexts folder: [Link](https://sourceforge.net/projects/airportbrcmfixup/files/)
+Copy AirportBrcmFixup.kext to kexts folder: [sourceforge.net](https://sourceforge.net/projects/airportbrcmfixup/files/)
 
 Add following entries to EFI/CLOVER/config.plist:
 - ACPI > Fixes > AddDTGP
@@ -131,17 +131,17 @@ Add following entries to EFI/CLOVER/config.plist:
 - Devices > Fake ID > WIFI =  0x43a014E4
 
 #### Bluetooth:
-Copy BrcmFirmwareRepo.kext and BrcmPatchRAM2.kext to EFI/CLOVER/kexts/other: [Link](http://forum.osxlatitude.com/index.php?app=core&module=attach&section=attach&attach_id=12117)
+Copy BrcmFirmwareRepo.kext and BrcmPatchRAM2.kext to EFI/CLOVER/kexts/other: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?app=core&module=attach&section=attach&attach_id=12117)
 
 
 ### Kext Ressources:
 
-Broadcom BCM4352 802.11 ac wifi and bluetooth combo card [Link](http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/)
+Broadcom BCM4352 802.11 ac wifi and bluetooth combo card: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/)
 
-FakeSMC [Link](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
+FakeSMC: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
 
-NullCPUPowerManagement.kext: [Link](https://www.tonymacx86.com/resources/nullcpupowermanagement.268/)
+NullCPUPowerManagement.kext: [tonymacx86.com](https://www.tonymacx86.com/resources/nullcpupowermanagement.268/)
 
 VoodooHDA + AppleHDADisabler: [sourceforge.net](https://sourceforge.net/projects/voodoohda/files/), [hackintosh.zone](https://www.hackintosh.zone/file/1023-voodoohda-290d10/)
 
-KextToPatch Einträge für High Sierra: [Link](https://www.hackintosh-forum.de/index.php/Thread/28676-Neue-Clover-KextsToPatch-Eintr%C3%A4ge-f%C3%BCr-Sierra-High-Sierra/)
+KextToPatch Einträge für High Sierra: [hackintosh-forum.de](https://www.hackintosh-forum.de/index.php/Thread/28676-Neue-Clover-KextsToPatch-Eintr%C3%A4ge-f%C3%BCr-Sierra-High-Sierra/)
