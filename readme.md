@@ -131,7 +131,7 @@ Add following entries to EFI/CLOVER/config.plist:
 - Devices > Fake ID > WIFI =  0x43a014E4
 
 #### Bluetooth:
-Copy BrcmFirmwareRepo.kext and BrcmPatchRAM2.kext to EFI/CLOVER/kexts/other: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?app=core&module=attach&section=attach&attach_id=12117)
+Copy BrcmFirmwareData.kext and BrcmPatchRAM2.kext to EFI/CLOVER/kexts/other: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
 
 
 ### Kext Ressources:
