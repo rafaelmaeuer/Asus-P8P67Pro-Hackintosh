@@ -117,7 +117,7 @@
 				<key>FixSBUS</key>
 				<true/>
 				<key>FixShutdown</key>
-				<true/>
+				<false/>
 				<key>FixTMR</key>
 				<true/>
 				<key>FixUSB</key>
