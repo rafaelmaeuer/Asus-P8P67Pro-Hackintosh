@@ -1,14 +1,17 @@
-## ASUS P8P67 Pro
+## ASUS P8P67 PRO (REV3.0)
 
 ### Info
 
-#### Common Problems in 10.13 High Sierra: [tonymacx86.com](https://www.tonymacx86.com/threads/readme-common-problems-in-10-13-high-sierra.233582/)
+Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
 
-### Install High Sierra
+---
 
-#### 1. Make Clover USB-Drive
+### Install OS X Mojave
 
-##### a) Preparation
+#### 1. Create clover USB-Drive
+
+##### a) Format USB flash drive
+
 - Format USB-Drive with GUID and HFS+
 	- Find the correct disk number of USB-Drive:
 	```
@@ -20,128 +23,166 @@
 	```
 - Download Clover: [sourceforge.net](https://sourceforge.net/projects/cloverefiboot/)
 
-##### b) Clover Install [clover-wiki](https://clover-wiki.zetam.org/Installation)
-- Install Clover r4497
+##### b) Install clover [clover-wiki](https://clover-wiki.zetam.org/Installation)
+
+- Run clover installer
 	- Select USB-Drive as install target
 	- Open custom install settings
 		- Select `Install Clover for UEFI`
     	- Select Drivers64UEFI
 	- Install
 
-##### c) Post Install
+##### c) Add drivers and kexts
+
 - Copy `EFI/BOOT/BOOTX64.efi` to USB-Drive root and rename it to `SHELLX64.efi`
 - Copy kexts from folder `Other` to `EFI/CLOVER/kexts/Other/`
-- add Clover boot args: `-v npci=0x2000`
+- Add clover boot args: `-v npci=0x2000 nv_disable=1`
+	- Depending on graphics card add boot arg `-no_compat_check`
+- As SMBIOS select `iMac17.1`
 - On `Error loading kernel cache (0x9)` reboot
 
-- Install NVIDIA WebDriver-387.10.10.10.30.106.pkg
-- add following to config.plist
-	```
-	<key>SystemParameters</key>
-    <dict>
-        <key>InjectKexts</key>
-        <string>YES</string>
-        <key>InjectSystemID</key>
-        <true/>
-        <key>NvidiaWeb</key>
-        <true/>
-    </dict>
-    ```
+Note:
+- Adding `apfs.efi` or `ApfsDriverLoader-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, so use HFS+ filesystem
+- Adding `HFSPlus-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, use `VBoxHfs-64` instead
 
-- Adding apfs.efi to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load
+---
 
-#### 2. Make High Sierra USB-Drive
-To create a functioning macOS High Sierra installer boot drive, you will need the following:
+#### 2. Create Mojave USB-Drive
+
+To create a working macOS Mojave installer boot drive, you will need the following:
 - A free USB flash drive (minimum 8GB)
 - A device already running OS X with access to the App Store
 
-##### a) Download Installer
+##### a) Download OS X Installer
+
 - Open the Mac App Store on your device already running OS X
-- Download `Install macOS High Sierra` application
+- Download `Install macOS Mojave` application
 - Close when it opens automatically
 
-##### b) Format USB drive
+##### b) Format USB flash drive
+
 - Insert USB flash drive
 - Open Disk Utility and format flash drive
-	- Select `GUID` as partition scheme 
+	- Select `GUID` as partition scheme
 	- Select `Mac OS Extended (Journaled)` as file format
 
 ##### c) Create Installer
-Use [DiskMaker X](http://diskmakerx.com/), [Install Disk Creator](https://macdaddy.io/install-disk-creator/) or do it manually:
-- Open a terminal
-- Enter the following command (replace {NAME} with your flash drive's name)
-	```
-	sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/{NAME}/ --applicationpath /Applications/Install\ macOS\ High\ Sierra.app/ --nointeraction
-	```
-- Enter your user password (digits will not be shown) and hit return
-- This step can take up to 30 minutes
-- The process is complete when `done` is displayed
 
-#### 3. Install Clover in EFI partition on High Sierra
-- Repeat steps 1b - 1c but with High Sierra disk as target
+Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macdaddy.io/install-disk-creator/)
+<br>Special case to force Mojave Install to keep HFS+ during install:
+- download [14MBRinstallerMaker](https://www.insanelymac.com/forum/files/file/944-mojave-mbr-hfs-firmware-check-patch/)
+- Connect target HDD and Mojave USB drive
+- Open `14MBRinstallerMaker` and follow the instructions
+	- Enter password to grant admin privileges
+	- Drag `Install macOS Mojave.app` to terminal
+	- Drag USB flash drive to terminal
+	- Drag target HDD to terminal
+- Wait for installation process to finish
 
+---
 
-### Update High Sierra
+#### 3. Install Mojave
+
+- Connect target HDD, Mojave USB drive and Clover USB drive to your target machine
+- Boot from Clover USB drive and select Mojave USB drive (`Install OS X Mojave`)
+- The installation should start automatically (dont worry about reboot after one minute)
+
+---
+
+#### 4. Install Clover in EFI partition on Mojave Disk
+
+- After successfully install repeat steps 1b - 1c but with EFI on Mojave HDD as target
+
+---
+
+#### 5. Post Install
+
+##### Clover Configurator
+
+Download and install Clover Configurator [Link](http://mackie100projects.altervista.org/download-clover-configurator/)
+
+##### nVidia WebDriver
+
+- Install latest nVidia WebDrivers using [nVidia Update](https://github.com/Benjamin-Dobell/nvidia-update)
+
+  ```sh
+  bash <(curl -s https://raw.githubusercontent.com/Benjamin-Dobell/nvidia-update/master/nvidia-update.sh)
+  ```
+
+- Open config.plist in clover configurator
+	- In section `Boot` remove `nv_disable=1` and add `nvda_drv=1` as boot args
+	- In section `System Parameters` check `Injext System ID` and `NvidiaWeb`
+- Save config.plist
+
+---
+
+### Update OS X
+
 - Make a full backup
 - Check [hackintosher.com](https://hackintosher.com/guides/) for the latest OS X Update Guide
 - Check all kexts for updates
-- Make a new Clover USB-Drive for testing purpose
-	- Use updated kexts and drivers in post install (apfs.efi and lilu.kext)
-- Boot from new Clover USB-Drive
+- Make a new clover USB drive for testing purpose
+	- Use updated kexts and drivers in post install
+- Boot from new clover USB drive
 - If system boots
-	- Mount High Sierra EFI partition
+	- Mount EFI partition of OS X HDD
 	- Backup `EFI` to `EFI-Backups`
-	- Install new Clover version to EFI partition
+	- Install new clover version to EFI partition
 	- Copy updated kexts and drivers during post install
 	- Don't forget to copy `Microsoft` folder (it contains the windows bootloader)
-- Eject USB-Drive and reboot
+- Eject clover USB drive and reboot
 - If system boots
-	- Start High Sierra Update
+	- Start OS X Update
 	- On restart select newly added `Install OS X ...` partition
 	- Disable all BCRM kexts to prevent loop at the end of boot
-	- After reboot select normal High Sierra partition
+	- After reboot select normal OS X partition
 - If system boots
 	- Be happy and enjoy the new update
-- If system doesn't boot on one of these steps 
+- If system doesn't boot on one of these steps
 	- Try to fix the problem or revert to the latest backup
 
-### Post Install
+---
 
-#### Download Clover Configurator: [Link](http://mackie100projects.altervista.org/download-clover-configurator/)
-
-#### Download Kext Utility: [Link](http://cvad-mac.narod.ru/index/0-4)
-
+## Resources
 
 ### SSDT
+
 Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-<br>*TBD*
+<br>*To be done*
 
 ### Kexts
 
-#### AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/)
+#### WiFi
 
-#### WiFi:
-Copy latest LiLu.kext (requires v1.2.0) to EFI/CLOVER/kexts/other: [github.com/vit9696](https://github.com/vit9696/Lilu/releases)
+AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1 [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/)
 
-Copy AirportBrcmFixup.kext to kexts folder: [sourceforge.net](https://sourceforge.net/projects/airportbrcmfixup/files/)
+LiLu.kext [github.com/vit9696](https://github.com/vit9696/Lilu/releases)
+
+AirportBrcmFixup.kext [sourceforge.net](https://sourceforge.net/projects/airportbrcmfixup/files/)
 
 Add following entries to EFI/CLOVER/config.plist:
 - ACPI > Fixes > AddDTGP
 - ACPI > Fixes > FixAirport
-- Devices > Fake ID > WIFI =  0x43a014E4
+- Devices > Fake ID > WIFI = 0x43a014E4
 
-#### Bluetooth:
-Copy BrcmFirmwareData.kext and BrcmPatchRAM2.kext to EFI/CLOVER/kexts/other: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+#### Bluetooth
 
+BrcmFirmwareData.kext and BrcmPatchRAM2.kext [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
 
-### Kext Ressources:
-
-Broadcom BCM4352 802.11 ac wifi and bluetooth combo card: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/)
+#### Sensors
 
 FakeSMC: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
 
+#### CPU
+
 NullCPUPowerManagement.kext: [tonymacx86.com](https://www.tonymacx86.com/resources/nullcpupowermanagement.268/)
 
+#### Audio
+
 VoodooHDA + AppleHDADisabler: [sourceforge.net](https://sourceforge.net/projects/voodoohda/files/), [hackintosh.zone](https://www.hackintosh.zone/file/1023-voodoohda-290d10/)
+
+### Kext Resources
+
+Broadcom BCM4352 802.11 ac wifi and bluetooth combo card: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/)
 
 KextToPatch Einträge für High Sierra: [hackintosh-forum.de](https://www.hackintosh-forum.de/index.php/Thread/28676-Neue-Clover-KextsToPatch-Eintr%C3%A4ge-f%C3%BCr-Sierra-High-Sierra/)
