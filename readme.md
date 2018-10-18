@@ -156,7 +156,7 @@ Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/P
 
 AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1 [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/)
 
-LiLu.kext [github.com/vit9696](https://github.com/vit9696/Lilu/releases)
+LiLu.kext: [github.com/acidanthera](https://github.com/acidanthera/Lilu/releases)
 
 AirportBrcmFixup.kext [sourceforge.net](https://sourceforge.net/projects/airportbrcmfixup/files/)
 
@@ -169,9 +169,17 @@ Add following entries to EFI/CLOVER/config.plist:
 
 BrcmFirmwareData.kext and BrcmPatchRAM2.kext [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
 
+### Ethernet
+
+IntelMausiEthernet.kext: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-intel-network/downloads/)
+
 #### Sensors
 
+BrcmPatchRAM: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+
 FakeSMC: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
+
+FakePCIID: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads/)
 
 #### CPU
 
@@ -180,6 +188,10 @@ NullCPUPowerManagement.kext: [tonymacx86.com](https://www.tonymacx86.com/resourc
 #### Audio
 
 VoodooHDA + AppleHDADisabler: [sourceforge.net](https://sourceforge.net/projects/voodoohda/files/), [hackintosh.zone](https://www.hackintosh.zone/file/1023-voodoohda-290d10/)
+
+#### Graphics
+
+WhateverGreen.kext: [github.com/acidanthera](https://github.com/acidanthera/WhateverGreen)
 
 ### Kext Resources
 
