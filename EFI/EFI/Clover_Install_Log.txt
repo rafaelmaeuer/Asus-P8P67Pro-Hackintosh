@@ -1,34 +1,46 @@
 
-Clover EFI installer log - Mon Jun  4 23:34:17 CEST 2018
-Installer version: v2.4k r4509 EFI bootloader
+Clover EFI installer log - Thu Oct  4 14:12:27 CEST 2018
+Installer version: v2.4k r4674 EFI bootloader
 ======================================================
 /dev/disk0 (internal, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *500.1 GB   disk0
-   1:                        EFI EFI                     209.7 MB   disk0s1
-   2:                 Apple_APFS Container disk2         258.8 GB   disk0s2
-   3:       Microsoft Basic Data Windows 10              240.2 GB   disk0s3
-   4:           Windows Recovery                         845.2 MB   disk0s4
+   0:      GUID_partition_scheme                        *256.1 GB   disk0
+   1:                        EFI EFI                     524.3 MB   disk0s1
+   2:       Microsoft Basic Data Windows 10              126.5 GB   disk0s2
+   3:           Windows Recovery                         488.6 MB   disk0s3
+   4:                  Apple_HFS High Sierra             127.9 GB   disk0s4
+   5:                 Apple_Boot Recovery HD             650.0 MB   disk0s5
 
 /dev/disk1 (internal, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:     FDisk_partition_scheme                        *24.0 GB    disk1
-   1:               Windows_NTFS Temp                    24.0 GB    disk1s1
+   0:      GUID_partition_scheme                        *500.1 GB   disk1
+   1:                        EFI EFI                     209.7 MB   disk1s1
+   2:                  Apple_HFS Daten OS X              499.8 GB   disk1s2
 
-/dev/disk2 (synthesized):
+/dev/disk2 (external, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      APFS Container Scheme -                      +258.8 GB   disk2
-                                 Physical Store disk0s2
-   1:                APFS Volume High Sierra             165.1 GB   disk2s1
-   2:                APFS Volume Preboot                 21.0 MB    disk2s2
-   3:                APFS Volume Recovery                517.8 MB   disk2s3
-   4:                APFS Volume VM                      2.1 GB     disk2s4
+   0:     FDisk_partition_scheme                        *1.0 TB     disk2
+   1:                  Apple_HFS Toshiba 1TB             1.0 TB     disk2s1
 
 /dev/disk3 (external, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *4.1 GB     disk3
-   1:                        EFI EFI                     209.7 MB   disk3s1
-   2:                  Apple_HFS Clover                  3.7 GB     disk3s2
+   0:     FDisk_partition_scheme                        *500.1 GB   disk3
+   1:               Windows_NTFS Portable 500GB          500.1 GB   disk3s1
+
+/dev/disk4 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *8.0 GB     disk4
+   1:                        EFI EFI                     209.7 MB   disk4s1
+   2:                  Apple_HFS Install macOS Mojave    7.7 GB     disk4s2
+
+/dev/disk5 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *4.1 GB     disk5
+   1:                        EFI EFI                     209.7 MB   disk5s1
+   2:                  Apple_HFS Clover                  3.7 GB     disk5s2
+
+======================================================
+Backing up EFI files
 
 ======================================================
 Installing BootSectors/BootLoader
