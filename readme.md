@@ -6,40 +6,63 @@ Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
 
 ---
 
-### Install OS X Mojave
+#### BIOS
 
-#### 1. Create clover USB-Drive
+- Use version 3602
+- Use correct BIOS settings
+  `to be done`
 
-##### a) Format USB flash drive
+#### Hardware
+
+This Hackintosh is based on ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a Radeon GTX 570 graphics card.
+
+##### WIFI / Bluetooth
+
+The onboard Bluetooth is disabled. To get WiFi and Bluetooth running, a [ASUS PCE-AC55BT PCI-E](https://www.asus.com/de/Networking/PCE-AC55BT/) card is used as adapter with a [Broadcom BCM4352 Combo](https://osxlatitude.com/forums/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/) card as chip.
+
+##### SATA
+
+For eSATA and RAID a [DIGITUS SATA PCI-E](https://www.digitus.info/de/produkte/computer-zubehoer-und-komponenten/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip can be activated with the AHCIPortInjector.
+
+---
+
+### Install OS X
+
+#### 1. Create Clover USB-Drive
+
+##### a) Preparation
 
 - Format USB-Drive with GUID and HFS+
-	- Find the correct disk number of USB-Drive:
-	```
-	diskutil list
-	```
-	- Replace {#} with corresponding disk number and {Volume} with desired Name:
-	```
-	diskutil partitionDisk /dev/disk{#} 1 GPT HFS+ {Volume} R
-	```
+  - Find the correct disk number of USB-Drive:
+
+  ```sh
+  diskutil list
+  ```
+
+  - Replace {#} with corresponding disk number and {Volume} with desired Name:
+
+  ```sh
+  diskutil partitionDisk /dev/disk{#} 1 GPT HFS+ {Volume} R
+  ```
+
 - Download Clover: [sourceforge.net](https://sourceforge.net/projects/cloverefiboot/)
 
-##### b) Install clover [clover-wiki](https://clover-wiki.zetam.org/Installation)
+##### b) Install Clover [clover-wiki](https://clover-wiki.zetam.org/Installation)
 
 - Run clover installer
-	- Select USB-Drive as install target
-	- Open custom install settings
-		- Select `Install Clover for UEFI`
-    	- Select Drivers64UEFI
-	- Install
+  - Select USB-Drive as install target
+  - Open custom install settings
+    - Select `Install Clover for UEFI`
+    - Select Drivers64UEFI
+  - Install
 
-##### c) Add drivers and kexts
+##### c) Post Install
 
 - Copy `EFI/BOOT/BOOTX64.efi` to USB-Drive root and rename it to `SHELLX64.efi`
 - Copy kexts from folder `Other` to `EFI/CLOVER/kexts/Other/`
 - Add clover boot args: `-v npci=0x2000 nv_disable=1`
-	- Depending on graphics card add boot arg `-no_compat_check`
+  - Depending on graphics card add boot arg `-no_compat_check`
 - As SMBIOS select `iMac17.1`
-- On `Error loading kernel cache (0x9)` reboot
 
 Note:
 - Adding `apfs.efi` or `ApfsDriverLoader-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, so use HFS+ filesystem
@@ -47,7 +70,7 @@ Note:
 
 ---
 
-#### 2. Create Mojave USB-Drive
+#### 2. Create OS X USB-Drive
 
 To create a working macOS Mojave installer boot drive, you will need the following:
 - A free USB flash drive (minimum 8GB)
@@ -63,8 +86,8 @@ To create a working macOS Mojave installer boot drive, you will need the followi
 
 - Insert USB flash drive
 - Open Disk Utility and format flash drive
-	- Select `GUID` as partition scheme
-	- Select `Mac OS Extended (Journaled)` as file format
+  - Select `GUID` as partition scheme
+  - Select `Mac OS Extended (Journaled)` as file format
 
 ##### c) Create Installer
 
@@ -73,15 +96,15 @@ Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macd
 - download [14MBRinstallerMaker](https://www.insanelymac.com/forum/files/file/944-mojave-mbr-hfs-firmware-check-patch/)
 - Connect target HDD and Mojave USB drive
 - Open `14MBRinstallerMaker` and follow the instructions
-	- Enter password to grant admin privileges
-	- Drag `Install macOS Mojave.app` to terminal
-	- Drag USB flash drive to terminal
-	- Drag target HDD to terminal
+  - Enter password to grant admin privileges
+  - Drag `Install macOS Mojave.app` to terminal
+  - Drag USB flash drive to terminal
+  - Drag target HDD to terminal
 - Wait for installation process to finish
 
 ---
 
-#### 3. Install Mojave
+#### 3. Install OS X
 
 - Connect target HDD, Mojave USB drive and Clover USB drive to your target machine
 - Boot from Clover USB drive and select Mojave USB drive (`Install OS X Mojave`)
@@ -89,7 +112,7 @@ Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macd
 
 ---
 
-#### 4. Install Clover in EFI partition on Mojave Disk
+#### 4. Install Clover in EFI partition of OS X HDD
 
 - After successfully install repeat steps 1b - 1c but with EFI on Mojave HDD as target
 
@@ -97,11 +120,7 @@ Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macd
 
 #### 5. Post Install
 
-##### Clover Configurator
-
-Download and install Clover Configurator [Link](http://mackie100projects.altervista.org/download-clover-configurator/)
-
-##### nVidia WebDriver
+##### nVidia WebDriver (only for nVidia GPU)
 
 - Install latest nVidia WebDrivers using [nVidia Update](https://github.com/Benjamin-Dobell/nvidia-update)
 
@@ -110,9 +129,15 @@ Download and install Clover Configurator [Link](http://mackie100projects.altervi
   ```
 
 - Open config.plist in clover configurator
-	- In section `Boot` remove `nv_disable=1` and add `nvda_drv=1` as boot args
-	- In section `System Parameters` check `Injext System ID` and `NvidiaWeb`
+  - In section `Boot` remove `nv_disable=1` and add `nvda_drv=1` as boot args
+  - In section `System Parameters` check `Injext System ID` and `NvidiaWeb`
 - Save config.plist
+
+---
+
+### Troubleshooting
+
+- On `Error loading kernel cache` reboot
 
 ---
 
@@ -122,24 +147,24 @@ Download and install Clover Configurator [Link](http://mackie100projects.altervi
 - Check [hackintosher.com](https://hackintosher.com/guides/) for the latest OS X Update Guide
 - Check all kexts for updates
 - Make a new clover USB drive for testing purpose
-	- Use updated kexts and drivers in post install
+  - Use updated kexts and drivers in post install
 - Boot from new clover USB drive
 - If system boots
-	- Mount EFI partition of OS X HDD
-	- Backup `EFI` to `EFI-Backups`
-	- Install new clover version to EFI partition
-	- Copy updated kexts and drivers during post install
-	- Don't forget to copy `Microsoft` folder (it contains the windows bootloader)
+  - Mount EFI partition of OS X HDD
+  - Backup `EFI` to `EFI-Backups`
+  - Install new clover version to EFI partition
+  - Copy updated kexts and drivers during post install
+  - Don't forget to copy `Microsoft` folder (it contains the windows bootloader)
 - Eject clover USB drive and reboot
 - If system boots
-	- Start OS X Update
-	- On restart select newly added `Install OS X ...` partition
-	- Disable all BCRM kexts to prevent loop at the end of boot
-	- After reboot select normal OS X partition
+  - Start OS X Update
+  - On restart select newly added `Install OS X ...` partition
+  - Disable all BCRM kexts to prevent loop at the end of boot
+  - After reboot select normal OS X partition
 - If system boots
-	- Be happy and enjoy the new update
+  - Be happy and enjoy the new update
 - If system doesn't boot on one of these steps
-	- Try to fix the problem or revert to the latest backup
+  - Try to fix the problem or revert to the latest backup
 
 ---
 
@@ -150,51 +175,68 @@ Download and install Clover Configurator [Link](http://mackie100projects.altervi
 Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 <br>*To be done*
 
+### DSDT
+
+This Hackintosh works completely without DSDT.
+
+---
+
 ### Kexts
 
-#### WiFi
+#### Kext Patch: [acidanthera/Lilu](https://github.com/acidanthera/Lilu/releases)
 
-AzureWave Broadcom BCM94352HMB/BCM94352 WLAN+BT4.0 macOS Sierra 10.12.1 [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/9414-azurewave-broadcom-bcm94352hmbbcm94352-wlanbt40-macos-sierra-10121/)
+- Lilu.kext
 
-LiLu.kext: [github.com/acidanthera](https://github.com/acidanthera/Lilu/releases)
+#### WiFi: [RehabMan/OS-X-Fake-PCI-ID](https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads/)
 
-AirportBrcmFixup.kext [sourceforge.net](https://sourceforge.net/projects/airportbrcmfixup/files/)
+- FakePCIID.kext
+- FakePCIID_Broadcom_WiFi.kext
 
-Add following entries to EFI/CLOVER/config.plist:
-- ACPI > Fixes > AddDTGP
-- ACPI > Fixes > FixAirport
-- Devices > Fake ID > WIFI = 0x43a014E4
+#### Bluetooth: [RehabMan/OS-X-BrcmPatchRAM](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
 
-#### Bluetooth
+- BrcmFirmwareRepo.kext
+- BrcmPatchRAM2.kext
 
-BrcmFirmwareData.kext and BrcmPatchRAM2.kext [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+#### Sensors: [RehabMan/OS-X-FakeSMC-kozlek](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
 
-### Ethernet
+- FakeSMC.kext
+- FakeSMC_ACPISensors.kext
+- FakeSMC_CPUSensors.kext
+- FakeSMC_GPUSensors.kext
+- FakeSMC_LPCSensors.kext
+- FakeSMC_SMMSensors.kext
 
-IntelMausiEthernet.kext: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-intel-network/downloads/)
+#### CPU: [tonymacx86/NullCPUPowerManagement](https://www.tonymacx86.com/resources/nullcpupowermanagement.268/)
 
-#### Sensors
+- NullCPUPowerManagement.kext
 
-BrcmPatchRAM: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+#### Audio: [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-FakeSMC: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
+- VoodooHDA.kext
 
-FakePCIID: [bitbucket.org/RehabMan](https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads/)
+#### Ethernet: [RehabMan/OS-X-Intel-Network](https://bitbucket.org/RehabMan/os-x-intel-network/downloads/)
 
-#### CPU
+- IntelMausiEthernet.kext
 
-NullCPUPowerManagement.kext: [tonymacx86.com](https://www.tonymacx86.com/resources/nullcpupowermanagement.268/)
+#### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 
-#### Audio
+- WhateverGreen.kext
 
-VoodooHDA + AppleHDADisabler: [sourceforge.net](https://sourceforge.net/projects/voodoohda/files/), [hackintosh.zone](https://www.hackintosh.zone/file/1023-voodoohda-290d10/)
+#### USB: [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
 
-#### Graphics
+- GenericUSBXHCI.kext
 
-WhateverGreen.kext: [github.com/acidanthera](https://github.com/acidanthera/WhateverGreen)
+#### SATA: [Fabio1971/AHCIPortInjector.kext](https://www.insanelymac.com/forum/files/file/436-ahciportinjectorkext/)
 
-### Kext Resources
+- AHCIPortInjector.kext
 
-Broadcom BCM4352 802.11 ac wifi and bluetooth combo card: [forum.osxlatitude.com](http://forum.osxlatitude.com/index.php?/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/)
+#### JPG-Preview: [vulgo/NoVPAJpeg](https://github.com/vulgo/NoVPAJpeg/releases)
 
-KextToPatch Einträge für High Sierra: [hackintosh-forum.de](https://www.hackintosh-forum.de/index.php/Thread/28676-Neue-Clover-KextsToPatch-Eintr%C3%A4ge-f%C3%BCr-Sierra-High-Sierra/)
+- NoVPAJpeg.kext
+
+---
+
+### Tools
+
+- Clover Configurator: [Link](http://mackie100projects.altervista.org/download-clover-configurator/)
+- Kext Utility: [Link](http://cvad-mac.narod.ru/index/0-4)
