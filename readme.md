@@ -24,6 +24,10 @@ The onboard Bluetooth is disabled. To get WiFi and Bluetooth running, a [ASUS PC
 
 For eSATA and RAID a [DIGITUS SATA PCI-E](https://www.digitus.info/de/produkte/computer-zubehoer-und-komponenten/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip can be activated with the AHCIPortInjector.
 
+##### USB3
+
+For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card is used. The internal Renesas USB3 chip can be activated using GenericUSBXHCI.kext, but it causes a problem on shutdown (unwanted restart).
+
 ---
 
 ### Install OS X
@@ -222,10 +226,6 @@ This Hackintosh works completely without DSDT.
 
 - WhateverGreen.kext
 
-#### USB: [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
-
-- GenericUSBXHCI.kext
-
 #### SATA: [Fabio1971/AHCIPortInjector.kext](https://www.insanelymac.com/forum/files/file/436-ahciportinjectorkext/)
 
 - AHCIPortInjector.kext
@@ -233,6 +233,12 @@ This Hackintosh works completely without DSDT.
 #### JPG-Preview: [vulgo/NoVPAJpeg](https://github.com/vulgo/NoVPAJpeg/releases)
 
 - NoVPAJpeg.kext
+
+---
+
+#### USB (with shutdown issue): [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
+
+- GenericUSBXHCI.kext
 
 ---
 
