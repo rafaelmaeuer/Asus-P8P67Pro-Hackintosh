@@ -294,7 +294,7 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
-		<string>Mojave</string>
+		<string>OS X Mojave</string>
 		<key>DisableCloverHotkeys</key>
 		<false/>
 		<key>Legacy</key>
@@ -757,6 +757,7 @@
 		<array>
 			<string>Daten RAID</string>
 			<string>Daten</string>
+			<string>Spiele</string>
 			<string>Windows 10</string>
 			<string>42A6FBFE-861D-11E8-A60E-95379EDCD7B8</string>
 			<string>Preboot</string>
@@ -768,6 +769,8 @@
 		<string>1920x1080</string>
 		<key>ShowOptimus</key>
 		<false/>
+		<key>Theme</key>
+		<string>Mojave</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
