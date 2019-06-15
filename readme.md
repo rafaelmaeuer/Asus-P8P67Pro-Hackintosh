@@ -4,6 +4,9 @@
 
 Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
 
+- macOS version: 10.14.5
+- clover version: 4961
+
 ---
 
 #### BIOS
@@ -18,7 +21,7 @@ This Hackintosh is based on ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K
 
 ##### WIFI / Bluetooth
 
-The onboard Bluetooth is disabled. To get WiFi and Bluetooth running, a [ASUS PCE-AC55BT PCI-E](https://www.asus.com/de/Networking/PCE-AC55BT/) card is used as adapter with a [Broadcom BCM4352 Combo](https://osxlatitude.com/forums/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/) card as chip.
+The onboard Bluetooth is disabled. To get WiFi and Bluetooth running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://wikidevi.com/wiki/Broadcom_BCM94352Z) card as chip.
 
 ##### SATA
 
@@ -57,20 +60,21 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
   - Select USB-Drive as install target
   - Open custom install settings
     - Select `Install Clover for UEFI`
-    - Select Drivers64UEFI
+    - Select `Install Clover in the ESP`
+    - Select `Drivers64UEFI`
   - Install
 
 ##### c) Post Install
 
 - Copy `EFI/BOOT/BOOTX64.efi` to USB-Drive root and rename it to `SHELLX64.efi`
 - Copy kexts from folder `Other` to `EFI/CLOVER/kexts/Other/`
-- Add clover boot args: `-v npci=0x2000 nv_disable=1`
-  - Depending on graphics card add boot arg `-no_compat_check`
+- Add clover boot args: `npci=0x2000`
+  - (Depending on graphics card add boot arg `-no_compat_check`)
 - As SMBIOS select `iMac17.1`
 
 Note:
-- Adding `apfs.efi` or `ApfsDriverLoader-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, so use HFS+ filesystem
-- Adding `HFSPlus-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, use `VBoxHfs-64` instead
+- `ApfsDriverLoader-64` doesnt cause Clover to hang anymore on boot, so APFS as file system is possible
+- (Adding `HFSPlus-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, use `VBoxHfs-64` instead)
 
 ---
 
@@ -86,25 +90,9 @@ To create a working macOS Mojave installer boot drive, you will need the followi
 - Download `Install macOS Mojave` application
 - Close when it opens automatically
 
-##### b) Format USB flash drive
+##### b) Create Installer
 
-- Insert USB flash drive
-- Open Disk Utility and format flash drive
-  - Select `GUID` as partition scheme
-  - Select `Mac OS Extended (Journaled)` as file format
-
-##### c) Create Installer
-
-Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macdaddy.io/install-disk-creator/)
-<br>Special case to force Mojave Install to keep HFS+ during install:
-- download [14MBRinstallerMaker](https://www.insanelymac.com/forum/files/file/944-mojave-mbr-hfs-firmware-check-patch/)
-- Connect target HDD and Mojave USB drive
-- Open `14MBRinstallerMaker` and follow the instructions
-  - Enter password to grant admin privileges
-  - Drag `Install macOS Mojave.app` to terminal
-  - Drag USB flash drive to terminal
-  - Drag target HDD to terminal
-- Wait for installation process to finish
+Use [DiskMaker X](http://diskmakerx.com/) to create a bootable USB drive
 
 ---
 
@@ -112,7 +100,7 @@ Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macd
 
 - Connect target HDD, Mojave USB drive and Clover USB drive to your target machine
 - Boot from Clover USB drive and select Mojave USB drive (`Install OS X Mojave`)
-- The installation should start automatically (dont worry about reboot after one minute)
+- The installation should start automatically (don't worry about reboot after one minute)
 
 ---
 
@@ -141,7 +129,7 @@ Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macd
 
 ### Troubleshooting
 
-- On `Error loading kernel cache` reboot
+- On `Error loading kernel cache` reboot (try it out which AptioFix driver suits best for you)
 
 ---
 
@@ -163,7 +151,7 @@ Use [DiskMaker X](http://diskmakerx.com/) or [Install Disk Creator](https://macd
 - If system boots
   - Start OS X Update
   - On restart select newly added `Install OS X ...` partition
-  - Disable all BCRM kexts to prevent loop at the end of boot
+  - (Disable all BCRM kexts to prevent loop at the end of boot)
   - After reboot select normal OS X partition
 - If system boots
   - Be happy and enjoy the new update
@@ -236,7 +224,7 @@ This Hackintosh works completely without DSDT.
 
 ---
 
-#### USB (with shutdown issue): [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
+#### Internal USB 3 (with shutdown issue): [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
 
 - GenericUSBXHCI.kext
 
@@ -244,5 +232,5 @@ This Hackintosh works completely without DSDT.
 
 ### Tools
 
-- Clover Configurator: [Link](http://mackie100projects.altervista.org/download-clover-configurator/)
-- Kext Utility: [Link](http://cvad-mac.narod.ru/index/0-4)
+- [Clover Configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
+- [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-5-9.254559/#post-1764779)
