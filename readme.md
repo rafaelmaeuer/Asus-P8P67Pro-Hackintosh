@@ -89,7 +89,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 #### 2. Create OS X USB-Drive
 
 To create a working macOS Mojave installer boot drive, you will need the following:
-- A free USB flash drive (minimum 8GB)
+- An empty USB flash drive (minimum 8GB)
 - A device already running OS X with access to the App Store
 
 ##### a) Download OS X Installer
@@ -192,7 +192,7 @@ This Hackintosh works completely without DSDT.
 - FakePCIID.kext
 - FakePCIID_Broadcom_WiFi.kext
 
-#### Bluetooth: (with sleep issue) [RehabMan/OS-X-BrcmPatchRAM](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+#### Bluetooth (with sleep issue): [RehabMan/OS-X-BrcmPatchRAM](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
 
 - BrcmFirmwareRepo.kext
 - BrcmPatchRAM2.kext
@@ -232,7 +232,7 @@ This Hackintosh works completely without DSDT.
 
 ---
 
-#### Internal USB 3 (with shutdown issue): [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
+#### Internal USB3 (with shutdown issue): [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
 
 - GenericUSBXHCI.kext
 
