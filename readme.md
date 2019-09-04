@@ -4,8 +4,8 @@
 
 Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
 
-- macOS version: 10.14.5
-- clover version: 4961
+- macOS version: 10.14.6
+- clover version: 2.5k r5058
 
 ---
 
@@ -19,9 +19,13 @@ Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
 
 This Hackintosh is based on ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a Radeon GTX 570 graphics card.
 
-##### WIFI / Bluetooth
+##### WIFI
 
-The onboard Bluetooth is disabled. To get WiFi and Bluetooth running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://wikidevi.com/wiki/Broadcom_BCM94352Z) card as chip.
+To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://wikidevi.com/wiki/Broadcom_BCM94352Z) card as chip.
+
+##### Bluetooth
+
+The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is not connected to the motherboard. Instead a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) is used on USB 2.0 port to avoid unwanted sleep termination. It works without any additional driver.
 
 ##### SATA
 
@@ -61,7 +65,15 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
   - Open custom install settings
     - Select `Install Clover for UEFI`
     - Select `Install Clover in the ESP`
-    - Select `Drivers64UEFI`
+    - At `UEFI Drivers, 64 bit` select
+      - Recommended Drivers
+      - Input Devices
+      - Driver for Filesystems
+        - ApfsDriverLoader
+      - Memory Fix Driver
+        - OsxAptioFix3Drv
+      - Additional Driver
+        - CsmVideoDxe
   - Install
 
 ##### c) Post Install
@@ -71,10 +83,6 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 - Add clover boot args: `npci=0x2000`
   - (Depending on graphics card add boot arg `-no_compat_check`)
 - As SMBIOS select `iMac17.1`
-
-Note:
-- `ApfsDriverLoader-64` doesnt cause Clover to hang anymore on boot, so APFS as file system is possible
-- (Adding `HFSPlus-64` to `EFI/CLOVER/drivers64UEFI/` causes Clover to hang on load, use `VBoxHfs-64` instead)
 
 ---
 
@@ -92,7 +100,7 @@ To create a working macOS Mojave installer boot drive, you will need the followi
 
 ##### b) Create Installer
 
-Use [DiskMaker X](http://diskmakerx.com/) to create a bootable USB drive
+- Use [DiskMaker X](https://diskmakerx.com/) or [Install Disk Creator](https://macdaddy.io/install-disk-creator/) to create OS X USB-Drive
 
 ---
 
@@ -184,7 +192,7 @@ This Hackintosh works completely without DSDT.
 - FakePCIID.kext
 - FakePCIID_Broadcom_WiFi.kext
 
-#### Bluetooth: [RehabMan/OS-X-BrcmPatchRAM](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+#### Bluetooth: (with sleep issue) [RehabMan/OS-X-BrcmPatchRAM](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
 
 - BrcmFirmwareRepo.kext
 - BrcmPatchRAM2.kext

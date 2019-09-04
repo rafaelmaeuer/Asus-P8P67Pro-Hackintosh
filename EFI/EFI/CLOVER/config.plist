@@ -199,6 +199,76 @@
 					SU1FSQ==
 					</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change EHC2 to EH02</string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					RUhDMg==
+					</data>
+					<key>Replace</key>
+					<data>
+					RUgwMg==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change EUSB to EH01</string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					RVVTQg==
+					</data>
+					<key>Replace</key>
+					<data>
+					RUgwMQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change XHC1 to XHC</string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					WEhDMQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WEhDXw==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change XHCI to XHC</string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					WEhDSQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WEhDXw==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change EC0 to EC</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					RUMwXw==
+					</data>
+					<key>Replace</key>
+					<data>
+					RUNfXw==
+					</data>
+				</dict>
 			</array>
 			<key>ReuseFFFF</key>
 			<false/>
@@ -290,11 +360,11 @@
 		<key>#XMPDetection</key>
 		<string>-1</string>
 		<key>Arguments</key>
-		<string>npci=0x2000</string>
+		<string>-v npci=0x2000 kext-dev-mode=1</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
-		<string>OS X Mojave</string>
+		<string>Mojave</string>
 		<key>DisableCloverHotkeys</key>
 		<false/>
 		<key>Legacy</key>
@@ -729,7 +799,7 @@
 					<key>NoCaches</key>
 					<false/>
 					<key>Title</key>
-					<string>OS X Mojave</string>
+					<string>OS X</string>
 					<key>Type</key>
 					<string>OSX</string>
 					<key>Volume</key>
@@ -745,7 +815,7 @@
 					<key>NoCaches</key>
 					<false/>
 					<key>Title</key>
-					<string>OS X Recovery</string>
+					<string>Recovery</string>
 					<key>Type</key>
 					<string>OSXRecovery</string>
 					<key>Volume</key>
@@ -756,7 +826,8 @@
 		<key>Hide</key>
 		<array>
 			<string>Daten RAID</string>
-			<string>Daten</string>
+			<string>Daten OS X</string>
+			<string>Daten Windows</string>
 			<string>Spiele</string>
 			<string>Windows 10</string>
 			<string>42A6FBFE-861D-11E8-A60E-95379EDCD7B8</string>
@@ -766,7 +837,7 @@
 		<key>Language</key>
 		<string>de:0</string>
 		<key>ScreenResolution</key>
-		<string>1920x1080</string>
+		<string>2560x1600</string>
 		<key>ShowOptimus</key>
 		<false/>
 		<key>Theme</key>
@@ -843,11 +914,6 @@
 			<string>0x1006</string>
 			<key>#VideoInputSignal</key>
 			<string>0xA1</string>
-		</dict>
-		<key>Inject</key>
-		<dict>
-			<key>NVidia</key>
-			<false/>
 		</dict>
 	</dict>
 	<key>KernelAndKextPatches</key>
@@ -1018,20 +1084,83 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>USB 10.14+ by PMHeart</string>
+				<string>USB Port Limit Patch 1 PMHeart/DalianSky
+</string>
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
 				<data>
-				g/sPD4MDBQAA
+				g/sPDw==
 				</data>
 				<key>InfoPlistPatch</key>
 				<false/>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOUSBHostFamily</string>
+				<key>Replace</key>
+				<data>
+				g/s/Dw==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>USB Port Limit Patch 2 PMHeart/DalianSky</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				g+MP0w==
+				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOUSBHostFamily</string>
+				<key>Replace</key>
+				<data>
+				g+M/0w==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>USB Port Limit Patch 3 PMHeart/DalianSky</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				g/sPDw==
+				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
 				<key>Name</key>
 				<string>com.apple.driver.usb.AppleUSBXHCI</string>
 				<key>Replace</key>
 				<data>
-				g/sPkJCQkJCQ
+				g/s/Dw==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>USB Port Limit Patch 4 PMHeart/DalianSky</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				g/8PDw==
+				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.usb.AppleUSBXHCI</string>
+				<key>Replace</key>
+				<data>
+				g/8/Dw==
 				</data>
 			</dict>
 		</array>
