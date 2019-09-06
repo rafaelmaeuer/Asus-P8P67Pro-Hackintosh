@@ -833,6 +833,8 @@
 			<string>42A6FBFE-861D-11E8-A60E-95379EDCD7B8</string>
 			<string>Preboot</string>
 			<string>VM</string>
+			<string>Legacy HD2</string>
+			<string>Legacy HD3</string>
 		</array>
 		<key>Language</key>
 		<string>de:0</string>
