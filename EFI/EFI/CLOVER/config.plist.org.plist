@@ -129,6 +129,8 @@
 			</dict>
 			<key>Name</key>
 			<string>DSDT.aml</string>
+			<key>PNLF_UID</key>
+			<string>0x0A</string>
 			<key>Patches</key>
 			<array>
 				<dict>
@@ -415,22 +417,24 @@
 			<key>#IMEI</key>
 			<string>0x1e208086</string>
 			<key>#IntelGFX</key>
-			<string>0x01268086</string>
+			<string>0x01668086</string>
 			<key>#LAN</key>
 			<string>0x100E8086</string>
 			<key>#NVidia</key>
 			<string>0x11de10de</string>
 			<key>#SATA</key>
-			<string>0x25628086</string>
+			<string>0x26818086</string>
 			<key>#WIFI</key>
-			<string>0x431214e4</string>
+			<string>0x0030168C</string>
 			<key>#XHCI</key>
 			<string>0x0</string>
 		</dict>
 		<key>#ForceHPET</key>
 		<false/>
 		<key>#IntelMaxValue</key>
-		<integer>1808</integer>
+		<string>0x710</string>
+		<key>#NoDefaultProperties</key>
+		<true/>
 		<key>#Properties</key>
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x14,0x0)</key>
@@ -602,6 +606,13 @@
 				hoAAAA==
 				</data>
 			</dict>
+			<key>SecondaryGPU</key>
+			<dict>
+				<key>device-id</key>
+				<data>
+				/////w==
+				</data>
+			</dict>
 		</dict>
 		<key>#SetIntelBacklight</key>
 		<false/>
@@ -610,12 +621,14 @@
 		<key>Audio</key>
 		<dict>
 			<key>#Inject</key>
-			<string>0x0887</string>
+			<string>12</string>
 			<key>AFGLowPowerState</key>
 			<true/>
 			<key>ResetHDA</key>
 			<true/>
 		</dict>
+		<key>HDMIInjection</key>
+		<false/>
 		<key>LANInjection</key>
 		<false/>
 		<key>USB</key>
@@ -727,13 +740,13 @@
 		</dict>
 		<key>#CustomIcons</key>
 		<false/>
-		<key>#EmbeddedThemeType</key>
-		<string>Dark</string>
 		<key>#Hide</key>
 		<array>
 			<string>Windows</string>
 			<string>BOOTX64.EFI</string>
 		</array>
+		<key>#KbdPrevLang</key>
+		<false/>
 		<key>#Language</key>
 		<string>ru:0</string>
 		<key>#Mouse</key>
@@ -756,12 +769,18 @@
 		</dict>
 		<key>#TextOnly</key>
 		<false/>
+		<key>EmbeddedThemeType</key>
+		<string>Daytime</string>
+		<key>PlayAsync</key>
+		<false/>
 		<key>ScreenResolution</key>
 		<string>1280x1024</string>
 		<key>ShowOptimus</key>
 		<false/>
 		<key>Theme</key>
 		<string>embedded</string>
+		<key>Timezone</key>
+		<integer>3</integer>
 	</dict>
 	<key>Graphics</key>
 	<dict>
@@ -870,25 +889,6 @@
 			<string>\System\Library\Extensions\AMD6000Controller.kext</string>
 			<string>\System\Library\Extensions\AMDFramebuffer.kext</string>
 		</array>
-		<key>#KernelToPatch</key>
-		<array>
-			<dict>
-				<key>Comment</key>
-				<string>Infinite loop at wake</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				TIn/6PXb/v8=
-				</data>
-				<key>MatchOS</key>
-				<string>10.11</string>
-				<key>Replace</key>
-				<data>
-				6/7/6PXb/v8=
-				</data>
-			</dict>
-		</array>
 		<key>#KextsToPatch</key>
 		<array>
 			<dict>
@@ -897,6 +897,10 @@
 				<key>Find</key>
 				<data>
 				SGVhZHBob25lcwA=
+				</data>
+				<key>MaskReplace</key>
+				<data>
+				/////wAAAAAAAAA=
 				</data>
 				<key>Name</key>
 				<string>VoodooHDA</string>
@@ -983,9 +987,27 @@
 				SEQgNjQ1MA==
 				</data>
 			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Patch 8 apples</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				AQAAdSI=
+				</data>
+				<key>MatchOS</key>
+				<string>10.13</string>
+				<key>Name</key>
+				<string>IOGraphicsFamily</string>
+				<key>Replace</key>
+				<data>
+				AQAA6yI=
+				</data>
+			</dict>
 		</array>
 		<key>AppleIntelCPUPM</key>
-		<false/>
+		<true/>
 		<key>AppleRTC</key>
 		<false/>
 		<key>Debug</key>
@@ -998,11 +1020,69 @@
 		<false/>
 		<key>KernelPm</key>
 		<false/>
+		<key>KernelToPatch</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Disable panic kext logging on 10.14 Release kernel</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				igKEwHRC
+				</data>
+				<key>MaskFind</key>
+				<data>
+				////////
+				</data>
+				<key>MaskReplace</key>
+				<data>
+				AAAAAP8A
+				</data>
+				<key>MatchOS</key>
+				<string>10.14</string>
+				<key>Replace</key>
+				<data>
+				igKEwOtC
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable panic kext logging on 10.13 Release kernel</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				igKEwHRE
+				</data>
+				<key>MatchOS</key>
+				<string>10.13</string>
+				<key>Replace</key>
+				<data>
+				igKEwOtE
+				</data>
+			</dict>
+		</array>
 		<key>KernelXCPM</key>
 		<false/>
+		<key>PanicNoKextDump</key>
+		<true/>
 	</dict>
 	<key>RtVariables</key>
 	<dict>
+		<key>Block</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Dell variables</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Name</key>
+				<string>*</string>
+				<key>UUID</key>
+				<string>FF2E9FC7-D16F-434A-A24E-C99519B7EB93</string>
+			</dict>
+		</array>
 		<key>BooterConfig</key>
 		<string>0x28</string>
 		<key>CsrActiveConfig</key>
@@ -1019,25 +1099,27 @@
 		<key>#BiosVendor</key>
 		<string>Apple Inc.</string>
 		<key>#BiosVersion</key>
-		<string>MB11.88Z.0061.B03.0809221748</string>
+		<string>IM131.88Z.F000.B00.1907241303</string>
 		<key>#Board-ID</key>
-		<string>Mac-F4208CC8</string>
+		<string>Mac-FC02E91DDD3FA6A4</string>
 		<key>#BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>#BoardSerialNumber</key>
-		<string>C02032101R5DC771H</string>
+		<string>C0225060SAMF651AX</string>
 		<key>#BoardType</key>
 		<integer>10</integer>
 		<key>#BoardVersion</key>
 		<string>Proto1</string>
 		<key>#ChassisAssetTag</key>
-		<string>LatitudeD420</string>
+		<string>Desktop</string>
 		<key>#ChassisManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>#ChassisType</key>
 		<integer>16</integer>
+		<key>#EfiVersion</key>
+		<string>288.0.0.0.0</string>
 		<key>#Family</key>
-		<string>MacBook</string>
+		<string>iMac</string>
 		<key>#FirmwareFeatures</key>
 		<string>0xC0001403</string>
 		<key>#FirmwareFeaturesMask</key>
@@ -1086,14 +1168,18 @@
 			<key>SlotCount</key>
 			<integer>4</integer>
 		</dict>
+		<key>#MemoryRank</key>
+		<integer>2</integer>
 		<key>#Mobile</key>
 		<true/>
+		<key>#NoRomInfo</key>
+		<true/>
 		<key>#PlatformFeature</key>
-		<string>0x03</string>
+		<string>0x00</string>
 		<key>#ProductName</key>
-		<string>MacBook1,1</string>
+		<string>iMac13,2</string>
 		<key>#SerialNumber</key>
-		<string>4H629LYAU9C</string>
+		<string>C02JBSAMDNCW</string>
 		<key>#Slots</key>
 		<array>
 			<dict>
@@ -1119,6 +1205,8 @@
 		</array>
 		<key>#SmUUID</key>
 		<string>00000000-0000-1000-8000-010203040506</string>
+		<key>#SmbiosVersion</key>
+		<string>0x0300</string>
 		<key>#Trust</key>
 		<true/>
 		<key>#Version</key>

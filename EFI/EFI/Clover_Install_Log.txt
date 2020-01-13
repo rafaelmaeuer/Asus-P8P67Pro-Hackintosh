@@ -1,53 +1,42 @@
 
-Clover EFI installer log - Wed Sep  4 20:04:36 CEST 2019
-Installer version: v2.5k r5058 EFI bootloader
+Clover EFI installer log - Sat Jan 11 11:06:09 CET 2020
+Installer version: v2.5k r5103 EFI bootloader
 ======================================================
-/dev/disk0 (internal, physical):
+/dev/disk0 (internal):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *500.1 GB   disk0
-   1:                        EFI EFI                     209.7 MB   disk0s1
-   2:                  Apple_HFS Daten OS X              249.9 GB   disk0s2
-   3:       Microsoft Basic Data Daten Windows           249.7 GB   disk0s3
+   0:      GUID_partition_scheme                         500.3 GB   disk0
+   1:                        EFI EFI                     314.6 MB   disk0s1
+   2:                 Apple_APFS Container disk1         391.0 GB   disk0s2
+   3:       Microsoft Basic Data Windows 10              100.4 GB   disk0s3
+   4:           Windows Recovery                         571.5 MB   disk0s4
 
-/dev/disk1 (internal, physical):
+/dev/disk1 (synthesized):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *256.1 GB   disk1
-   1:                        EFI EFI                     524.3 MB   disk1s1
-   2:       Microsoft Basic Data Windows 10              126.1 GB   disk1s2
-   3:           Windows Recovery                         898.6 MB   disk1s3
-   4:                 Apple_APFS Container disk2         128.6 GB   disk1s4
+   0:      APFS Container Scheme -                      +391.0 GB   disk1
+                                 Physical Store disk0s2
+   1:                APFS Volume Macintosh HD            248.6 GB   disk1s1
+   2:                APFS Volume Preboot                 44.0 MB    disk1s2
+   3:                APFS Volume Recovery                510.3 MB   disk1s3
+   4:                APFS Volume VM                      5.4 GB     disk1s4
+   5:                APFS Volume Daten                   113.5 GB   disk1s5
 
-/dev/disk2 (synthesized):
+/dev/disk2 (external, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      APFS Container Scheme -                      +128.6 GB   disk2
-                                 Physical Store disk1s4
-   1:                APFS Volume Mojave                  107.9 GB   disk2s1
-   2:                APFS Volume VM                      20.5 KB    disk2s2
-   3:                APFS Volume Preboot                 47.4 MB    disk2s3
-   4:                APFS Volume Recovery                509.7 MB   disk2s4
-
-/dev/disk3 (internal, physical):
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *2.0 TB     disk3
-   1:                        EFI EFI                     209.7 MB   disk3s1
-   2:                  Apple_HFS LaCie Quadra 2TB        2.0 TB     disk3s2
-
-/dev/disk4 (external, physical):
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *4.1 GB     disk4
-   1:                        EFI EFI                     209.7 MB   disk4s1
-   2:                  Apple_HFS Clover Aventador v2.... 3.7 GB     disk4s2
+   0:      GUID_partition_scheme                        *4.0 GB     disk2
+   1:                        EFI EFI                     209.7 MB   disk2s1
+   2:                  Apple_HFS Clover                  3.7 GB     disk2s2
 
 ======================================================
 Backing up EFI files
 
-Backing up /Volumes/Clover Aventador v2.4k_r4961/EFIROOTDIR/EFI folder to /Volumes/Clover Aventador v2.4k_r4961/EFI-Backups/r4961/2019-09-04-20h04/EFI
 ======================================================
 Installing BootSectors/BootLoader
 
-Stage 0 - Don't write any of boot0af, boot0md, boot0ss to /Volumes/Clover Aventador v2.4k_r4961
-Stage 1 - Don't write any of boot1h2, boot1f32alt, boot1xalt to /Volumes/Clover Aventador v2.4k_r4961
+Stage 0 - Don't write any of boot0af, boot0md, boot0ss to /Volumes/Clover
+Stage 1 - Don't write any of boot1h2, boot1f32alt, boot1xalt to /Volumes/Clover
 
+Theme 'Clovy' (defined in config.plist) not found !
+Using default theme 'embedded'
 ======================================================
 =========== Clover EFI Installation Finish ===========
 ======================================================
