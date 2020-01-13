@@ -2,10 +2,10 @@
 
 ### Info
 
-Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
+Guide how to install OS X Catalina on ASUS P8P67 PRO (REV3.0)
 
-- macOS version: 10.14.6
-- clover version: 2.5k r5058
+- macOS version: 10.15.2
+- clover version: 2.5k r5103
 
 ---
 
@@ -17,7 +17,7 @@ Guide how to install OS X Mojave on ASUS P8P67 PRO (REV3.0)
 
 #### Hardware
 
-This Hackintosh is based on ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a Radeon GTX 570 graphics card.
+This Hackintosh is based on ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a GeForce GTX 760 graphics card.
 
 ##### WIFI
 
@@ -25,7 +25,7 @@ To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networkin
 
 ##### Bluetooth
 
-The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is not connected to the motherboard. Instead a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) is used on USB 2.0 port to avoid unwanted sleep termination. It works without any additional driver.
+The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is not connected to the motherboard. Instead a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) is used on USB 2.0 port to avoid unwanted sleep termination. It works without any additional driver (until Mojave, in Catalina it only worked during install).
 
 ##### SATA
 
@@ -60,21 +60,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 ##### b) Install Clover [clover-wiki](https://clover-wiki.zetam.org/Installation)
 
-- Run clover installer
-  - Select USB-Drive as install target
-  - Open custom install settings
-    - Select `Install Clover for UEFI`
-    - Select `Install Clover in the ESP`
-    - At `UEFI Drivers, 64 bit` select
-      - Recommended Drivers
-      - Input Devices
-      - Driver for Filesystems
-        - ApfsDriverLoader
-      - Memory Fix Driver
-        - OsxAptioFix3Drv
-      - Additional Driver
-        - CsmVideoDxe
-  - Install
+- Follow this guide [Create a MacOS Catalina 10.15.0 USB Installer Drive w/Clover](https://hackintosher.com/forums/thread/guide-how-to-create-a-macos-catalina-10-15-0-usb-installer-drive-w-clover.2836/) Section `IV. Install Clover Bootloader into the USB Installer Flash Drive's EFI Boot Partition`
 
 ##### c) Post Install
 
@@ -88,14 +74,14 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 #### 2. Create OS X USB-Drive
 
-To create a working macOS Mojave installer boot drive, you will need the following:
+To create a working macOS Catalina installer boot drive, you will need the following:
 - An empty USB flash drive (minimum 8GB)
 - A device already running OS X with access to the App Store
 
 ##### a) Download OS X Installer
 
 - Open the Mac App Store on your device already running OS X
-- Download `Install macOS Mojave` application
+- Download `Install macOS Catalina` application
 - Close when it opens automatically
 
 ##### b) Create Installer
@@ -106,15 +92,15 @@ To create a working macOS Mojave installer boot drive, you will need the followi
 
 #### 3. Install OS X
 
-- Connect target HDD, Mojave USB drive and Clover USB drive to your target machine
-- Boot from Clover USB drive and select Mojave USB drive (`Install OS X Mojave`)
+- Connect target HDD, Catalina USB drive and Clover USB drive to your target machine
+- Boot from Clover USB drive and select Catalina USB drive (`Install OS X Catalina`)
 - The installation should start automatically (don't worry about reboot after one minute)
 
 ---
 
 #### 4. Install Clover in EFI partition of OS X HDD
 
-- After successfully install repeat steps 1b - 1c but with EFI on Mojave HDD as target
+- After successfully install repeat steps 1b - 1c but with EFI on Macintosh HDD as target
 
 ---
 
