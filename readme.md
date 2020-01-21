@@ -1,8 +1,8 @@
-## ASUS P8P67 PRO (REV3.0)
+## ASUS P8P67 PRO/EVO (REV3.0)
 
 ### Info
 
-Guide how to install OS X Catalina on ASUS P8P67 PRO (REV3.0)
+Guide how to install OS X Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
 - macOS version: 10.15.2
 - clover version: 2.5k r5103
@@ -11,13 +11,11 @@ Guide how to install OS X Catalina on ASUS P8P67 PRO (REV3.0)
 
 #### BIOS
 
-- Use version 3602
-- Use correct BIOS settings
-  `to be done`
+- Use version 3602 (get ROM for PRO/EVO Board from [Bios](/Bios) folder)
 
 #### Hardware
 
-This Hackintosh is based on ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a GeForce GTX 760 graphics card.
+This Hackintosh was created on an ASUS P8P67 PRO Mainboard. It is running now on an ASUS P8P67 EVO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a GeForce GTX 760 graphics card.
 
 ##### WIFI
 
@@ -178,10 +176,11 @@ This Hackintosh works completely without DSDT.
 - FakePCIID.kext
 - FakePCIID_Broadcom_WiFi.kext
 
-#### Bluetooth (with sleep issue): [RehabMan/OS-X-BrcmPatchRAM](https://bitbucket.org/RehabMan/os-x-brcmpatchram/downloads/)
+#### Bluetooth (with sleep issue): [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
 
-- BrcmFirmwareRepo.kext
-- BrcmPatchRAM2.kext
+- BrcmBluetoothInjector.kext
+- BrcmFirmwareData.kext
+- BrcmPatchRAM3.kext
 
 #### Sensors: [RehabMan/OS-X-FakeSMC-kozlek](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
 
