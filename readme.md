@@ -2,9 +2,9 @@
 
 ### Info
 
-Guide how to install OS X Catalina on ASUS P8P67 PRO/EVO (REV3.0)
+Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
-- macOS version: 10.15.2
+- macOS version: 10.15.3
 - clover version: 2.5k r5103
 
 ---
@@ -35,26 +35,22 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 ---
 
-### Install OS X
+### Install macOS
 
-#### 1. Create Clover USB-Drive
+#### 1. Create Clover Drive
 
 ##### a) Preparation
 
-- Format USB-Drive with GUID and HFS+
+- Format USB-Drive with GUID and FAT32
   - Find the correct disk number of USB-Drive:
 
-  ```sh
-  diskutil list
-  ```
+        diskutil list
 
   - Replace {#} with corresponding disk number and {Volume} with desired Name:
 
-  ```sh
-  diskutil partitionDisk /dev/disk{#} 1 GPT HFS+ {Volume} R
-  ```
+        diskutil partitionDisk /dev/disk{#} 1 GPT FAT32 {Volume} R
 
-- Download Clover: [sourceforge.net](https://sourceforge.net/projects/cloverefiboot/)
+- Download Clover: [github.com/CloverHackyColor](https://github.com/CloverHackyColor/CloverBootloader/releases)
 
 ##### b) Install Clover [clover-wiki](https://clover-wiki.zetam.org/Installation)
 
@@ -70,35 +66,35 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 ---
 
-#### 2. Create OS X USB-Drive
+#### 2. Create macOS Installer Drive
 
-To create a working macOS Catalina installer boot drive, you will need the following:
+To create a working macOS Installer boot drive, you will need the following:
 - An empty USB flash drive (minimum 8GB)
-- A device already running OS X with access to the App Store
+- A device already running macOS with access to the App Store
 
-##### a) Download OS X Installer
+##### a) Download macOS Installer
 
-- Open the Mac App Store on your device already running OS X
+- Open the Mac App Store on your device already running macOS
 - Download `Install macOS Catalina` application
 - Close when it opens automatically
 
-##### b) Create Installer
+##### b) Create Installer Stick
 
-- Use [DiskMaker X](https://diskmakerx.com/) or [Install Disk Creator](https://macdaddy.io/install-disk-creator/) to create OS X USB-Drive
+- Use [DiskMaker X](https://diskmakerx.com/) or [Install Disk Creator](https://macdaddy.io/install-disk-creator/) to create macOS Install Drive
 
 ---
 
-#### 3. Install OS X
+#### 3. Install macOS
 
-- Connect target HDD, Catalina USB drive and Clover USB drive to your target machine
-- Boot from Clover USB drive and select Catalina USB drive (`Install OS X Catalina`)
+- Connect Macintosh HD, macOS Installer and Clover Drive to your target machine
+- Boot from Clover Drive and select macOS Installer (`Install macOS Catalina`)
 - The installation should start automatically (don't worry about reboot after one minute)
 
 ---
 
-#### 4. Install Clover in EFI partition of OS X HDD
+#### 4. Install Clover in EFI partition of macOS HDD
 
-- After successfully install repeat steps 1b - 1c but with EFI on Macintosh HDD as target
+- After successfully install repeat steps 1b - 1c but with EFI on Macintosh HD as target
 
 ---
 
@@ -125,26 +121,25 @@ To create a working macOS Catalina installer boot drive, you will need the follo
 
 ---
 
-### Update OS X
+### Update macOS
 
 - Make a full backup
-- Check [hackintosher.com](https://hackintosher.com/guides/) for the latest OS X Update Guide
+- Check [hackintosher.com](https://hackintosher.com/guides/) for the latest macOS Update Guide
 - Check all kexts for updates
-- Make a new clover USB drive for testing purpose
+- Make a new clover Drive for testing purpose
   - Use updated kexts and drivers in post install
-- Boot from new clover USB drive
+- Boot from new Clover Drive
 - If system boots
-  - Mount EFI partition of OS X HDD
+  - Mount EFI partition of Macintosh HD
   - Backup `EFI` to `EFI-Backups`
-  - Install new clover version to EFI partition
+  - Install new Clover version to EFI partition
   - Copy updated kexts and drivers during post install
   - Don't forget to copy `Microsoft` folder (it contains the windows bootloader)
-- Eject clover USB drive and reboot
+- Eject Clover Drive and reboot
 - If system boots
-  - Start OS X Update
-  - On restart select newly added `Install OS X ...` partition
-  - (Disable all BCRM kexts to prevent loop at the end of boot)
-  - After reboot select normal OS X partition
+  - Start macOS Update
+  - On restart select newly added `Install macOS Catalina` partition
+  - After reboot select normal Macintosh HD partition
 - If system boots
   - Be happy and enjoy the new update
 - If system doesn't boot on one of these steps
@@ -156,8 +151,8 @@ To create a working macOS Catalina installer boot drive, you will need the follo
 
 ### SSDT
 
-Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-<br>*To be done*
+Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/Piker-Alpha/ssdtPRGen.sh)  
+*TODO*
 
 ### DSDT
 
@@ -226,4 +221,4 @@ This Hackintosh works completely without DSDT.
 ### Tools
 
 - [Clover Configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
-- [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-5-9.254559/#post-1764779)
+- [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/)
