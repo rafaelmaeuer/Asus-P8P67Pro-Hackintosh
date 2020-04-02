@@ -4,7 +4,7 @@
 
 Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
-- macOS version: 10.15.3
+- macOS version: 10.15.4
 - clover version: 2.5k r5103
 
 ---
@@ -12,10 +12,34 @@ Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 #### BIOS
 
 - Use version 3602 (get ROM for PRO/EVO Board from [Bios](/Bios) folder)
+- Use proper settings
+  - AI Tweaker: Auto
+  - Advanced
+    - SATA
+      - Mode Selection: AHCI
+      - S.M.A.R.T.: Enabled
+    - USB
+      - Legacy: Enabled
+      - Legacy USB 3.0: Enabled
+      - EHCI Hand-off: Disabled
+    - Onboard Devices
+      - Renesas USB 3.0: Disabled
+      - Bluetooth: Disabled
+      - VIA 1394: Disabled
+      - Marvell Storage: AHCI
+      - Serial Port: Disabled
+  - Boot
+    - PCI ROM: Legacy ROM
+    - Option ROM: Force BIOS
 
 #### Hardware
 
-This Hackintosh was created on an ASUS P8P67 PRO Mainboard. It is running now on an ASUS P8P67 EVO Mainboard with an Intel Core i7 2600K Processor, 16GB RAM and a GeForce GTX 760 graphics card.
+This Hackintosh was created on an ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor and 16GB RAM. It is running now on an ASUS P8P67 EVO Mainboard. A GeForce GTX 760 and Radeon RX 570 graphics card have been working  with different display setups.
+
+#### Graphics
+
+Radeon RX 570 was used with two 4K Monitors on DP and HDMI, DVI makes problems.  
+GeForce GTX 760 was used with two Displays on DVI, no 4K on HDMI possible (v1.4a).
 
 ##### WIFI
 
