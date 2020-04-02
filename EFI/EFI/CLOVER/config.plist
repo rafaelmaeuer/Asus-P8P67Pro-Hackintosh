@@ -264,7 +264,7 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
-		<string>Catalina</string>
+		<string>LastBootedVolume</string>
 		<key>DisableCloverHotkeys</key>
 		<false/>
 		<key>Legacy</key>
@@ -291,7 +291,7 @@
 		<key>EFILoginHiDPI</key>
 		<integer>1</integer>
 		<key>UIScale</key>
-		<integer>1</integer>
+		<integer>2</integer>
 	</dict>
 	<key>CPU</key>
 	<dict>
@@ -673,11 +673,11 @@
 		<key>Language</key>
 		<string>de:0</string>
 		<key>ScreenResolution</key>
-		<string>2560x1600</string>
+		<string>3840×2160</string>
 		<key>ShowOptimus</key>
 		<false/>
 		<key>Theme</key>
-		<string>Catalina</string>
+		<string>Catalina4k</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
