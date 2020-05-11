@@ -53,9 +53,13 @@ The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is no
 
 For eSATA and RAID a [DIGITUS SATA PCI-E](https://www.digitus.info/de/produkte/computer-zubehoer-und-komponenten/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip can be activated with the AHCIPortInjector.
 
+##### USB
+
+USB2 works ootb but the generation of a port mapping was done in hope of avoiding the unwanted wake from sleep. This is caused by the internal USB-connector of the BT-card. The most promising solution is setting the USB-connector type to internal (255). The current configuration applies the correct port mapping, but the BT-card isn't recognized anymore when the USB-connector type is set to internal.
+
 ##### USB3
 
-For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card is used. The internal Renesas USB3 chip can be activated using GenericUSBXHCI.kext, but it causes a problem on shutdown (unwanted restart).
+For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card is used which works ootb. The internal Renesas USB3 chip can be activated using GenericUSBXHCI.kext, but it causes a problem on shutdown (unwanted restart).
 
 ---
 
@@ -182,18 +186,24 @@ SSDT-PLUG.aml is used for advanced power management.
 
 ---
 
+### USB-Mapping
+
+- USBPorts.kext does the correct port-mapping
+- SSDT-EC-USBX.aml applies patches for EC and USBX
+
+---
+
 ### Kexts
 
 #### Kext Patch: [acidanthera/Lilu](https://github.com/acidanthera/Lilu/releases)
 
 - Lilu.kext
 
-#### WiFi: [RehabMan/OS-X-Fake-PCI-ID](https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads/)
+#### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup/releases)
 
-- FakePCIID.kext
-- FakePCIID_Broadcom_WiFi.kext
+- AirportBrcmFixup.kext
 
-#### Bluetooth (with sleep issue): [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
+#### Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
 
 - BrcmBluetoothInjector.kext
 - BrcmFirmwareData.kext
