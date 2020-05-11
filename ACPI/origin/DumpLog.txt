@@ -1,0 +1,89 @@
+15:263  2:655  Found BIOS RSDP at FC990
+15:263  0:000  Printing ACPI tables from RSDP FC990 ...
+15:263  0:000   FC990: 'RSD PTR ', Rev: 2 (Acpi 2.0 or newer), Len: 36
+15:263  0:000    (Xsdt: DF385070, Rsdt: DF385028)
+15:263  0:000    DF385070: 'XSDT', 'A M I', Rev: 1, Len: 92
+15:263  0:000    DF385028: 'RSDT', 'A M I', Rev: 1, Len: 64
+15:263  0:000    Tables in Xsdt: 7
+15:263  0:000    0. DF390CD8: 'FACP', 'A M I', Rev: 4, Len: 244
+15:263  0:000        (Dsdt: DF385168, Facs: DF3BEF80, XDsdt: DF385168, XFacs: 0)
+15:263  0:000        DF385168: 'DSDT', 'A M I', Rev: 2, Len: 47981
+15:263  0:000        DF3BEF80: 'FACS', Ver: 2, Len: 64
+15:263  0:000    1. DF390DD0: 'APIC', 'A M I', Rev: 3, Len: 146
+15:263  0:000    2. DF390E68: 'MCFG', 'A M I', Rev: 1, Len: 60
+15:263  0:000    3. DF390EA8: 'HPET', 'A M I', Rev: 1, Len: 56
+15:263  0:000    4. DF390EE0: 'SSDT', 'SataTabl', Rev: 1, Len: 877
+15:263  0:000    5. DF391250: 'SSDT', 'Cpu0Ist', Rev: 1, Len: 2474
+15:263  0:000    6. DF391C00: 'SSDT', 'CpuPm', Rev: 1, Len: 2706
+15:263  0:000    Tables in Rsdt: 7
+15:263  0:000    0. DF3850E0: 'FACP', 'A M I', Rev: 2, Len: 132
+15:263  0:000        (Dsdt: DF385168, Facs: DF3BEF40)
+15:263  0:000        DF385168: 'DSDT', 'A M I', Rev: 2, Len: 47981
+15:264  0:000        DF3BEF40: 'FACS', Ver: 0, Len: 64
+15:264  0:000    1. DF390DD0: 'APIC', 'A M I', Rev: 3, Len: 146
+15:264  0:000    2. DF390E68: 'MCFG', 'A M I', Rev: 1, Len: 60
+15:264  0:000    3. DF390EA8: 'HPET', 'A M I', Rev: 1, Len: 56
+15:264  0:000    4. DF390EE0: 'SSDT', 'SataTabl', Rev: 1, Len: 877
+15:264  0:000    5. DF391250: 'SSDT', 'Cpu0Ist', Rev: 1, Len: 2474
+15:264  0:000    6. DF391C00: 'SSDT', 'CpuPm', Rev: 1, Len: 2706
+15:264  0:000  Found UEFI Acpi 2.0 RSDP at DF385000
+15:264  0:000  Saving ACPI tables from RSDP DF385000 to EFI\CLOVER\ACPI\origin ...
+15:264  0:000   DF385000: 'RSD PTR ', Rev: 2 (Acpi 2.0 or newer), Len: 36 -> RSDP.aml
+15:271  0:006    (Xsdt: DF385070, Rsdt: DF385028)
+15:271  0:000    DF385070: 'XSDT', 'A M I', Rev: 1, Len: 92 -> XSDT.aml
+15:274  0:003    DF385028: 'RSDT', 'A M I', Rev: 1, Len: 64 -> RSDT.aml
+15:275  0:000    Tables in Xsdt: 7
+15:275  0:000    0. DF390CD8: 'FACP', 'A M I', Rev: 4, Len: 244 -> FACP.aml
+15:276  0:000        (Dsdt: DF385168, Facs: DF3BEF80, XDsdt: DF385168, XFacs: 0)
+15:276  0:000        DF385168: 'DSDT', 'A M I', Rev: 2, Len: 47981 -> DSDT.aml
+15:281  0:004        DF3BEF80: 'FACS', Ver: 2, Len: 64 -> FACS.aml
+15:281  0:000    1. DF390DD0: 'APIC', 'A M I', Rev: 3, Len: 146 -> APIC.aml
+15:284  0:002    2. DF390E68: 'MCFG', 'A M I', Rev: 1, Len: 60 -> MCFG.aml
+15:285  0:000    3. DF390EA8: 'HPET', 'A M I', Rev: 1, Len: 56 -> HPET.aml
+15:288  0:002    4. DF390EE0: 'SSDT', 'SataTabl', Rev: 1, Len: 877 -> SSDT-0-SataTabl.aml
+15:289  0:000    5. DF391250: 'SSDT', 'Cpu0Ist', Rev: 1, Len: 2474 -> SSDT-1-Cpu0Ist.aml
+15:290  0:000    6. DF391C00: 'SSDT', 'CpuPm', Rev: 1, Len: 2706 -> SSDT-2-CpuPm.aml (Found hidden SSDT 4 pcs)
+15:292  0:002        * 1B37018: 'SSDT', 'CpuPm', Rev: 1, Len: 2706  53 53 44 54 92 0A 00 00 01 4B 50 6D 52 65 66 00 Internal length = 2706 -> SSDT-x2_0-CpuPm.aml
+15:299  0:006        * DF0EEA98: 'SSDT', 'ApIst', Rev: 1, Len: 771  53 53 44 54 03 03 00 00 01 76 50 6D 52 65 66 00 Internal length = 771 -> SSDT-x2_1-ApIst.aml
+15:306  0:006        * DF0ED018: 'SSDT', 'Cpu0Cst', Rev: 1, Len: 2107  53 53 44 54 3B 08 00 00 01 D8 50 6D 52 65 66 00 Internal length = 2107 -> SSDT-x2_2-Cpu0Cst.aml
+15:307  0:000        * DF0EFC18: 'SSDT', 'ApCst', Rev: 1, Len: 281  53 53 44 54 19 01 00 00 01 EC 50 6D 52 65 66 00 Internal length = 281 -> SSDT-x2_3-ApCst.aml
+15:308  0:000  
+15:308  0:000    Tables in Rsdt: 7
+15:308  0:000    0. DF3850E0: 'FACP', 'A M I', Rev: 2, Len: 132 -> RSDT-FACP.aml
+15:308  0:000        (Dsdt: DF385168, Facs: DF3BEF40)
+15:308  0:000        DF385168: 'DSDT', 'A M I', Rev: 2, Len: 47981
+15:309  0:000        DF3BEF40: 'FACS', Ver: 0, Len: 64 -> RSDT-FACS.aml
+15:310  0:000    1. DF390DD0: 'APIC', 'A M I', Rev: 3, Len: 146
+15:310  0:000    2. DF390E68: 'MCFG', 'A M I', Rev: 1, Len: 60
+15:310  0:000    3. DF390EA8: 'HPET', 'A M I', Rev: 1, Len: 56
+15:310  0:000    4. DF390EE0: 'SSDT', 'SataTabl', Rev: 1, Len: 877
+15:310  0:000    5. DF391250: 'SSDT', 'Cpu0Ist', Rev: 1, Len: 2474
+15:310  0:000    6. DF391C00: 'SSDT', 'CpuPm', Rev: 1, Len: 2706
+15:310  0:000  Found UEFI Acpi 1.0 RSDP at DF385000
+15:310  0:000  Printing ACPI tables from RSDP DF385000 ...
+15:310  0:000   DF385000: 'RSD PTR ', Rev: 2 (Acpi 2.0 or newer), Len: 36
+15:310  0:000    (Xsdt: DF385070, Rsdt: DF385028)
+15:310  0:000    DF385070: 'XSDT', 'A M I', Rev: 1, Len: 92
+15:310  0:000    DF385028: 'RSDT', 'A M I', Rev: 1, Len: 64
+15:310  0:000    Tables in Xsdt: 7
+15:310  0:000    0. DF390CD8: 'FACP', 'A M I', Rev: 4, Len: 244
+15:310  0:000        (Dsdt: DF385168, Facs: DF3BEF80, XDsdt: DF385168, XFacs: 0)
+15:310  0:000        DF385168: 'DSDT', 'A M I', Rev: 2, Len: 47981
+15:310  0:000        DF3BEF80: 'FACS', Ver: 2, Len: 64
+15:310  0:000    1. DF390DD0: 'APIC', 'A M I', Rev: 3, Len: 146
+15:310  0:000    2. DF390E68: 'MCFG', 'A M I', Rev: 1, Len: 60
+15:310  0:000    3. DF390EA8: 'HPET', 'A M I', Rev: 1, Len: 56
+15:310  0:000    4. DF390EE0: 'SSDT', 'SataTabl', Rev: 1, Len: 877
+15:310  0:000    5. DF391250: 'SSDT', 'Cpu0Ist', Rev: 1, Len: 2474
+15:310  0:000    6. DF391C00: 'SSDT', 'CpuPm', Rev: 1, Len: 2706
+15:310  0:000    Tables in Rsdt: 7
+15:310  0:000    0. DF3850E0: 'FACP', 'A M I', Rev: 2, Len: 132
+15:310  0:000        (Dsdt: DF385168, Facs: DF3BEF40)
+15:310  0:000        DF385168: 'DSDT', 'A M I', Rev: 2, Len: 47981
+15:311  0:000        DF3BEF40: 'FACS', Ver: 0, Len: 64
+15:311  0:000    1. DF390DD0: 'APIC', 'A M I', Rev: 3, Len: 146
+15:311  0:000    2. DF390E68: 'MCFG', 'A M I', Rev: 1, Len: 60
+15:311  0:000    3. DF390EA8: 'HPET', 'A M I', Rev: 1, Len: 56
+15:311  0:000    4. DF390EE0: 'SSDT', 'SataTabl', Rev: 1, Len: 877
+15:311  0:000    5. DF391250: 'SSDT', 'Cpu0Ist', Rev: 1, Len: 2474
+15:311  0:000    6. DF391C00: 'SSDT', 'CpuPm', Rev: 1, Len: 2706
