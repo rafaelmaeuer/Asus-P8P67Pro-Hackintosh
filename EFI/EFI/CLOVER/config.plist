@@ -131,9 +131,9 @@
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>change EHC2 to EH02</string>
+					<string>rename EHC2 to EH02</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>RUhDMg==</data>
 					<key>Replace</key>
@@ -141,9 +141,9 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change EUSB to EH01</string>
+					<string>rename EUSB to EH01</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>RVVTQg==</data>
 					<key>Replace</key>
@@ -151,21 +151,11 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change XHC1 to XHC</string>
+					<string>rename XHC1 to XHC</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>WEhDMQ==</data>
-					<key>Replace</key>
-					<data>WEhDXw==</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change XHCI to XHC</string>
-					<key>Disabled</key>
-					<true/>
-					<key>Find</key>
-					<data>WEhDSQ==</data>
 					<key>Replace</key>
 					<data>WEhDXw==</data>
 				</dict>
