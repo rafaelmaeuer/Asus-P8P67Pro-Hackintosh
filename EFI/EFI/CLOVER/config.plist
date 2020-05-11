@@ -131,16 +131,6 @@
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>rename EHC2 to EH02</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>RUhDMg==</data>
-					<key>Replace</key>
-					<data>RUgwMg==</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>rename EUSB to EH01</string>
 					<key>Disabled</key>
 					<false/>
@@ -148,6 +138,16 @@
 					<data>RVVTQg==</data>
 					<key>Replace</key>
 					<data>RUgwMQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>rename EHC2 to EH02</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>RUhDMg==</data>
+					<key>Replace</key>
+					<data>RUgwMg==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
