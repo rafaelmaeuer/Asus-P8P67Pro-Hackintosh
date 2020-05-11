@@ -21,7 +21,7 @@ Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
     - USB
       - Legacy: Enabled
       - Legacy USB 3.0: Enabled
-      - EHCI Hand-off: Disabled
+      - EHCI Hand-off: Enabled
     - Onboard Devices
       - Renesas USB 3.0: Disabled
       - Bluetooth: Disabled
@@ -34,7 +34,7 @@ Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
 #### Hardware
 
-This Hackintosh was created on an ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor and 16GB RAM. It is running now on an ASUS P8P67 EVO Mainboard. A GeForce GTX 760 and Radeon RX 570 graphics card have been working  with different display setups.
+This Hackintosh was created on an ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor and 16GB RAM. It is running now on an ASUS P8P67 EVO Mainboard. A GeForce GTX 760 and Radeon RX 570 graphics card have been working with different display setups.
 
 #### Graphics
 
@@ -43,11 +43,11 @@ GeForce GTX 760 was used with two Displays on DVI, no 4K on HDMI possible (v1.4a
 
 ##### WIFI
 
-To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://wikidevi.com/wiki/Broadcom_BCM94352Z) card as chip.
+To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
 
 ##### Bluetooth
 
-The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is not connected to the motherboard. Instead a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) is used on USB 2.0 port to avoid unwanted sleep termination. It works without any additional driver (until Mojave, in Catalina it only worked during install).
+The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is not connected to the motherboard. Instead a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) is used on USB 2.0 port to avoid unwanted wake from sleep.
 
 ##### SATA
 
@@ -66,6 +66,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 ##### a) Preparation
 
 - Format USB-Drive with GUID and FAT32
+
   - Find the correct disk number of USB-Drive:
 
         diskutil list
@@ -93,6 +94,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 #### 2. Create macOS Installer Drive
 
 To create a working macOS Installer boot drive, you will need the following:
+
 - An empty USB flash drive (minimum 8GB)
 - A device already running macOS with access to the App Store
 
@@ -173,14 +175,10 @@ To create a working macOS Installer boot drive, you will need the following:
 
 ## Resources
 
-### SSDT
+### ACPI
 
-Generate your SSDT with ssdtPRGen: [github.com/Piker-Alpha](https://github.com/Piker-Alpha/ssdtPRGen.sh)  
-*TODO*
-
-### DSDT
-
-This Hackintosh works completely without DSDT.
+SSDT-EC.aml is necessary to boot since macOS Catalina.  
+SSDT-PLUG.aml is used for advanced power management.
 
 ---
 
