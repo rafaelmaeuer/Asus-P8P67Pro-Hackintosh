@@ -459,6 +459,28 @@
 		</dict>
 		<key>LANInjection</key>
 		<false/>
+		<key>Properties</key>
+		<dict>
+			<key>PciRoot(0x0)/Pci(0x1C,0x0)/Pci(0x0,0x0)</key>
+			<dict>
+				<key>AAPL,slot-name</key>
+				<string>NGFF M.2 Key A/E</string>
+				<key>PinConfigurations</key>
+				<data>AA==</data>
+				<key>brcmfx-country</key>
+				<string>DE</string>
+				<key>built-in</key>
+				<data>AA==</data>
+				<key>compatible</key>
+				<string>pci14e4,43a0</string>
+				<key>device_type</key>
+				<string>AirPort</string>
+				<key>model</key>
+				<string>Broadcom BCM94352Z - 802.11a/b/g/n/ac Wireless Network Adapter</string>
+				<key>name</key>
+				<string>AirPort Extreme</string>
+			</dict>
+		</dict>
 		<key>USB</key>
 		<dict>
 			<key>AddClockID</key>
