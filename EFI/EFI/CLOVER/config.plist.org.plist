@@ -778,7 +778,7 @@
 		<key>ShowOptimus</key>
 		<false/>
 		<key>Theme</key>
-		<string>embedded</string>
+		<string>random</string>
 		<key>Timezone</key>
 		<integer>3</integer>
 	</dict>
