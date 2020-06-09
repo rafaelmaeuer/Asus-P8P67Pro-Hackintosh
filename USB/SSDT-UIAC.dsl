@@ -131,7 +131,7 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "_UIAC", 0)
                       "HP25", Package()
                       {
                           "name", Buffer() { "HP25" },
-                          "portType", 255,
+                          "portType", 0,
                           "port", Buffer() { 0x05, 0x00, 0x00, 0x00 },
                       },
                 },
