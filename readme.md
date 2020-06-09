@@ -47,7 +47,7 @@ To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networkin
 
 ##### Bluetooth
 
-The onboard Bluetooth is disabled. The Bluetooth on the Broadcom BCM94352Z is not connected to the motherboard. Instead a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) is used on USB 2.0 port to avoid unwanted wake from sleep.
+The onboard Bluetooth is disabled. The Bluetooth of the Broadcom BCM94352Z causes unwanted wake from sleep, therefore a SSDT-GPRW patch is used. Alternatively a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) can be used (works ootb).
 
 ##### SATA
 
@@ -55,7 +55,7 @@ For eSATA and RAID a [DIGITUS SATA PCI-E](https://www.digitus.info/de/produkte/c
 
 ##### USB
 
-USB2 works ootb but the generation of a port mapping was done in hope of avoiding the unwanted wake from sleep. This is caused by the internal USB-connector of the BT-card. The most promising solution is setting the USB-connector type to internal (255). The current configuration applies the correct port mapping, but the BT-card isn't recognized anymore when the USB-connector type is set to internal.
+USB2 works ootb but a port mapping was created in the attempt of avoiding unwanted wake from sleep which is caused by the internal USB-connector of the BT-card. As the most promising solution (setting the USB-connector type to internal/255) is not working (BT isn't recognized anymore), the current solution is a [SSDT-GPRW](https://dortania.github.io/USB-Map-Guide/misc/instant-wake.html) patch which disables wake by usb completely.
 
 ##### USB3
 
@@ -181,8 +181,9 @@ To create a working macOS Installer boot drive, you will need the following:
 
 ### ACPI
 
-SSDT-EC.aml is necessary to boot since macOS Catalina.  
-SSDT-PLUG.aml is used for advanced power management.
+- SSDT-GPRW.aml disables wake from sleep for usb devices
+- SSDT-EC.aml is necessary to boot since macOS Catalina
+- SSDT-PLUG.aml is used for advanced power management
 
 ---
 
