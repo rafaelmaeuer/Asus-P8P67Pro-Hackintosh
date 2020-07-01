@@ -5,7 +5,7 @@
 Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
 - macOS version: 10.15.5
-- clover version: r5118
+- clover version: r5119
 
 ---
 
