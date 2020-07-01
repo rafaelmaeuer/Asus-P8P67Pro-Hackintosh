@@ -69,7 +69,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 ##### a) Preparation
 
-- Format USB-Drive with GUID and FAT32
+- Format USB-Drive with GUID and HFS+
 
   - Find the correct disk number of USB-Drive:
 
@@ -77,7 +77,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
   - Replace {#} with corresponding disk number and {Volume} with desired Name:
 
-        diskutil partitionDisk /dev/disk{#} 1 GPT FAT32 {Volume} R
+        diskutil partitionDisk /dev/disk{#} 1 GPT HFS+ {Volume} R
 
 - Download Clover: [github.com/CloverHackyColor](https://github.com/CloverHackyColor/CloverBootloader/releases)
 
@@ -87,11 +87,12 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 ##### c) Post Install
 
-- Copy `EFI/BOOT/BOOTX64.efi` to USB-Drive root and rename it to `SHELLX64.efi`
-- Copy kexts from folder `Other` to `EFI/CLOVER/kexts/Other/`
-- Add clover boot args: `npci=0x2000`
-  - (Depending on graphics card add boot arg `-no_compat_check`)
-- As SMBIOS select `iMac17.1`
+- Copy `EFI/BOOT/BOOTX64.efi` to USB-Drive root and name it `SHELLX64.efi`
+- Copy all ACPI patches from/to `EFI/CLOVER/ACPI/patched/`
+- Copy `config.plist` from/to `EFI/CLOVER/config.plist` (backup original first)
+- Copy all kexts from/to `EFI/CLOVER/kexts/Other/`
+  - Delete all 10.X folders in `EFI/CLOVER/kexts/`
+- (Optional: Copy favorite Clover theme to `EFI/CLOVER/themes`)
 
 ---
 
@@ -194,11 +195,37 @@ To create a working macOS Installer boot drive, you will need the following:
 
 ---
 
+### Clover Configuration
+
+- Use `iMac17.1` as SMBIOS
+
+#### Fix boot Error
+
+- Add clover boot arg `npci=0x2000` to pass `PCI Configuration Began` Error
+
+#### Fix for Nvidia GPUs
+
+Since OS X Mojave GPUs without Metal support need to bypass hardware compatibility check
+
+- Add clover boot arg `-no_compat_check`
+
+#### Config for WiFi
+
+For a correct Broadcom BCM94352Z configuration
+
+- Follow instructions from this [post](https://www.hackintosh-forum.de/forum/thread/37478-dw-1560-broadcom-bcm94352z-mit-ngff-m-2-schnittstelle/) 
+
+---
+
 ### Kexts
 
 #### Kext Patch: [acidanthera/Lilu](https://github.com/acidanthera/Lilu/releases)
 
 - Lilu.kext
+
+#### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
+
+- WhateverGreen.kext
 
 #### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup/releases)
 
@@ -230,10 +257,6 @@ To create a working macOS Installer boot drive, you will need the following:
 #### Ethernet: [RehabMan/OS-X-Intel-Network](https://bitbucket.org/RehabMan/os-x-intel-network/downloads/)
 
 - IntelMausiEthernet.kext
-
-#### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
-
-- WhateverGreen.kext
 
 #### SATA: [Fabio1971/AHCIPortInjector.kext](https://www.insanelymac.com/forum/files/file/436-ahciportinjectorkext/)
 
