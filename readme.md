@@ -250,9 +250,10 @@ For a correct Broadcom BCM94352Z configuration
 
 - NullCPUPowerManagement.kext
 
-#### Audio: [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
+#### Audio: AppleALC or VoodooHDA
 
-- VoodooHDA.kext
+- AppleALC.kext [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/releases/)
+- VoodooHDA.kext [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
 #### Ethernet: [RehabMan/OS-X-Intel-Network](https://bitbucket.org/RehabMan/os-x-intel-network/downloads/)
 
