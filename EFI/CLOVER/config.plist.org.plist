@@ -27,35 +27,6 @@
 		<false/>
 		<key>DSDT</key>
 		<dict>
-			<key>#DropOEM_DSM</key>
-			<dict>
-				<key>ATI</key>
-				<true/>
-				<key>Firewire</key>
-				<true/>
-				<key>HDA</key>
-				<true/>
-				<key>HDMI</key>
-				<true/>
-				<key>IDE</key>
-				<true/>
-				<key>IntelGFX</key>
-				<true/>
-				<key>LAN</key>
-				<true/>
-				<key>LPC</key>
-				<false/>
-				<key>NVidia</key>
-				<true/>
-				<key>SATA</key>
-				<true/>
-				<key>SmBUS</key>
-				<false/>
-				<key>USB</key>
-				<true/>
-				<key>WIFI</key>
-				<true/>
-			</dict>
 			<key>#Rtc8Allowed</key>
 			<false/>
 			<key>#SuspendOverride</key>
@@ -229,6 +200,12 @@
 				<key>TableId</key>
 				<string>Cpu0Ist</string>
 			</dict>
+			<dict>
+				<key>DropForAllOS</key>
+				<true/>
+				<key>Signature</key>
+				<string>BGRT</string>
+			</dict>
 		</array>
 		<key>FixHeaders</key>
 		<true/>
@@ -298,6 +275,8 @@
 		<integer>0</integer>
 		<key>#XMPDetection</key>
 		<string>-1</string>
+		<key>CustomLogo</key>
+		<false/>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
@@ -357,57 +336,6 @@
 	</dict>
 	<key>Devices</key>
 	<dict>
-		<key>#AddProperties</key>
-		<array>
-			<dict>
-				<key>Device</key>
-				<string>IntelGFX</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Key</key>
-				<string>framebuffer-patch-enable</string>
-				<key>Value</key>
-				<data>
-				AQAAAA==
-				</data>
-			</dict>
-			<dict>
-				<key>Device</key>
-				<string>IntelGFX</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Key</key>
-				<string>framebuffer-stolenmem</string>
-				<key>Value</key>
-				<data>
-				AAAwAQ==
-				</data>
-			</dict>
-			<dict>
-				<key>Device</key>
-				<string>IntelGFX</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Key</key>
-				<string>framebuffer-fbmem</string>
-				<key>Value</key>
-				<data>
-				AACQAA==
-				</data>
-			</dict>
-			<dict>
-				<key>Device</key>
-				<string>IntelGFX</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Key</key>
-				<string>framebuffer-unifiedmem</string>
-				<key>Value</key>
-				<data>
-				AAAAgA==
-				</data>
-			</dict>
-		</array>
 		<key>#DisableFunctions</key>
 		<string>0x18F6</string>
 		<key>#FakeID</key>
@@ -653,6 +581,20 @@
 		<dict>
 			<key>Entries</key>
 			<array>
+				<dict>
+					<key>Disabled</key>
+					<false/>
+					<key>Hidden</key>
+					<false/>
+					<key>Image</key>
+					<string>os_mageia</string>
+					<key>Path</key>
+					<string>\EFI\MAGEIA\GRUBX64.efi</string>
+					<key>Title</key>
+					<string>Mageia Linux</string>
+					<key>Type</key>
+					<string>Linux</string>
+				</dict>
 				<dict>
 					<key>AddArguments</key>
 					<string>-v</string>
@@ -989,20 +931,26 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Patch 8 apples</string>
+				<string>Violet strips</string>
 				<key>Disabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
-				AQAAdSI=
+				VUiJ
 				</data>
-				<key>MatchOS</key>
-				<string>10.13</string>
+				<key>FindMask</key>
+				<data>
+				AAAA
+				</data>
 				<key>Name</key>
-				<string>IOGraphicsFamily</string>
+				<string>com.apple.kext.AMDSupport</string>
+				<key>Procedure</key>
+				<string>TestVRAM</string>
+				<key>RangeFind</key>
+				<integer>10</integer>
 				<key>Replace</key>
 				<data>
-				AQAA6yI=
+				sAHD
 				</data>
 			</dict>
 		</array>
@@ -1014,8 +962,8 @@
 		<false/>
 		<key>DellSMBIOSPatch</key>
 		<false/>
-		<key>KernelCpu</key>
-		<false/>
+		<key>EightApple</key>
+		<true/>
 		<key>KernelLapic</key>
 		<false/>
 		<key>KernelPm</key>
@@ -1062,10 +1010,121 @@
 				igKEwOtE
 				</data>
 			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Lapic panic patch example</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				6AAA//+DAAAAAAAA
+				</data>
+				<key>MaskFind</key>
+				<data>
+				/wAA////AAAAAP//
+				</data>
+				<key>MaskReplace</key>
+				<data>
+				/wAA////////////
+				</data>
+				<key>MaskStart</key>
+				<data>
+				/////wA=
+				</data>
+				<key>MatchOS</key>
+				<string>All</string>
+				<key>RangeFind</key>
+				<integer>200</integer>
+				<key>Replace</key>
+				<data>
+				6AAA//8xwJCQkJCQ
+				</data>
+				<key>StartPattern</key>
+				<data>
+				ACnHeAAx241H+oM=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Symbolic patch example got lapic panic</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				6AAA//+DAAAAAAAA
+				</data>
+				<key>MaskFind</key>
+				<data>
+				/wAA////AAAAAP//
+				</data>
+				<key>MaskReplace</key>
+				<data>
+				/wAA////////////
+				</data>
+				<key>MaskStart</key>
+				<data>
+				/////wA=
+				</data>
+				<key>MatchOS</key>
+				<string>All</string>
+				<key>Procedure</key>
+				<string>_lapic_interrupt</string>
+				<key>RangeFind</key>
+				<integer>200</integer>
+				<key>Replace</key>
+				<data>
+				6AAA//8xwJCQkJCQ
+				</data>
+				<key>StartPattern</key>
+				<data>
+				ACnHeAAx241H+oM=
+				</data>
+			</dict>
 		</array>
 		<key>KernelXCPM</key>
 		<false/>
 		<key>PanicNoKextDump</key>
+		<true/>
+	</dict>
+	<key>Quirks</key>
+	<dict>
+		<key>AvoidRuntimeDefrag</key>
+		<true/>
+		<key>DevirtualiseMmio</key>
+		<false/>
+		<key>DisableSingleUser</key>
+		<false/>
+		<key>DisableVariableWrite</key>
+		<false/>
+		<key>DiscardHibernateMap</key>
+		<false/>
+		<key>EnableSafeModeSlide</key>
+		<true/>
+		<key>EnableWriteUnprotector</key>
+		<true/>
+		<key>ForceExitBootServices</key>
+		<false/>
+		<key>MmioWhitelist</key>
+		<array/>
+		<key>ProtectMemoryRegions</key>
+		<false/>
+		<key>ProtectSecureBoot</key>
+		<false/>
+		<key>ProtectUefiServices</key>
+		<false/>
+		<key>ProvideConsoleGopEnable</key>
+		<true/>
+		<key>ProvideCustomSlide</key>
+		<false/>
+		<key>ProvideMaxSlide</key>
+		<integer>0</integer>
+		<key>RebuildAppleMemoryMap</key>
+		<false/>
+		<key>SetupVirtualMap</key>
+		<true/>
+		<key>SignalAppleOS</key>
+		<false/>
+		<key>SyncRuntimePermissions</key>
 		<true/>
 	</dict>
 	<key>RtVariables</key>

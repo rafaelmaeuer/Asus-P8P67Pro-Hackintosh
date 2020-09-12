@@ -4,8 +4,8 @@
 
 Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
-- macOS version: 10.15.5
-- clover version: r5119
+- macOS version: 10.15.6
+- clover version: r5122
 
 ---
 
@@ -213,7 +213,7 @@ Since OS X Mojave GPUs without Metal support need to bypass hardware compatibili
 
 For a correct Broadcom BCM94352Z configuration
 
-- Follow instructions from this [post](https://www.hackintosh-forum.de/forum/thread/37478-dw-1560-broadcom-bcm94352z-mit-ngff-m-2-schnittstelle/) 
+- Follow instructions from this [post](https://www.hackintosh-forum.de/forum/thread/37478-dw-1560-broadcom-bcm94352z-mit-ngff-m-2-schnittstelle/)
 
 ---
 
@@ -278,4 +278,4 @@ For a correct Broadcom BCM94352Z configuration
 ### Tools
 
 - [Clover Configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
-- [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/)
+- [Hackintool](https://github.com/headkaze/Hackintool/releases/)
