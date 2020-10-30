@@ -34,16 +34,16 @@ Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
 
 #### Hardware
 
-This Hackintosh was created on an ASUS P8P67 PRO Mainboard with an Intel Core i7 2600K Processor and 16GB RAM. It is running now on an ASUS P8P67 EVO Mainboard. A GeForce GTX 760 and Radeon RX 570 graphics card have been working with different display setups.
+This Hackintosh was created on an [ASUS P8P67 PRO](https://origin-www.asus.com/Motherboards/P8P67_PRO/) Mainboard with an [Intel Core i7 2600K](https://ark.intel.com/content/www/de/de/ark/products/52214/intel-core-i7-2600k-processor-8m-cache-up-to-3-80-ghz.html) Processor and [16GB RipjawsX DDR3](https://www.gskill.com/product/165/176/1532311840/F3-10666CL9Q-16GBXLRipjawsXDDR3-1333MHz-CL9-9-9-1.50V16GB-(4x4GB)) RAM. It is running now on an [ASUS P8P67 EVO](https://origin-www.asus.com/Motherboards/P8P67_EVO/) Mainboard. [MSI GeForce GTX 760](https://de.msi.com/Graphics-Card/N760-TF-2GD5OC.html) and [Asus Radeon RX 570](https://www.asus.com/motherboards-components/graphics-cards/all-series/AREZ-STRIX-RX570-O4G-GAMING) graphic cards have been working with different display setups.
 
 #### Graphics
 
-Radeon RX 570 was used with two 4K Monitors on DP and HDMI, DVI makes problems.  
+Radeon RX 570 was used with two 4K Monitors on DP and HDMI (DVI has problems).  
 GeForce GTX 760 was used with two Displays on DVI, no 4K on HDMI possible (v1.4a).
 
 ##### WIFI
 
-To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
+To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
 
 ##### Bluetooth
 
@@ -51,7 +51,7 @@ The onboard Bluetooth is disabled. The Bluetooth of the Broadcom BCM94352Z cause
 
 ##### SATA
 
-For eSATA and RAID a [DIGITUS SATA PCI-E](https://www.digitus.info/de/produkte/computer-zubehoer-und-komponenten/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip can be activated with the AHCIPortInjector.
+For eSATA and RAID a [DIGITUS DS-30104-1 PCI-E](https://www.digitus.info/de/produkte/computer-und-office-zubehoer/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip can be activated with the AHCIPortInjector.
 
 ##### USB
 
