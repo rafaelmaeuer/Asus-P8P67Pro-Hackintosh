@@ -144,11 +144,16 @@ To create a working macOS Installer boot drive, you will need the following:
   - In section `System Parameters` check `Injext System ID` and `NvidiaWeb`
 - Save config.plist
 
+##### Marvell RAID Utility
+
+- Download and install latest `MSU for macOS (10.15.x or above)` from [Stardom](http://clouddisk.raidon.com.tw/%E7%B6%B2%E7%AB%99%E5%B0%88%E7%94%A8/STARDOM/Program/9580/)
+- Open `MarvellTray` App from Programs folder and login using same credentials as for macOS
+
 ---
 
 ### Troubleshooting
 
-- On `Error loading kernel cache` reboot (try it out which AptioFix driver suits best for you)
+- On `Error loading kernel cache` reboot (try out which AptioFix driver suits best for you)
 
 ---
 
@@ -182,8 +187,8 @@ To create a working macOS Installer boot drive, you will need the following:
 
 ### ACPI
 
-- SSDT-GPRW.aml disables wake from sleep for usb devices
-- SSDT-EC.aml is necessary to boot since macOS Catalina
+- SSDT-EC.aml fixes embedded controller (since macOS Catalina)
+- SSDT-GPRW.aml prevents instant wake from sleep (usb-devices)
 - SSDT-PLUG.aml is used for advanced power management
 
 ---
