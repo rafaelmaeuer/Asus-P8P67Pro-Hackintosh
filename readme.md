@@ -1,8 +1,10 @@
 ## ASUS P8P67 PRO/EVO (REV3.0)
 
-### Info
-
 Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
+
+![P8P67-Pro Hackintosh](Images/p8p67-board.jpg)
+
+### Info
 
 - macOS version: 10.15.6
 - clover version: r5122
