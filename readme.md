@@ -1,21 +1,29 @@
-## ASUS P8P67 PRO/EVO (REV3.0)
+## ASUS P8P67 PRO/EVO Hackintosh
 
-Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
+Guide about installing macOS Big Sur on ASUS P8P67 PRO/EVO (REV3.0) based PC
 
 ![P8P67-Pro Hackintosh](Images/p8p67-board.jpg)
 
 ### Info
 
-- macOS version: 10.15.6
-- clover version: r5122
+This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository as base.
+
+- macOS: Big Sur 11.1
+- bootloader: OpenCore 0.6.5
 
 ---
 
 #### BIOS
 
-- Use version 3602 (get ROM for PRO/EVO Board from [Bios](/Bios) folder)
-- Use proper settings
-  - AI Tweaker: Auto
+- Use version 3602 (get ROM for PRO/EVO Board from [BIOS](/BIOS) folder)
+- Check for correct BIOS settings:
+
+  ```sh
+  EZ-Mode
+  - System Performance
+    - Asus Optimized
+
+  Advanced Mode
   - Advanced
     - SATA
       - Mode Selection: AHCI
@@ -23,7 +31,7 @@ Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
     - USB
       - Legacy: Enabled
       - Legacy USB 3.0: Enabled
-      - EHCI Hand-off: Enabled
+      - EHCI Hand-off: Disabled
     - Onboard Devices
       - Renesas USB 3.0: Disabled
       - Bluetooth: Disabled
@@ -33,6 +41,7 @@ Guide how to install macOS Catalina on ASUS P8P67 PRO/EVO (REV3.0)
   - Boot
     - PCI ROM: Legacy ROM
     - Option ROM: Force BIOS
+  ```
 
 #### Hardware
 
@@ -40,12 +49,12 @@ This Hackintosh was created on an [ASUS P8P67 PRO](https://origin-www.asus.com/M
 
 #### Graphics
 
-Radeon RX 570 was used with two 4K Monitors on DP and HDMI (DVI has problems).  
-GeForce GTX 760 was used with two Displays on DVI, no 4K on HDMI possible (v1.4a).
+[Asus Radeon RX 570](https://www.asus.com/motherboards-components/graphics-cards/all-series/AREZ-STRIX-RX570-O4G-GAMING) was used with two 4K Monitors on DP and HDMI (DVI has problems).  
+[MSI GeForce GTX 760](https://de.msi.com/Graphics-Card/N760-TF-2GD5OC.html) was used with two Displays on DVI, no 4K on HDMI possible (v1.4a).
 
-##### WIFI
+##### WiFi
 
-To get WiFi running, a [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
+To get WiFi running, an [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
 
 ##### Bluetooth
 
@@ -53,7 +62,7 @@ The onboard Bluetooth is disabled. The Bluetooth of the Broadcom BCM94352Z cause
 
 ##### SATA
 
-For eSATA and RAID a [DIGITUS DS-30104-1 PCI-E](https://www.digitus.info/de/produkte/computer-und-office-zubehoer/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip can be activated with the AHCIPortInjector.
+For eSATA/SATA and RAID a [DIGITUS DS-30104-1 PCI-E](https://www.digitus.info/de/produkte/computer-und-office-zubehoer/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip works with the [CtlnaAHCIPort.kext](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip).
 
 ##### USB
 
@@ -67,11 +76,11 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 ### Install macOS
 
-#### 1. Create Clover Drive
+#### 1. Create OpenCore Drive
 
 ##### a) Preparation
 
-- Format USB-Drive with GUID and HFS+
+- Format USB-Drive with GUID and APFS ([Link](https://www.howtogeek.com/272741/how-to-format-a-drive-with-the-apfs-file-system-on-macos-sierra/))
 
   - Find the correct disk number of USB-Drive:
 
@@ -79,22 +88,25 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
   - Replace {#} with corresponding disk number and {Volume} with desired Name:
 
-        diskutil partitionDisk /dev/disk{#} 1 GPT HFS+ {Volume} R
+        diskutil apfs createContainer /dev/disk{#}
+        diskutil apfs addVolume disk{#} APFS {Volume}
 
-- Download Clover: [github.com/CloverHackyColor](https://github.com/CloverHackyColor/CloverBootloader/releases)
+- Download latest OpenCore: [acidanthera/opencorepkg](https://github.com/acidanthera/opencorepkg/releases)
+  - Chose `debug` for installation and config or `release` for final use
 
-##### b) Install Clover [clover-wiki](https://clover-wiki.zetam.org/Installation)
+##### b) Install/Update OpenCore
 
-- Follow this guide [Create a MacOS Catalina 10.15.0 USB Installer Drive w/Clover](https://hackintosher.com/forums/thread/guide-how-to-create-a-macos-catalina-10-15-0-usb-installer-drive-w-clover.2836/) Section `IV. Install Clover Bootloader into the USB Installer Flash Drive's EFI Boot Partition`
+- Follow this guide [OpenCore-Install-Guide](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/)
+  - Basically the files mentioned in [file-swaps](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#file-swaps) need to be copied/updated
+    - Copy `OpenCanopy.efi` to `EFI/OC/Drivers` for GUI picker
+    - Copy `VBoxHfs.efi` to `EFI/OC/Drivers` for HFS+ support
+  - Repeat this step when switching from `debug` to `release` version
 
 ##### c) Post Install
 
-- Copy `EFI/BOOT/BOOTX64.efi` to USB-Drive root and name it `SHELLX64.efi`
-- Copy all ACPI patches from/to `EFI/CLOVER/ACPI/patched/`
-- Copy `config.plist` from/to `EFI/CLOVER/config.plist` (backup original first)
-- Copy all kexts from/to `EFI/CLOVER/kexts/Other/`
-  - Delete all 10.X folders in `EFI/CLOVER/kexts/`
-- (Optional: Copy favorite Clover theme to `EFI/CLOVER/themes`)
+- Copy all ACPI patches from/to `EFI/OC/ACPI/`
+- Copy `config.plist` from/to `EFI/OC/config.plist`
+- Copy all kexts from/to `EFI/OC/Kexts/`
 
 ---
 
@@ -102,187 +114,284 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 To create a working macOS Installer boot drive, you will need the following:
 
-- An empty USB flash drive (minimum 8GB)
-- A device already running macOS with access to the App Store
+- An empty USB3 flash drive (minimum 32GB)
+- A device already running macOS with App Store access
 
 ##### a) Download macOS Installer
 
-- Open the Mac App Store on your device already running macOS
-- Download `Install macOS Catalina` application
-- Close when it opens automatically
+- Open the Mac App Store on a device running macOS
+- Download `Install macOS Big Sur` application
+- Close Installer when it opens automatically
 
 ##### b) Create Installer Stick
 
-- Use [DiskMaker X](https://diskmakerx.com/) or [Install Disk Creator](https://macdaddy.io/install-disk-creator/) to create macOS Install Drive
+- Follow this guide: [macOS Big Sur 11: bootbaren USB-Stick erstellen](https://www.zdnet.de/88389660/macos-big-sur-11-bootbaren-usb-stick-erstellen/)
+  
+  Create installer stick with this command:
+
+  ```sh
+  sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/Big\ Sur/ --nointeraction
+  ```
+
+##### c) Patch Installer Stick
+
+Enable installation on unsupported hardware:
+  
+- Download and unpack: [barrykn/big-sur-micropatcher](https://github.com/barrykn/big-sur-micropatcher/releases)
+- Execute in Terminal
+  
+  ```sh
+  ~/Downloads/big-sur-micropatcher-main/micropatcher.sh
+  ```
 
 ---
 
 #### 3. Install macOS
 
-- Connect Macintosh HD, macOS Installer and Clover Drive to your target machine
-- Boot from Clover Drive and select macOS Installer (`Install macOS Catalina`)
-- The installation should start automatically (don't worry about reboot after one minute)
+- Connect macOS Installer and OpenCore Drive to your target machine
+- Boot from OpenCore Drive (`F8` on BIOS post -> `[UEFI] OpenCore Drive`)
+- Select macOS Installer (`Install macOS Big Sur`)
+- Begin installation on APFS formatted HDD/SSD
+- On several reboots select target `Big Sur` drive
 
 ---
 
 #### 4. Install Clover in EFI partition of macOS HDD
 
 - After successfully install repeat steps 1b - 1c but with EFI on Macintosh HD as target
+  - Switch OpenCore from `debug` to `release` version ([file-swaps](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#file-swaps))
+  - To disable all logging apply following [config-changes](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#config-changes)
 
 ---
 
 #### 5. Post Install
 
-##### nVidia WebDriver (only for nVidia GPU)
+##### System-Tools
 
-- Install latest nVidia WebDrivers using [nVidia Update](https://github.com/Benjamin-Dobell/nvidia-update)
-
-  ```sh
-  bash <(curl -s https://raw.githubusercontent.com/Benjamin-Dobell/nvidia-update/master/nvidia-update.sh)
-  ```
-
-- Open config.plist in clover configurator
-  - In section `Boot` remove `nv_disable=1` and add `nvda_drv=1` as boot args
-  - In section `System Parameters` check `Injext System ID` and `NvidiaWeb`
-- Save config.plist
+- Install the following from [Tools](/Tools) folder:
+  - `Intel Power Gadget` to test CPU frequency and speed stepping
+  - `OpenCore Configurator` (OCC) to modify/update `config.plist`
+  - `Hackintool` to check for loaded kexts and system settings
 
 ##### Marvell RAID Utility
 
-- Download and install latest `MSU for macOS (10.15.x or above)` from [Stardom](http://clouddisk.raidon.com.tw/%E7%B6%B2%E7%AB%99%E5%B0%88%E7%94%A8/STARDOM/Program/9580/)
-- Open `MarvellTray` App from Programs folder and login using same credentials as for macOS
-
----
-
-### Troubleshooting
-
-- On `Error loading kernel cache` reboot (try out which AptioFix driver suits best for you)
+- Install `Marvell RAID Utility` (MSU) from [Driver](/Driver) folder
+- Open `MarvellTray` App from Programs and login with macOS user credentials
 
 ---
 
 ### Update macOS
 
-- Make a full backup
-- Check [hackintosher.com](https://hackintosher.com/guides/) for the latest macOS Update Guide
-- Check all kexts for updates
-- Make a new clover Drive for testing purpose
+- Make a full backup with time machine or similar
+- Check the official update-guide: [OpenCore-Post-Install/update](https://dortania.github.io/OpenCore-Post-Install/universal/update.html)
+- Download updates for all installed kexts
+- Update OpenCore Drive for testing purpose
   - Use updated kexts and drivers in post install
-- Boot from new Clover Drive
-- If system boots
-  - Mount EFI partition of Macintosh HD
-  - Backup `EFI` to `EFI-Backups`
-  - Install new Clover version to EFI partition
-  - Copy updated kexts and drivers during post install
-  - Don't forget to copy `Microsoft` folder (it contains the windows bootloader)
-- Eject Clover Drive and reboot
+- Boot from OpenCore Drive
 - If system boots
   - Start macOS Update
-  - On restart select newly added `Install macOS Catalina` partition
-  - After reboot select normal Macintosh HD partition
+  - (Select `Install macOS ...` partition on reboot)
+  - After the update select Macintosh HD partition
 - If system boots
-  - Be happy and enjoy the new update
+  - Mount EFI partition of Macintosh HD
+  - Replace EFI from OpenCore Drive
+  - Don't forget `Microsoft` folder (windows bootloader)
 - If system doesn't boot on one of these steps
   - Try to fix the problem or revert to the latest backup
 
 ---
 
+### Troubleshooting
+
+Tips and tricks to solve already known problems
+
+#### Sanity Checker
+
+The OpenCore configuration can be validated by uploading the `config.plist` to https://opencore.slowgeek.com/ in order to perform a sanity check. It helps to find problems in the configuration and to optimize the setup.
+
+#### Default Boot Option
+
+A default boot entry can be set with `ctrl + enter` if the option is allowed in OpenCore ([Link](https://www.reddit.com/r/hackintosh/comments/dze9kw/how_to_change_default_boot_option_for_opencore/))
+
+- Mount `EFI` and open `config.plist` with OCC
+- Go to `Misc` -> `Security` and set `AllowSetDefault = YES`
+- In OpenCanopy boot picker set default with `ctrl + enter`
+
+#### Add Boot Entry
+
+As the P8P67 bios offers no option to simply add new boot entries, [EasyUEFI](https://www.easyuefi.com/index-us.html) from a parallel windows installation is used to create OpenCore boot entry
+- Follow this guide [Manually install Clover for UEFI booting and configure boot priority with EasyUEFI in Windows](https://www.insanelymac.com/forum/topic/310038-manually-install-clover-and-configure-boot-priority-with-easyuefi-in-windows/) and use `EFI/BOOT/BOOTx64.efi` as file path
+
+#### Reset NVRAM
+
+NVRAM can be reset from OpenCanopy boot picker if auxiliary-entries are displayed in OpenCore ([Link](https://www.reddit.com/r/hackintosh/comments/h0jkjl/hide_partitions_from_opencore_boot_screen/))
+
+- Mount `EFI` and open `config.plist` with OCC
+- Go to `Misc` -> `Boot` and set `HideAuxiliary = NO`
+- On reboot select `Reset NVRAM` from tools
+
+#### Boot Resolution
+
+The display resolution during boot is very low, full display resolution (4K) is only reached on the last boot stage
+
+- Default options `TextRenderer` set to `BuiltinGraphics` and `Resolution` set to `Max` ([macos-decluttering](https://dortania.github.io/OpenCore-Post-Install/cosmetic/verbose.html#macos-decluttering)) deliver worst results (1024x768 fallback)
+- Custom options `TextRenderer` set to `SystemGraphics` and `Resolution` set to `3840x2160` deliver "better" results (1280x960 or similar)
+- Setting `UIScale` to `02` (HiDPI-Mode) only increases the icon size
+- Switching the BIOS settings from `Legacy ROM` to `UEFI ROM` has no improvement as suggested [here](https://www.reddit.com/r/hackintosh/comments/i8pc8t/gui_bootscreen_resolution_with_opencanopy_efi/), [there](https://www.reddit.com/r/hackintosh/comments/j9wyu7/stretched_opencore_boot_picker_and_apple_logo/) or [over there](https://www.reddit.com/r/hackintosh/comments/j3eab5/opencore_boot_menu_low_resolution_on_ultrawide/)
+
+  - 🚨 Warning 🚨 ASUS RX570 doesn't work with `UEFI ROM` settings (black screen -> needs CMOS-reset), although latest official [firmware](https://www.techpowerup.com/vgabios/191598/asus-rx570-4096-170327) has UEFI-support
+  - GeForce GTX 760 works with `UEFI ROM` BIOS-settings, but doesn't improve resolution during boot. The latest official [firmware](https://www.techpowerup.com/vgabios/162810/msi-gtx760-2048-140306) also has UEFI-support
+
+- The problem might be related with [CSM](https://superuser.com/questions/1284392/what-exactly-is-uefi-with-csm-boot-mode) or [GOP](https://wiki.osdev.org/GOP) for graphic cards
+
+#### AHCI Ports
+
+Information copied from [SATA Drives Not Shown in DiskUtility](https://www.olarila.com/topic/9616-error-while-installing-big-sur/?do=findComment&comment=117695)
+
+- Make sure SATA Mode is AHCI in bios
+- Certain SATA controllers may not be officially supported by macOS, for these cases you'll want to grab [CtlnaAHCIPort.kext](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
+  - For very legacy SATA controllers, [AHCIPortInjector.kext](https://www.insanelymac.com/forum/files/file/436-ahciportinjectorkext/) may be more suitable
+
+---
+
 ## Resources
 
-### ACPI
+Useful information, tips and tutorials used to create this Hackintosh
 
-- SSDT-EC.aml fixes embedded controller (since macOS Catalina)
-- SSDT-GPRW.aml prevents instant wake from sleep (usb-devices)
-- SSDT-PLUG.aml is used for advanced power management
+### ACPI Patches
 
----
+Several SSDT patches are used to fix following problems
 
-### USB-Mapping
+- [SSDT-EC-USBX.aml](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) fixes embedded controller and USB
+- [SSDT-GPRW.aml](https://dortania.github.io/OpenCore-Post-Install/usb/misc/instant-wake.html) prevents instant wake from sleep (BT/USB)
+- [SSDT-PM.aml](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management) fixes power management and cpu speed stepping
+- [SSDT-SBUS-MCHC.aml](https://dortania.github.io/Getting-Started-With-ACPI/Universal/smbus.html) fixes AppleSMBus support
 
-- USBPorts.kext does the correct port-mapping
-- SSDT-EC-USBX.aml applies patches for EC and USBX
+### USB Mapping
 
----
+An USB port-mapping was created using this guide: [USB Anschlüsse Patchen](Manuals/USB%20Anschlüsse%20Patchen.pdf)  
+The following exported files can be found in [USB](/USB) folder:
 
-### Clover Configuration
+- `SSDT-EC-USBX.aml/dsl` patch files for EC and USBX
+- `SSDT-UIAC.aml/dsl` patch file for
+- `USBPorts.kext`
 
-- Use `iMac17.1` as SMBIOS
+### Power Management
 
-#### Fix boot Error
+As `iMac12,2` is the closest SMBIOS to P8P67 mainboards ([link](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html#platforminfo)), it is used to generate SSDT for power-management. As `SSDT-PLUG` is only compatible with Intel's Haswell and newer CPUs ([link](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug.html)), Sandy Bridge needs to follow the [ssdtPRgen](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management) method.
 
-- Add clover boot arg `npci=0x2000` to pass `PCI Configuration Began` Error
+- OCC Paths
+  - Drop ACPI: `ACPI` -> `Delete`
+  - SMBIOS: `PlatformInfo` -> `SMBIOS` -> `Button Up/Down`
+  - Boot-Args: `NVRAM` -> `UUID` -> `7C4...F82` -> `boot-args`
 
-#### Fix for Nvidia GPUs
+- Select SMBIOS `iMac12,2`
+  - Add `-no_compat_check` boot-flag
+  - Drop `CpuPm` and `Cpu0Ist` tables
+  - Reboot with new SMBIOS
+- Use [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh) from [Tools](/Tools) folder to generate `SSDTs`
+  - Output folder: `~/Library/ssdtPRGen/`
+  - Rename `SSDT.aml` to `SSDT-PM.aml`
+  - Add to `EFI/OC/ACPI` and `config.plist`
+- Change SMBIOS to `iMac18,3`
+  - Set `ProzessorType` to `1795` (i7 2600K)
+  - Remove `-no_compat_check` boot-flag
+  - Remove drop of `CpuPm` and `Cpu0Ist` tables
+  - Reboot with new SMBIOS
 
-Since OS X Mojave GPUs without Metal support need to bypass hardware compatibility check
+### OpenCore Configuration
 
-- Add clover boot arg `-no_compat_check`
+For adding your SSDTs, Kexts and Firmware Drivers to create snapshots of your populated EFI folder ([link](https://dortania.github.io/OpenCore-Install-Guide/config.plist/#adding-your-ssdts-kexts-and-firmware-drivers)) use [corpnewt/ProperTree](https://github.com/corpnewt/ProperTree)
 
-#### Config for WiFi
+#### Add ACPI patches
 
-For a correct Broadcom BCM94352Z configuration
+To manually add ACPI patches do the following
 
-- Follow instructions from this [post](https://www.hackintosh-forum.de/forum/thread/37478-dw-1560-broadcom-bcm94352z-mit-ngff-m-2-schnittstelle/)
+- Copy `{name}.aml` into `EFI/OC/ACPI`
+- Open `config.plist` in OCC
+- Add new entry in `ACPI` -> `Add`
+  - Add `{name}.aml` as Path
+  - Add a meaningful `Comment`
+  - Select `Enabled`
+
+#### Add kexts
+
+To manually add kexts do the following
+
+- Copy `{name}.kext` into `EFI/OC/Kexts`
+- Open `config.plist` in OCC
+- Add new entry in `Kernel` -> `Add`
+  - Add `x86_64` as Arch
+  - Add `{name}.kext` as BundlePath
+  - Add a meaningful `Comment`
+  - If kext isn't codeless add `{name}` as ExecutablePath
+  - Add `Contents/Info.plist` as PlistPath
+  - (Optional: set `MinKernel` and `MaxKernel`)
+  - Select `Enabled`
 
 ---
 
 ### Kexts
 
-#### Kext Patch: [acidanthera/Lilu](https://github.com/acidanthera/Lilu/releases)
+#### Patch Engine: [acidanthera/Lilu](https://github.com/acidanthera/Lilu)
 
-- Lilu.kext
+- Lilu.kext (v1.5.0)
 
 #### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 
-- WhateverGreen.kext
+- WhateverGreen.kext (v1.4.6)
 
-#### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup/releases)
+#### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
 
-- AirportBrcmFixup.kext
+- AirportBrcmFixup.kext (v2.1.2)
 
-#### Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
+#### WiFi/Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
 
-- BrcmBluetoothInjector.kext
-- BrcmFirmwareData.kext
-- BrcmPatchRAM3.kext
+- BrcmBluetoothInjector.kext (v2.5.5)
+- BrcmFirmwareData.kext (v2.5.5)
+- BrcmPatchRAM3.kext (v2.5.5)
 
-#### Sensors: [RehabMan/OS-X-FakeSMC-kozlek](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
+#### Sensors: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
 
-- FakeSMC.kext
-- FakeSMC_ACPISensors.kext
-- FakeSMC_CPUSensors.kext
-- FakeSMC_GPUSensors.kext
-- FakeSMC_LPCSensors.kext
-- FakeSMC_SMMSensors.kext
+- VirtualSMC.kext (v1.1.9)
+- SMCSuperIO.kext (v1.1.9)
+- SMCProcessor.kext (v1.1.9)
 
-#### CPU: [tonymacx86/NullCPUPowerManagement](https://www.tonymacx86.com/resources/nullcpupowermanagement.268/)
+#### CPU Sync: [acidanthera/CpuTscSync](https://github.com/acidanthera/CpuTscSync)
 
-- NullCPUPowerManagement.kext
+- CpuTscSync.kext (v1.0.3)
 
-#### Audio: AppleALC or VoodooHDA
+#### Audio: [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/) or [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-- AppleALC.kext [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/releases/)
-- VoodooHDA.kext [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
+- AppleALC.kext (v1.5.6)
+- VoodooHDA.kext (v2.9.6)
 
-#### Ethernet: [RehabMan/OS-X-Intel-Network](https://bitbucket.org/RehabMan/os-x-intel-network/downloads/)
+#### Ethernet: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) and [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X)
 
-- IntelMausiEthernet.kext
+- IntelMausi.kext (v1.0.5)
+- RealtekRTL8111.kext (v2.3.0)
 
-#### SATA: [Fabio1971/AHCIPortInjector.kext](https://www.insanelymac.com/forum/files/file/436-ahciportinjectorkext/)
+#### SATA: [dortania/extra-files](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
 
-- AHCIPortInjector.kext
-
-#### JPG-Preview: [vulgo/NoVPAJpeg](https://github.com/vulgo/NoVPAJpeg/releases)
-
-- NoVPAJpeg.kext
+- CtlnaAHCIPort.kext (v341.0.2)
 
 ---
 
-#### Internal USB3 (with shutdown issue): [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
+#### Internal USB3: [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
 
-- GenericUSBXHCI.kext
+- GenericUSBXHCI.kext (🚨 shutdown issue 🚨)
+
+---
+
+### Driver
+
+- [MSU for macOS](http://clouddisk.raidon.com.tw/%E7%B6%B2%E7%AB%99%E5%B0%88%E7%94%A8/STARDOM/Program/9580/)
 
 ---
 
 ### Tools
 
-- [Clover Configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
-- [Hackintool](https://github.com/headkaze/Hackintool/releases/)
+- [Intel Power Gadget](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html)
+- [OpenCore Configurator](https://mackie100projects.altervista.org/download-opencore-configurator/)
+- [headkaze/Hackintool](https://github.com/headkaze/Hackintool/)
+- [Piker-Alpha/ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
