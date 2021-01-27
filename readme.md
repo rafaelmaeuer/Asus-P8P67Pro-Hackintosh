@@ -285,16 +285,17 @@ As `iMac12,2` is the closest SMBIOS to P8P67 mainboards ([link](https://dortania
   - SMBIOS: `PlatformInfo` -> `SMBIOS` -> `Button Up/Down`
   - Boot-Args: `NVRAM` -> `UUID` -> `7C4...F82` -> `boot-args`
 
-- Select SMBIOS `iMac12,2`
+- Select SMBIOS `iMac12,2` (CPU: Sandy Bridge i7 2600)
   - Add `-no_compat_check` boot-flag
   - Drop `CpuPm` and `Cpu0Ist` tables
   - Reboot with new SMBIOS
 - Use [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh) from [Tools](/Tools) folder to generate `SSDTs`
+  - [Ignore](https://github.com/Piker-Alpha/ssdtPRGen.sh/issues/183#issuecomment-171089689) warning about improperly 'cpu-type' ([0x0703](https://docs.google.com/spreadsheets/d/1x09b5-DGh8ozNwN5ZjAi7TMnOp4TDm6DbmrKu86i_bQ/edit#gid=0&range=D18) instead of 0x0603)
   - Output folder: `~/Library/ssdtPRGen/`
   - Rename `SSDT.aml` to `SSDT-PM.aml`
   - Add to `EFI/OC/ACPI` and `config.plist`
-- Change SMBIOS to `iMac18,3`
-  - Set `ProzessorType` to `1795` (i7 2600K)
+- Change SMBIOS to `iMac18,3` (GPU: Radeon Pro 570)
+  - Set `ProzessorType` to `1795` (decimal for 0x0703)
   - Remove `-no_compat_check` boot-flag
   - Remove drop of `CpuPm` and `Cpu0Ist` tables
   - Reboot with new SMBIOS
