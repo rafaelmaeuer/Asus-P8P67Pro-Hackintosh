@@ -10,12 +10,12 @@
  *     Checksum         0x00
  *     OEM ID           "APPLE "
  *     OEM Table ID     "CpuPm"
- *     OEM Revision     0x00017000 (94208)
+ *     OEM Revision     0x00021500 (136448)
  *     Compiler ID      "INTL"
  *     Compiler Version 0x20140210 (538182160)
  */
 
-DefinitionBlock ("ssdt.aml", "SSDT", 1, "APPLE ", "CpuPm", 0x00017000)
+DefinitionBlock ("ssdt.aml", "SSDT", 1, "APPLE ", "CpuPm", 0x00021500)
 {
     External (\_PR_.CPU0, DeviceObj)
     External (\_PR_.CPU1, DeviceObj)
@@ -30,17 +30,19 @@ DefinitionBlock ("ssdt.aml", "SSDT", 1, "APPLE ", "CpuPm", 0x00017000)
     {
         Method (_INI, 0, NotSerialized)
         {
-            Store ("ssdtPRGen version....: 17.0 / macOS 11.1 (20C69)", Debug)
-            Store ("target processor.....: i7-2600K", Debug)
-            Store ("source processor.....: Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz", Debug)
-            Store ("baseFrequency........: 1600", Debug)
-            Store ("frequency............: 3400", Debug)
-            Store ("busFrequency.........: 100", Debug)
-            Store ("logicalCPUs..........: 8", Debug)
-            Store ("maximum TDP..........: 95", Debug)
-            Store ("packageLength........: 23", Debug)
-            Store ("turboStates..........: 4", Debug)
-            Store ("maxTurboFrequency....: 3800", Debug)
+            Store ("ssdtPRGen version.....: 21.5 / macOS 11.1 (20C69)", Debug)
+            Store ("custom mode...........: 0", Debug)
+            Store ("host processor........: Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz", Debug)
+            Store ("target processor......: i7-2600K", Debug)
+            Store ("number of processors..: 1", Debug)
+            Store ("baseFrequency.........: 1600", Debug)
+            Store ("frequency.............: 3400", Debug)
+            Store ("busFrequency..........: 100", Debug)
+            Store ("logicalCPUs...........: 8", Debug)
+            Store ("maximum TDP...........: 95", Debug)
+            Store ("packageLength.........: 23", Debug)
+            Store ("turboStates...........: 4", Debug)
+            Store ("maxTurboFrequency.....: 3800", Debug)
         }
 
         Name (APSN, 0x04)
