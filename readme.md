@@ -8,15 +8,17 @@ Guide about installing macOS Big Sur on ASUS P8P67 PRO/EVO (REV3.0) based PC
 
 This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository as base.
 
-- macOS: Big Sur 11.1
-- bootloader: OpenCore 0.6.5
+- macOS: Big Sur 11.2
+- bootloader: OpenCore 0.6.6
+
+#### OpenCore Guide: [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html)
 
 ---
 
 #### BIOS
 
 - Use version 3602 (get ROM for PRO/EVO Board from [BIOS](/BIOS) folder)
-- Check for correct BIOS settings:
+- Check for correct BIOS settings (F8/DEL on post):
 
   ```sh
   EZ-Mode
@@ -31,7 +33,7 @@ This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://
     - USB
       - Legacy: Enabled
       - Legacy USB 3.0: Enabled
-      - EHCI Hand-off: Disabled
+      - EHCI Hand-off: Enabled
     - Onboard Devices
       - Renesas USB 3.0: Disabled
       - Bluetooth: Disabled
@@ -70,7 +72,7 @@ USB2 works ootb but a port mapping was created in the attempt of avoiding unwant
 
 ##### USB3
 
-For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card is used which works ootb. The internal Renesas USB3 chip can be activated using GenericUSBXHCI.kext, but it causes a problem on shutdown (unwanted restart).
+For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card (FL1100) is used which works ootb. The internal NEC/Renesas USB3.0 controller doesn't work on Big Sur and is disabled in bios.
 
 ---
 
@@ -84,17 +86,21 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
   - Find the correct disk number of USB-Drive:
 
-        diskutil list
+    ```sh
+    diskutil list
+    ```
 
-  - Replace {#} with corresponding disk number and {Volume} with desired Name:
+  - Replace {n} with corresponding disk number and {Volume} with desired Name:
 
-        diskutil apfs createContainer /dev/disk{#}
-        diskutil apfs addVolume disk{#} APFS {Volume}
+    ```sh
+    diskutil apfs createContainer /dev/disk{n}
+    diskutil apfs addVolume disk{n} APFS {Volume}
+    ```
 
 - Download latest OpenCore: [acidanthera/opencorepkg](https://github.com/acidanthera/opencorepkg/releases)
   - Chose `debug` for installation and config or `release` for final use
 
-##### b) Install/Update OpenCore
+##### b) Install OpenCore
 
 - Follow this guide [OpenCore-Install-Guide](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/)
   - Basically the files mentioned in [file-swaps](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#file-swaps) need to be copied/updated
@@ -102,7 +108,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
     - Copy `VBoxHfs.efi` to `EFI/OC/Drivers` for HFS+ support
   - Repeat this step when switching from `debug` to `release` version
 
-##### c) Post Install
+##### c) Add Config and Kexts
 
 - Copy all ACPI patches from/to `EFI/OC/ACPI/`
 - Copy `config.plist` from/to `EFI/OC/config.plist`
@@ -152,28 +158,28 @@ Enable installation on unsupported hardware:
 - Boot from OpenCore Drive (`F8` on BIOS post -> `[UEFI] OpenCore Drive`)
 - Select macOS Installer (`Install macOS Big Sur`)
 - Begin installation on APFS formatted HDD/SSD
-- On several reboots select target `Big Sur` drive
+- On reboots select `(Install) Big Sur` drive (auto)
+- Finish the initial macOS setup process
 
 ---
 
-#### 4. Install Clover in EFI partition of macOS HDD
+#### 4. Post Install
 
-- After successfully install repeat steps 1b - 1c but with EFI on Macintosh HD as target
+##### a) OpenCore
+
+- After successful install copy OpenCore to system EFI partition
+- Repeat steps 1b - 1c but with EFI on macOS HDD as target
   - Switch OpenCore from `debug` to `release` version ([file-swaps](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#file-swaps))
   - To disable all logging apply following [config-changes](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#config-changes)
 
----
-
-#### 5. Post Install
-
-##### System-Tools
+##### b) System-Tools
 
 - Install the following from [Tools](/Tools) folder:
   - `Intel Power Gadget` to test CPU frequency and speed stepping
   - `OpenCore Configurator` (OCC) to modify/update `config.plist`
   - `Hackintool` to check for loaded kexts and system settings
 
-##### Marvell RAID Utility
+##### c) Drivers
 
 - Install `Marvell RAID Utility` (MSU) from [Driver](/Driver) folder
 - Open `MarvellTray` App from Programs and login with macOS user credentials
@@ -184,18 +190,19 @@ Enable installation on unsupported hardware:
 
 - Make a full backup with time machine or similar
 - Check the official update-guide: [OpenCore-Post-Install/update](https://dortania.github.io/OpenCore-Post-Install/universal/update.html)
+- Download latest version of OpenCore
 - Download updates for all installed kexts
 - Update OpenCore Drive for testing purpose
-  - Use updated kexts and drivers in post install
+  - Use latest OpenCore, kexts and drivers
 - Boot from OpenCore Drive
 - If system boots
   - Start macOS Update
   - (Select `Install macOS ...` partition on reboot)
-  - After the update select Macintosh HD partition
+  - After the update select macOS HDD partition
 - If system boots
-  - Mount EFI partition of Macintosh HD
+  - Mount EFI partition of macOS HDD
   - Replace EFI from OpenCore Drive
-  - Don't forget `Microsoft` folder (windows bootloader)
+  - Don't forget `Microsoft` folder (Windows bootloader)
 - If system doesn't boot on one of these steps
   - Try to fix the problem or revert to the latest backup
 
@@ -207,7 +214,7 @@ Tips and tricks to solve already known problems
 
 #### Sanity Checker
 
-The OpenCore configuration can be validated by uploading the `config.plist` to https://opencore.slowgeek.com/ in order to perform a sanity check. It helps to find problems in the configuration and to optimize the setup.
+The OpenCore configuration can be validated by uploading the `config.plist` to [OpenCore Sanity Checker](https://opencore.slowgeek.com/) in order to perform a sanity check. It helps to find problems in the configuration and to optimize the setup.
 
 #### Default Boot Option
 
@@ -220,6 +227,7 @@ A default boot entry can be set with `ctrl + enter` if the option is allowed in 
 #### Add Boot Entry
 
 As the P8P67 bios offers no option to simply add new boot entries, [EasyUEFI](https://www.easyuefi.com/index-us.html) from a parallel windows installation is used to create OpenCore boot entry
+
 - Follow this guide [Manually install Clover for UEFI booting and configure boot priority with EasyUEFI in Windows](https://www.insanelymac.com/forum/topic/310038-manually-install-clover-and-configure-boot-priority-with-easyuefi-in-windows/) and use `EFI/BOOT/BOOTx64.efi` as file path
 
 #### Reset NVRAM
@@ -336,27 +344,27 @@ To manually add kexts do the following
 
 #### Patch Engine: [acidanthera/Lilu](https://github.com/acidanthera/Lilu)
 
-- Lilu.kext (v1.5.0)
+- Lilu.kext (v1.5.1)
 
 #### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 
-- WhateverGreen.kext (v1.4.6)
+- WhateverGreen.kext (v1.4.7)
 
 #### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
 
 - AirportBrcmFixup.kext (v2.1.2)
 
-#### WiFi/Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
+#### Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
 
-- BrcmBluetoothInjector.kext (v2.5.5)
-- BrcmFirmwareData.kext (v2.5.5)
-- BrcmPatchRAM3.kext (v2.5.5)
+- BrcmBluetoothInjector.kext (v2.5.6)
+- BrcmFirmwareData.kext (v2.5.6)
+- BrcmPatchRAM3.kext (v2.5.6)
 
 #### Sensors: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
 
-- VirtualSMC.kext (v1.1.9)
-- SMCSuperIO.kext (v1.1.9)
-- SMCProcessor.kext (v1.1.9)
+- VirtualSMC.kext (v1.2.0)
+- SMCSuperIO.kext (v1.2.0)
+- SMCProcessor.kext (v1.2.0)
 
 #### CPU Sync: [acidanthera/CpuTscSync](https://github.com/acidanthera/CpuTscSync)
 
@@ -378,12 +386,6 @@ To manually add kexts do the following
 
 ---
 
-#### Internal USB3: [RehabMan/OS-X-Generic-USB3](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
-
-- GenericUSBXHCI.kext (🚨 shutdown issue 🚨)
-
----
-
 ### Driver
 
 - [MSU for macOS](http://clouddisk.raidon.com.tw/%E7%B6%B2%E7%AB%99%E5%B0%88%E7%94%A8/STARDOM/Program/9580/)
@@ -396,3 +398,13 @@ To manually add kexts do the following
 - [OpenCore Configurator](https://mackie100projects.altervista.org/download-opencore-configurator/)
 - [headkaze/Hackintool](https://github.com/headkaze/Hackintool/)
 - [Piker-Alpha/ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+
+### Links
+
+#### Nec Renesas uPD720200
+
+The internal USB3.0 could be activated with `GenericUSBXHCI.kext` prior macOS Big Sur. But it caused unwanted restarts as an unwanted side effect.
+
+- [RehabMan/GenericUSBXHCI.kext](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
+- [How to get Nec Renesas uPD720200 USB3.0 to work?](https://www.insanelymac.com/forum/topic/308452-how-to-get-nec-renesas-upd720200-usb30-to-work/)
+- [NEC/Renesas uPD720200A USB3.0 XHCI controller support](https://www.tonymacx86.com/threads/nec-renesas-upd720200a-usb3-0-xhci-controller-support.233130/)
