@@ -375,10 +375,14 @@ To manually add kexts do the following
 - AppleALC.kext (v1.5.8)
 - VoodooHDA.kext (v2.9.6)
 
-#### Ethernet: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) and [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X)
+#### Ethernet (Intel): [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) 
 
 - IntelMausi.kext (v1.0.5)
-- RealtekRTL8111.kext (v2.3.0)
+
+#### Ethernet (Realtek): [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X) or [Realtek/RTL8110SC(L)](https://www.realtek.com/en/component/zoo/category/rtl8110sc-l-s)
+
+- RealtekRTL8111.kext (v2.4.0)
+- AppleRTL8169Ethernet.kext (v1.0.0)
 
 #### SATA: [dortania/extra-files](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
 
@@ -408,3 +412,12 @@ The internal USB3.0 could be activated with `GenericUSBXHCI.kext` prior macOS Bi
 - [RehabMan/GenericUSBXHCI.kext](https://bitbucket.org/RehabMan/os-x-generic-usb3/downloads/)
 - [How to get Nec Renesas uPD720200 USB3.0 to work?](https://www.insanelymac.com/forum/topic/308452-how-to-get-nec-renesas-upd720200-usb30-to-work/)
 - [NEC/Renesas uPD720200A USB3.0 XHCI controller support](https://www.tonymacx86.com/threads/nec-renesas-upd720200a-usb3-0-xhci-controller-support.233130/)
+
+#### Realtek RTL8110SC/8169SC
+
+The second ethernet controller is a Realtek RTL8110SC/8169SC which can probably be activated by `RealtekRTL8111.kext` or `AppleRTL8169Ethernet.kext`, but none of them worked so far.
+
+- [Is RTL-8110SC/8169SC supported?](https://github.com/Mieze/RTL8111_driver_for_OS_X/issues/64)
+- [Is RTL-8110 working with RealtekRTL8111.kext?](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI/issues/3)
+- [RTL8169 worked on 10.13.2 perfect!](https://www.tonymacx86.com/threads/rtl8169-worked-on-10-13-2-perfect.267556/)
+- [Driver for Realtek's RTL810x Fast Ethernet Series](https://www.insanelymac.com/forum/topic/296190-driver-for-realteks-rtl810x-fast-ethernet-series/)
