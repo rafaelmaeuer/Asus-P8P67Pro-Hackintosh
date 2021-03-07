@@ -348,7 +348,7 @@ To manually add kexts do the following
 
 #### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 
-- WhateverGreen.kext (v1.4.7)
+- WhateverGreen.kext (v1.4.8)
 
 #### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
 
@@ -356,15 +356,15 @@ To manually add kexts do the following
 
 #### Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
 
-- BrcmBluetoothInjector.kext (v2.5.6)
-- BrcmFirmwareData.kext (v2.5.6)
-- BrcmPatchRAM3.kext (v2.5.6)
+- BrcmBluetoothInjector.kext (v2.5.7)
+- BrcmFirmwareData.kext (v2.5.7)
+- BrcmPatchRAM3.kext (v2.5.7)
 
 #### Sensors: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
 
-- VirtualSMC.kext (v1.2.0)
-- SMCSuperIO.kext (v1.2.0)
-- SMCProcessor.kext (v1.2.0)
+- VirtualSMC.kext (v1.2.1)
+- SMCSuperIO.kext (v1.2.1)
+- SMCProcessor.kext (v1.2.1)
 
 #### CPU Sync: [acidanthera/CpuTscSync](https://github.com/acidanthera/CpuTscSync)
 
@@ -372,7 +372,7 @@ To manually add kexts do the following
 
 #### Audio: [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/) or [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-- AppleALC.kext (v1.5.6)
+- AppleALC.kext (v1.5.8)
 - VoodooHDA.kext (v2.9.6)
 
 #### Ethernet: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) and [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X)
