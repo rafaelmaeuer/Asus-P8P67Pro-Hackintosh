@@ -6,12 +6,32 @@ Guide about installing macOS Big Sur on ASUS P8P67 PRO/EVO (REV3.0) based PC
 
 ### Info
 
-This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository as base.
+This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
 - macOS: Big Sur 11.2.1
 - bootloader: OpenCore 0.6.7
 
-#### OpenCore Guide: [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html)
+---
+
+**Overview**
+
+- [ASUS P8P67 PRO/EVO Hackintosh](#asus-p8p67-proevo-hackintosh)
+  - [Info](#info)
+    - [BIOS](#bios)
+    - [Hardware](#hardware)
+  - [Install macOS](#install-macos)
+    - [1. Create OpenCore Drive](#1-create-opencore-drive)
+    - [2. Create macOS Installer Drive](#2-create-macos-installer-drive)
+    - [3. Install macOS](#3-install-macos)
+    - [4. Post Installation](#4-post-installation)
+  - [Update macOS](#update-macos)
+  - [Troubleshooting](#troubleshooting)
+  - [Resources](#resources)
+    - [Config](#config)
+    - [Kexts](#kexts)
+    - [Driver](#driver)
+    - [Tools](#tools)
+    - [Links](#links)
 
 ---
 
@@ -49,28 +69,28 @@ This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://
 
 This Hackintosh was created on an [ASUS P8P67 PRO](https://origin-www.asus.com/Motherboards/P8P67_PRO/) Mainboard with an [Intel Core i7 2600K](https://ark.intel.com/content/www/de/de/ark/products/52214/intel-core-i7-2600k-processor-8m-cache-up-to-3-80-ghz.html) Processor and [16GB RipjawsX DDR3](https://www.gskill.com/product/165/176/1532311840/F3-10666CL9Q-16GBXLRipjawsXDDR3-1333MHz-CL9-9-9-1.50V16GB-(4x4GB)) RAM. It is running now on an [ASUS P8P67 EVO](https://origin-www.asus.com/Motherboards/P8P67_EVO/) Mainboard. [MSI GeForce GTX 760](https://de.msi.com/Graphics-Card/N760-TF-2GD5OC.html) and [Asus Radeon RX 570](https://www.asus.com/motherboards-components/graphics-cards/all-series/AREZ-STRIX-RX570-O4G-GAMING) graphic cards have been working with different display setups.
 
-#### Graphics
+**Graphics**
 
 [Asus Radeon RX 570](https://www.asus.com/motherboards-components/graphics-cards/all-series/AREZ-STRIX-RX570-O4G-GAMING) was used with two 4K Monitors on DP and HDMI (DVI has problems).  
 [MSI GeForce GTX 760](https://de.msi.com/Graphics-Card/N760-TF-2GD5OC.html) was used with two Displays on DVI, no 4K on HDMI possible (v1.4a).
 
-##### WiFi
+**WiFi**
 
 To get WiFi running, an [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
 
-##### Bluetooth
+**Bluetooth**
 
 The onboard Bluetooth is disabled. The Bluetooth of the Broadcom BCM94352Z causes unwanted wake from sleep, therefore a SSDT-GPRW patch is used. Alternatively a [Plugable Bluetooth 4 USB Adapter](https://plugable.com/products/usb-bt4le/) can be used (works ootb).
 
-##### SATA
+**SATA**
 
 For eSATA/SATA and RAID a [DIGITUS DS-30104-1 PCI-E](https://www.digitus.info/de/produkte/computer-und-office-zubehoer/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip works with the [CtlnaAHCIPort.kext](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip).
 
-##### USB
+**USB**
 
 USB2 works ootb but a port mapping was created in the attempt of avoiding unwanted wake from sleep which is caused by the internal USB-connector of the BT-card. As the most promising solution (setting the USB-connector type to internal/255) is not working (BT isn't recognized anymore), the current solution is a [SSDT-GPRW](https://dortania.github.io/USB-Map-Guide/misc/instant-wake.html) patch which disables wake by usb completely.
 
-##### USB3
+**USB3**
 
 For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card (FL1100) is used which works ootb. The internal NEC/Renesas USB3.0 controller doesn't work on Big Sur and is disabled in bios.
 
@@ -80,7 +100,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 
 #### 1. Create OpenCore Drive
 
-##### a) Preparation
+**a) Preparation**
 
 - Format USB-Drive with GUID and APFS ([Link](https://www.howtogeek.com/272741/how-to-format-a-drive-with-the-apfs-file-system-on-macos-sierra/))
 
@@ -100,7 +120,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
 - Download latest OpenCore: [acidanthera/opencorepkg](https://github.com/acidanthera/opencorepkg/releases)
   - Chose `debug` for installation and config or `release` for final use
 
-##### b) Install OpenCore
+**b) Install OpenCore**
 
 - Follow this guide [OpenCore-Install-Guide](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/)
   - Basically the files mentioned in [file-swaps](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#file-swaps) need to be copied/updated
@@ -108,7 +128,7 @@ For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-p
     - Copy `VBoxHfs.efi` to `EFI/OC/Drivers` for HFS+ support
   - Repeat this step when switching from `debug` to `release` version
 
-##### c) Add Config and Kexts
+**c) Add Config and Kexts**
 
 - Copy all ACPI patches from/to `EFI/OC/ACPI/`
 - Copy `config.plist` from/to `EFI/OC/config.plist`
@@ -123,13 +143,13 @@ To create a working macOS Installer boot drive, you will need the following:
 - An empty USB3 flash drive (minimum 32GB)
 - A device already running macOS with App Store access
 
-##### a) Download macOS Installer
+**a) Download macOS Installer**
 
 - Open the Mac App Store on a device running macOS
 - Download `Install macOS Big Sur` application
 - Close Installer when it opens automatically
 
-##### b) Create Installer Stick
+**b) Create Installer Stick**
 
 - Follow this guide: [macOS Big Sur 11: bootbaren USB-Stick erstellen](https://www.zdnet.de/88389660/macos-big-sur-11-bootbaren-usb-stick-erstellen/)
   
@@ -139,7 +159,7 @@ To create a working macOS Installer boot drive, you will need the following:
   sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/Big\ Sur/ --nointeraction
   ```
 
-##### c) Patch Installer Stick
+**c) Patch Installer Stick**
 
 Enable installation on unsupported hardware:
   
@@ -163,23 +183,23 @@ Enable installation on unsupported hardware:
 
 ---
 
-#### 4. Post Install
+#### 4. Post Installation
 
-##### a) OpenCore
+**a) OpenCore**
 
 - After successful install copy OpenCore to system EFI partition
 - Repeat steps 1b - 1c but with EFI on macOS HDD as target
   - Switch OpenCore from `debug` to `release` version ([file-swaps](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#file-swaps))
   - To disable all logging apply following [config-changes](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html#config-changes)
 
-##### b) System-Tools
+**b) System-Tools**
 
 - Install the following from [Tools](/Tools) folder:
   - `Intel Power Gadget` to test CPU frequency and speed stepping
   - `OpenCore Configurator` (OCC) to modify/update `config.plist`
   - `Hackintool` to check for loaded kexts and system settings
 
-##### c) Drivers
+**c) Drivers**
 
 - Install `Marvell RAID Utility` (MSU) from [Driver](/Driver) folder
 - Open `MarvellTray` App from Programs and login with macOS user credentials
@@ -212,25 +232,11 @@ Enable installation on unsupported hardware:
 
 Tips and tricks to solve already known problems
 
-#### Sanity Checker
+**Sanity Checker**
 
 The OpenCore configuration can be validated by uploading the `config.plist` to [OpenCore Sanity Checker](https://opencore.slowgeek.com/) in order to perform a sanity check. It helps to find problems in the configuration and to optimize the setup.
 
-#### Default Boot Option
-
-A default boot entry can be set with `ctrl + enter` if the option is allowed in OpenCore ([Link](https://www.reddit.com/r/hackintosh/comments/dze9kw/how_to_change_default_boot_option_for_opencore/))
-
-- Mount `EFI` and open `config.plist` with OCC
-- Go to `Misc` -> `Security` and set `AllowSetDefault = YES`
-- In OpenCanopy boot picker set default with `ctrl + enter`
-
-#### Add Boot Entry
-
-As the P8P67 bios offers no option to simply add new boot entries, [EasyUEFI](https://www.easyuefi.com/index-us.html) from a parallel windows installation is used to create OpenCore boot entry
-
-- Follow this guide [Manually install Clover for UEFI booting and configure boot priority with EasyUEFI in Windows](https://www.insanelymac.com/forum/topic/310038-manually-install-clover-and-configure-boot-priority-with-easyuefi-in-windows/) and use `EFI/BOOT/BOOTx64.efi` as file path
-
-#### Reset NVRAM
+**Reset NVRAM**
 
 NVRAM can be reset from OpenCanopy boot picker if auxiliary-entries are displayed in OpenCore ([Link](https://www.reddit.com/r/hackintosh/comments/h0jkjl/hide_partitions_from_opencore_boot_screen/))
 
@@ -238,7 +244,21 @@ NVRAM can be reset from OpenCanopy boot picker if auxiliary-entries are displaye
 - Go to `Misc` -> `Boot` and set `HideAuxiliary = NO`
 - On reboot select `Reset NVRAM` from tools
 
-#### Boot Resolution
+**Default Boot Option**
+
+A default boot entry can be set with `ctrl + enter` if the option is allowed in OpenCore ([Link](https://www.reddit.com/r/hackintosh/comments/dze9kw/how_to_change_default_boot_option_for_opencore/))
+
+- Mount `EFI` and open `config.plist` with OCC
+- Go to `Misc` -> `Security` and set `AllowSetDefault = YES`
+- In OpenCanopy boot picker set default with `ctrl + enter`
+
+**Add Boot Entry**
+
+As the P8P67 bios offers no option to simply add new boot entries, [EasyUEFI](https://www.easyuefi.com/index-us.html) from a parallel windows installation is used to create OpenCore boot entry
+
+- Follow this guide [Manually install Clover for UEFI booting and configure boot priority with EasyUEFI in Windows](https://www.insanelymac.com/forum/topic/310038-manually-install-clover-and-configure-boot-priority-with-easyuefi-in-windows/) and use `EFI/BOOT/BOOTx64.efi` as file path
+
+**Boot Resolution**
 
 The display resolution during boot is very low, full display resolution (4K) is only reached on the last boot stage
 
@@ -252,7 +272,7 @@ The display resolution during boot is very low, full display resolution (4K) is 
 
 - The problem might be related with [CSM](https://superuser.com/questions/1284392/what-exactly-is-uefi-with-csm-boot-mode) or [GOP](https://wiki.osdev.org/GOP) for graphic cards
 
-#### AHCI Ports
+**AHCI Ports**
 
 Information copied from [SATA Drives Not Shown in DiskUtility](https://www.olarila.com/topic/9616-error-while-installing-big-sur/?do=findComment&comment=117695)
 
@@ -262,11 +282,11 @@ Information copied from [SATA Drives Not Shown in DiskUtility](https://www.olari
 
 ---
 
-## Resources
+### Resources
 
 Useful information, tips and tutorials used to create this Hackintosh
 
-### ACPI Patches
+**ACPI Patches**
 
 Several SSDT patches are used to fix following problems
 
@@ -275,7 +295,7 @@ Several SSDT patches are used to fix following problems
 - [SSDT-PM.aml](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management) fixes power management and cpu speed stepping
 - [SSDT-SBUS-MCHC.aml](https://dortania.github.io/Getting-Started-With-ACPI/Universal/smbus.html) fixes AppleSMBus support
 
-### USB Mapping
+**USB Mapping**
 
 An USB port-mapping was created using this guide: [USB Anschlüsse Patchen](Manuals/USB%20Anschlüsse%20Patchen.pdf)  
 The following exported files can be found in [USB](/USB) folder:
@@ -284,35 +304,37 @@ The following exported files can be found in [USB](/USB) folder:
 - `SSDT-UIAC.aml/dsl` patch file for
 - `USBPorts.kext`
 
-### Power Management
+**Power Management**
 
 As `iMac12,2` is the closest SMBIOS to P8P67 mainboards ([link](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html#platforminfo)), it is used to generate SSDT for power-management. As `SSDT-PLUG` is only compatible with Intel's Haswell and newer CPUs ([link](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug.html)), Sandy Bridge needs to follow the [ssdtPRgen](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management) method.
 
-- OCC Paths
+- OpenCore Configurator Paths
   - Drop ACPI: `ACPI` -> `Delete`
   - SMBIOS: `PlatformInfo` -> `SMBIOS` -> `Button Up/Down`
   - Boot-Args: `NVRAM` -> `UUID` -> `7C4...F82` -> `boot-args`
 
-- Select SMBIOS `iMac12,2` (CPU: Sandy Bridge i7 2600)
-  - Add `-no_compat_check` boot-flag
-  - Drop `CpuPm` and `Cpu0Ist` tables
-  - Reboot with new SMBIOS
-- Use [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh) from [Tools](/Tools) folder to generate `SSDTs`
-  - [Ignore](https://github.com/Piker-Alpha/ssdtPRGen.sh/issues/183#issuecomment-171089689) warning about improperly 'cpu-type' ([0x0703](https://docs.google.com/spreadsheets/d/1x09b5-DGh8ozNwN5ZjAi7TMnOp4TDm6DbmrKu86i_bQ/edit#gid=0&range=D18) instead of 0x0603)
-  - Output folder: `~/Library/ssdtPRGen/`
-  - Rename `SSDT.aml` to `SSDT-PM.aml`
-  - Add to `EFI/OC/ACPI` and `config.plist`
-- Change SMBIOS to `iMac18,3` (GPU: Radeon Pro 570)
-  - Set `ProzessorType` to `1795` (decimal for 0x0703)
-  - Remove `-no_compat_check` boot-flag
-  - Remove drop of `CpuPm` and `Cpu0Ist` tables
-  - Reboot with new SMBIOS
+1. Select SMBIOS `iMac12,2` (CPU: Sandy Bridge i7 2600)
+   - Add `-no_compat_check` boot-flag
+   - Drop `CpuPm` and `Cpu0Ist` tables
+   - Reboot with new SMBIOS
 
-### OpenCore Configuration
+2. Use [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh) from [Tools](/Tools) folder to generate `SSDTs`
+   - [Ignore](https://github.com/Piker-Alpha/ssdtPRGen.sh/issues/183#issuecomment-171089689) warning about improperly 'cpu-type' ([0x0703](https://docs.google.com/spreadsheets/d/1x09b5-DGh8ozNwN5ZjAi7TMnOp4TDm6DbmrKu86i_bQ/edit#gid=0&range=D18) instead of 0x0603)
+   - Output folder: `~/Library/ssdtPRGen/`
+   - Rename `SSDT.aml` to `SSDT-PM.aml`
+   - Add to `EFI/OC/ACPI` and `config.plist`
+
+3. Change SMBIOS to `iMac18,3` (GPU: Radeon Pro 570)
+   - Set `ProzessorType` to `1795` (decimal for 0x0703)
+   - Remove `-no_compat_check` boot-flag
+   - Remove drop of `CpuPm` and `Cpu0Ist` tables
+   - Reboot with new SMBIOS
+
+#### Config
 
 For adding your SSDTs, Kexts and Firmware Drivers to create snapshots of your populated EFI folder ([link](https://dortania.github.io/OpenCore-Install-Guide/config.plist/#adding-your-ssdts-kexts-and-firmware-drivers)) use [corpnewt/ProperTree](https://github.com/corpnewt/ProperTree)
 
-#### Add ACPI patches
+**Add ACPI patches**
 
 To manually add ACPI patches do the following
 
@@ -323,7 +345,7 @@ To manually add ACPI patches do the following
   - Add a meaningful `Comment`
   - Select `Enabled`
 
-#### Add kexts
+**Add kexts**
 
 To manually add kexts do the following
 
@@ -340,72 +362,72 @@ To manually add kexts do the following
 
 ---
 
-### Kexts
+#### Kexts
 
-#### Patch Engine: [acidanthera/Lilu](https://github.com/acidanthera/Lilu)
+**Patch Engine**: [acidanthera/Lilu](https://github.com/acidanthera/Lilu)
 
 - Lilu.kext (v1.5.1)
 
-#### Graphics: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
+**Graphics**: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 
 - WhateverGreen.kext (v1.4.8)
 
-#### WiFi: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
+**WiFi**: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
 
 - AirportBrcmFixup.kext (v2.1.2)
 
-#### Bluetooth: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
+**Bluetooth**: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
 
 - BrcmBluetoothInjector.kext (v2.5.7)
 - BrcmFirmwareData.kext (v2.5.7)
 - BrcmPatchRAM3.kext (v2.5.7)
 
-#### Sensors: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
+**Sensors**: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
 
 - VirtualSMC.kext (v1.2.1)
 - SMCSuperIO.kext (v1.2.1)
 - SMCProcessor.kext (v1.2.1)
 
-#### CPU Sync: [acidanthera/CpuTscSync](https://github.com/acidanthera/CpuTscSync)
+**CPU Sync**: [acidanthera/CpuTscSync](https://github.com/acidanthera/CpuTscSync)
 
 - CpuTscSync.kext (v1.0.3)
 
-#### Audio: [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/) or [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
+**Audio**: [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/) or [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
 - AppleALC.kext (v1.5.8)
 - VoodooHDA.kext (v2.9.6)
 
-#### Ethernet (Intel): [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) 
+**Ethernet (Intel)**: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) 
 
 - IntelMausi.kext (v1.0.5)
 
-#### Ethernet (Realtek): [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X) or [Realtek/RTL8110SC(L)](https://www.realtek.com/en/component/zoo/category/rtl8110sc-l-s)
+**Ethernet (Realtek)**: [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X) or [Realtek/RTL8110SC(L)](https://www.realtek.com/en/component/zoo/category/rtl8110sc-l-s)
 
 - RealtekRTL8111.kext (v2.4.0)
 - AppleRTL8169Ethernet.kext (v1.0.0)
 
-#### SATA: [dortania/extra-files](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
+**SATA**: [dortania/extra-files](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
 
 - CtlnaAHCIPort.kext (v341.0.2)
 
 ---
 
-### Driver
+#### Driver
 
 - [MSU for macOS](http://clouddisk.raidon.com.tw/%E7%B6%B2%E7%AB%99%E5%B0%88%E7%94%A8/STARDOM/Program/9580/)
 
 ---
 
-### Tools
+#### Tools
 
 - [Intel Power Gadget](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html)
 - [OpenCore Configurator](https://mackie100projects.altervista.org/download-opencore-configurator/)
 - [headkaze/Hackintool](https://github.com/headkaze/Hackintool/)
 - [Piker-Alpha/ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
-### Links
+#### Links
 
-#### Nec Renesas uPD720200
+**Nec Renesas uPD720200**
 
 The internal USB3.0 could be activated with `GenericUSBXHCI.kext` prior macOS Big Sur. But it caused unwanted restarts as an unwanted side effect.
 
@@ -413,7 +435,7 @@ The internal USB3.0 could be activated with `GenericUSBXHCI.kext` prior macOS Bi
 - [How to get Nec Renesas uPD720200 USB3.0 to work?](https://www.insanelymac.com/forum/topic/308452-how-to-get-nec-renesas-upd720200-usb30-to-work/)
 - [NEC/Renesas uPD720200A USB3.0 XHCI controller support](https://www.tonymacx86.com/threads/nec-renesas-upd720200a-usb3-0-xhci-controller-support.233130/)
 
-#### Realtek RTL8110SC/8169SC
+**Realtek RTL8110SC/8169SC**
 
 The second ethernet controller is a Realtek RTL8110SC/8169SC which can probably be activated by `RealtekRTL8111.kext` or `AppleRTL8169Ethernet.kext`, but none of them worked so far.
 
