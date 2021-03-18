@@ -8,7 +8,7 @@ Guide about installing macOS Big Sur on ASUS P8P67 PRO/EVO (REV3.0) based PC
 
 This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
-- macOS: Big Sur 11.2.1
+- macOS: Big Sur 11.2.3
 - bootloader: OpenCore 0.6.7
 
 ---
@@ -209,21 +209,20 @@ Enable installation on unsupported hardware:
 
 ### Update macOS
 
-- Make a full backup with time machine or similar
+- Make a full backup with `Time Machine` or similar software
 - Check the official update-guide: [OpenCore-Post-Install/update](https://dortania.github.io/OpenCore-Post-Install/universal/update.html)
 - Download latest version of OpenCore
 - Download updates for all installed kexts
 - Update OpenCore Drive for testing purpose
   - Use latest OpenCore, kexts and drivers
 - Boot from OpenCore Drive
-- If system boots
-  - Start macOS Update
-  - (Select `Install macOS ...` partition on reboot)
-  - After the update select macOS HDD partition
-- If system boots
+- If the system boots
   - Mount EFI partition of macOS HDD
   - Replace EFI from OpenCore Drive
-  - Don't forget `Microsoft` folder (Windows bootloader)
+- If the system boots
+  - Start macOS Update from `System Settings` -> `Software Update`
+  - With OpenCore the update process should work automatically
+    - If `Software Update` shows `Mac version is up to date`, download macOS Installer from AppStore and initialize the update manually
 - If system doesn't boot on one of these steps
   - Try to fix the problem or revert to the latest backup
 
