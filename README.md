@@ -48,6 +48,8 @@ This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://
 
   Advanced Mode
   - Advanced
+    - CPU
+      - Intel VT-d: Enabled
     - SATA
       - Mode Selection: AHCI
       - S.M.A.R.T.: Enabled
