@@ -31,6 +31,7 @@ This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://
     - [ACPI Patches](#acpi-patches)
     - [Advanced Config](#advanced-config)
     - [Kexts in use](#kexts-in-use)
+    - [Optional Kexts](#optional-kexts)
     - [Drivers and Tools](#drivers-and-tools)
     - [Useful Links](#useful-links)
 
@@ -79,7 +80,7 @@ This Hackintosh was created on an [ASUS P8P67 PRO](https://origin-www.asus.com/M
 
 **WiFi**
 
-To get WiFi running, an [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) card is used as adapter with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
+For native WiFi and BT support a [BCM94360CD Fenvi FV T919](https://www.amazon.de/MQUPIN-BCM94360CD-Bluetooth-Netzwerkkarte-erforderlich/dp/B07W92MZGF) card is used to get Apple Watch Unlock working and reduce issues with BT. Alternatively an [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) adapter can be used with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
 
 **Bluetooth**
 
@@ -382,16 +383,6 @@ The following exported files can be found in [USB](/USB) folder:
 
 - WhateverGreen.kext (v1.4.8)
 
-**WiFi**: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
-
-- AirportBrcmFixup.kext (v2.1.2)
-
-**Bluetooth**: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
-
-- BrcmBluetoothInjector.kext (v2.5.7)
-- BrcmFirmwareData.kext (v2.5.7)
-- BrcmPatchRAM3.kext (v2.5.7)
-
 **Sensors**: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
 
 - VirtualSMC.kext (v1.2.1)
@@ -402,23 +393,37 @@ The following exported files can be found in [USB](/USB) folder:
 
 - CpuTscSync.kext (v1.0.3)
 
-**Audio**: [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/) or [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
+**Audio**: [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-- AppleALC.kext (v1.5.8)
 - VoodooHDA.kext (v2.9.6)
 
-**Ethernet (Intel)**: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi) 
+**Ethernet (Intel)**: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi)
 
 - IntelMausi.kext (v1.0.5)
-
-**Ethernet (Realtek)**: [Mieze/RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X) or [Realtek/RTL8110SC(L)](https://www.realtek.com/en/component/zoo/category/rtl8110sc-l-s)
-
-- RealtekRTL8111.kext (v2.4.0)
-- AppleRTL8169Ethernet.kext (v1.0.0)
 
 **SATA**: [dortania/extra-files](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
 
 - CtlnaAHCIPort.kext (v341.0.2)
+
+#### Optional Kexts
+
+**Audio**: [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC/)
+
+- AppleALC.kext
+
+**Ethernet (Realtek)**: [Realtek/RTL8110SC(L)](https://www.realtek.com/en/component/zoo/category/rtl8110sc-l-s)
+
+- AppleRTL8169Ethernet.kext
+
+**WiFi**: [acidanthera/AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup)
+
+- AirportBrcmFixup.kext
+
+**Bluetooth**: [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)
+
+- BrcmBluetoothInjector.kext
+- BrcmFirmwareData.kext
+- BrcmPatchRAM3.kext
 
 ---
 
@@ -450,7 +455,7 @@ The internal USB3.0 could be activated with `GenericUSBXHCI.kext` prior macOS Bi
 
 **Realtek RTL8110SC/8169SC**
 
-The second ethernet controller is a Realtek RTL8110SC/8169SC which can probably be activated by `RealtekRTL8111.kext` or `AppleRTL8169Ethernet.kext`, but none of them worked so far.
+The second ethernet controller is a Realtek RTL8110SC/8169SC which can probably be activated by `AppleRTL8169Ethernet.kext`, but not `RealtekRTL8111.kext` (check the links).
 
 - [Is RTL-8110SC/8169SC supported?](https://github.com/Mieze/RTL8111_driver_for_OS_X/issues/64)
 - [Is RTL-8110 working with RealtekRTL8111.kext?](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI/issues/3)
