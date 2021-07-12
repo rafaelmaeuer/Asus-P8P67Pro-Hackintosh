@@ -377,17 +377,17 @@ The following exported files can be found in [USB](/USB) folder:
 
 **Patch Engine**: [acidanthera/Lilu](https://github.com/acidanthera/Lilu)
 
-- Lilu.kext (v1.5.1)
+- Lilu.kext (v1.5.4)
 
 **Graphics**: [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 
-- WhateverGreen.kext (v1.4.8)
+- WhateverGreen.kext (v1.5.1)
 
 **Sensors**: [acidanthera/VirtualSMC](https://github.com/acidanthera/VirtualSMC)
 
-- VirtualSMC.kext (v1.2.1)
-- SMCSuperIO.kext (v1.2.1)
-- SMCProcessor.kext (v1.2.1)
+- VirtualSMC.kext (v1.2.5)
+- SMCSuperIO.kext (v1.2.5)
+- SMCProcessor.kext (v1.2.5)
 
 **CPU Sync**: [acidanthera/CpuTscSync](https://github.com/acidanthera/CpuTscSync)
 
@@ -395,11 +395,11 @@ The following exported files can be found in [USB](/USB) folder:
 
 **Audio**: [SourceForge/VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-- VoodooHDA.kext (v2.9.6)
+- VoodooHDA.kext (v2.9.7)
 
 **Ethernet (Intel)**: [acidanthera/IntelMausi](https://github.com/acidanthera/IntelMausi)
 
-- IntelMausi.kext (v1.0.5)
+- IntelMausi.kext (v1.0.7)
 
 **SATA**: [dortania/extra-files](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip)
 

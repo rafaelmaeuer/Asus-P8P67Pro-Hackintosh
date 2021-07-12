@@ -54,8 +54,8 @@
 			<string>VoodooHDADevice</string>
 			<key>IOMatchCategory</key>
 			<string>VoodooHDADevice</string>
-			<key>IOPCIPrimaryMatch</key>
-			<string>0x1c208086</string>
+			<key>IOPCIClassMatch</key>
+			<string>0x04000000&amp;0xfffc0000</string>
 			<key>IOProviderClass</key>
 			<string>IOPCIDevice</string>
 			<key>IOUserClientClass</key>
@@ -65,13 +65,13 @@
 			<key>MixerValues</key>
 			<dict>
 				<key>PCM</key>
-				<integer>100</integer>
+				<integer>90</integer>
 				<key>Rec</key>
 				<integer>90</integer>
 				<key>iGain</key>
-				<integer>0</integer>
+				<integer>90</integer>
 				<key>iMix</key>
-				<integer>100</integer>
+				<integer>90</integer>
 			</dict>
 			<key>NodesToPatch</key>
 			<array>
