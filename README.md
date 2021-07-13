@@ -305,6 +305,22 @@ The display resolution during boot is very low, full display resolution (4K) is 
   - GeForce GTX 760 works with `UEFI ROM` BIOS-settings, but doesn't improve resolution during boot. The latest official [firmware](https://www.techpowerup.com/vgabios/162810/msi-gtx760-2048-140306) also has UEFI-support
 - The problem might be related with [CSM](https://superuser.com/questions/1284392/what-exactly-is-uefi-with-csm-boot-mode) or [GOP](https://wiki.osdev.org/GOP) for graphic cards
 
+**Boot Theme**
+
+As the best possible boot resolution with 1280x800 has a width distortion of 1.28 (1024/800) a custom boot theme is used with inverse distorted images to compensate. Modify Images:
+
+- Open `.icns` file with apple preview
+- Drag and Drop `.tiff` images to folder
+- Resize Image width to 78,125% (1024/800)
+- Resize Image area to original width
+- Save Images as .png
+- Create `.icns` image bundle
+  ```sh
+  cd /OpenCore/Utilities/icnspack/
+  ./icnspack image.icns image.png image@2x.png
+  ```
+- Replace original image bundle
+
 **AHCI Ports**
 
 Information copied from [SATA Drives Not Shown in DiskUtility](https://www.olarila.com/topic/9616-error-while-installing-big-sur/?do=findComment&comment=117695)
