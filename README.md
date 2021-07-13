@@ -297,14 +297,12 @@ As the P8P67 bios offers no option to simply add new boot entries, [EasyUEFI](ht
 
 The display resolution during boot is very low, full display resolution (4K) is only reached on the last boot stage
 
-- Default options `TextRenderer` set to `BuiltinGraphics` and `Resolution` set to `Max` ([macos-decluttering](https://dortania.github.io/OpenCore-Post-Install/cosmetic/verbose.html#macos-decluttering)) deliver worst results (1024x768 fallback)
-- Custom options `TextRenderer` set to `SystemGraphics` and `Resolution` set to `3840x2160` deliver "better" results (1280x960 or similar)
+- Default options `TextRenderer` set to `BuiltinGraphics` and `Resolution` set to `Max` ([macos-decluttering](https://dortania.github.io/OpenCore-Post-Install/cosmetic/verbose.html#macos-decluttering)) deliver best results (1280x800 or similar)
+- Custom options like `TextRenderer` set to `SystemGraphics` and `Resolution` set to `3840x2160` deliver worse results (1024x768 fallback)
 - Setting `UIScale` to `02` (HiDPI-Mode) only increases the icon size
 - Switching the BIOS settings from `Legacy ROM` to `UEFI ROM` has no improvement as suggested [here](https://www.reddit.com/r/hackintosh/comments/i8pc8t/gui_bootscreen_resolution_with_opencanopy_efi/), [there](https://www.reddit.com/r/hackintosh/comments/j9wyu7/stretched_opencore_boot_picker_and_apple_logo/) or [over there](https://www.reddit.com/r/hackintosh/comments/j3eab5/opencore_boot_menu_low_resolution_on_ultrawide/)
-
   - 🚨 Warning 🚨 ASUS RX570 doesn't work with `UEFI ROM` settings (black screen -> needs CMOS-reset), although latest official [firmware](https://www.techpowerup.com/vgabios/191598/asus-rx570-4096-170327) has UEFI-support
   - GeForce GTX 760 works with `UEFI ROM` BIOS-settings, but doesn't improve resolution during boot. The latest official [firmware](https://www.techpowerup.com/vgabios/162810/msi-gtx760-2048-140306) also has UEFI-support
-
 - The problem might be related with [CSM](https://superuser.com/questions/1284392/what-exactly-is-uefi-with-csm-boot-mode) or [GOP](https://wiki.osdev.org/GOP) for graphic cards
 
 **AHCI Ports**
