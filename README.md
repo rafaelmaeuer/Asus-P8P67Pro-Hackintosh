@@ -8,7 +8,7 @@ Guide about installing macOS Big Sur on ASUS P8P67 PRO/EVO (REV3.0) based PC
 
 This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
-- macOS: Big Sur 11.2.3
+- macOS: Big Sur 11.4
 - bootloader: OpenCore 0.7.1
 
 ---
@@ -203,10 +203,21 @@ Enable installation on unsupported hardware:
   - `OpenCore Configurator` (OCC) to modify/update `config.plist`
   - `Hackintool` to check for loaded kexts and system settings
 
-**c) Drivers**
+**c) Drivers/Kexts**
 
-- Install `Marvell RAID Utility` (MSU) from [Driver](/Driver) folder
-- Open `MarvellTray` App from Programs and login with macOS user credentials
+- VoodooHDA (Big Sur 11.3 and later)
+  - Disable SIP kext signing (0x1) and filesystem protections (0x2):  
+    OCC -> NVRAM -> csr-active-config -> `03000000`
+  - After reboot, copy `VoodooHDA.kext` to `L/E`
+    ```
+    sudo cp -R /{path}/VoodooHDA.kext /Library/Extensions
+    ```
+  - Open System Preferences and allow kext modification, then reboot
+  - Enable SIP filesystem protection (0x2) again and reboot:  
+    OCC -> NVRAM -> csr-active-config -> `01000000`
+- MSU (optional for Marvell RAID)
+  - Install `Marvell RAID Utility` (MSU) from [Driver](/Driver) folder
+  - Open `MarvellTray` App from Programs and login with macOS user credentials
 
 ---
 
@@ -332,6 +343,10 @@ Information copied from [SATA Drives Not Shown in DiskUtility](https://www.olari
 **Apple Watch Unlock**
 
 If unlock with Apple Watch doesn't work or make problems although using a `BCM94360CD Fenvi` card, follow the steps of this blogpost comment: [watchOS 7 Beta 5 - unlock mac doesn't work](https://forums.macrumors.com/threads/watchos-7-beta-5-unlock-mac-doesnt-work.2250819/page-2?post=28904426#post-28904426). Afterwards unlock with Apple Watch works like it should with a regular Mac.
+
+**AppleALC**
+
+The `Audio Codec` of ASUS P8P67 EVO is [Realtek ALC882](http://www.webdatenblatt.de/cds/de/?pid=acf6a26d3133764), but although AppleALC lists `ALC882` under [Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs), none of the possible layout-ids (5, 7) worked.
 
 ---
 
@@ -463,6 +478,10 @@ The following exported files can be found in [USB](/USB) folder:
 ---
 
 #### Useful Links
+
+**OpenCore Disabling SIP**
+
+SIP or more properly known as System Integrity Protection, is a security technology that attempts to prevent any malicious software and the end user from damaging the OS. You can choose different values to enable or disable certain flags of SIP in [OpenCore-Install-Guide](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/extended/post-issues.html#disabling-sip).
 
 **Nec Renesas uPD720200**
 
