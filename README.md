@@ -8,8 +8,8 @@ Guide about installing macOS Big Sur on ASUS P8P67 PRO/EVO (REV3.0) based PC
 
 This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
-- macOS: Big Sur 11.4
-- bootloader: OpenCore 0.7.4
+- macOS: [Big Sur 11.6](https://support.apple.com/de-de/HT211896)
+- bootloader: [OpenCore 0.7.4](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.4)
 
 ---
 
