@@ -11,6 +11,8 @@ This Hackintosh was build with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://
 - macOS: [Big Sur 11.6](https://support.apple.com/de-de/HT211896)
 - bootloader: [OpenCore 0.7.4](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.4)
 
+<a href="https://www.buymeacoffee.com/rafaelmaeuer"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕️&slug=rafaelmaeuer&button_colour=F2F2F2&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
+
 ---
 
 **Table of Contents**
