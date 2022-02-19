@@ -82,7 +82,7 @@ This Hackintosh was created on an [ASUS P8P67 PRO](https://origin-www.asus.com/M
 
 **WiFi**
 
-For native WiFi and BT support a [BCM94360CD Fenvi FV T919](https://www.amazon.de/MQUPIN-BCM94360CD-Bluetooth-Netzwerkkarte-erforderlich/dp/B07W92MZGF) card is used to get Apple Watch Unlock working and reduce issues with BT. Alternatively an [ASUS PCE-AC55BT B1 PCI-E](https://www.asus.com/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) adapter can be used with a [BroadCom BCM4352 BCM94352Z NGFF M.2](https://deviwiki.com/wiki/Broadcom_BCM94352Z) card as chip.
+For native WiFi and BT support a [BCM94360CD Fenvi FV T919](https://re-link.info/hackintosh/T919) card is used to get Apple Watch Unlock working and reduce issues with BT. Alternatively an [ASUS PCE-AC58BT PCIe](https://re-link.info/hackintosh/ac58bt) adapter can be used with a [BroadCom BCM94352Z NGFF M.2](https://re-link.info/hackintosh/bcm94352z) card as chip.
 
 **Bluetooth**
 
@@ -90,7 +90,7 @@ The onboard Bluetooth is disabled. The Bluetooth of the Broadcom BCM94352Z cause
 
 **SATA**
 
-For eSATA/SATA and RAID a [DIGITUS DS-30104-1 PCI-E](https://www.digitus.info/de/produkte/computer-und-office-zubehoer/computer-zubehoer/io-karten/ds-30104-1/) card is used as the MARVELL 88SE9230 chip works with the [CtlnaAHCIPort.kext](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip).
+For eSATA/SATA and RAID a [DIGITUS DS-30104-1 PCI-E](https://re-link.info/hackintosh/digitus) card is used as the MARVELL 88SE9230 chip works with the [CtlnaAHCIPort.kext](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/CtlnaAHCIPort.kext.zip).
 
 **USB**
 
@@ -98,7 +98,7 @@ USB2 works ootb but a port mapping was created in the attempt of avoiding unwant
 
 **USB3**
 
-For USB3 an [Inateck KT4006 PCI-E](https://www.inateck.com/inateck-kt4006-dual-port-usb-3-0-pci-express-card-20-pin-connector-no-power-connection.html) card (FL1100) is used which works ootb. The internal NEC/Renesas USB3.0 controller doesn't work on Big Sur and is disabled in bios.
+For USB3 an [Inateck KT4006 PCI-E](https://re-link.info/hackintosh/kt4006) card (FL1100) is used which works ootb. The internal NEC/Renesas USB3.0 controller doesn't work on Big Sur and is disabled in bios.
 
 ---
 
