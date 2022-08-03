@@ -736,7 +736,7 @@
 			<key>PickerMode</key>
 			<string>External</string>
 			<key>PickerVariant</key>
-			<string>rafaelmaeuer\BigSur</string>
+			<string>rafaelmaeuer\Monterey</string>
 			<key>PollAppleHotKeys</key>
 			<false/>
 			<key>ShowPicker</key>
@@ -916,11 +916,11 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>darkwake=0</string>
+				<string>darkwake=0 radpg=15 alcid=7</string>
 				<key>csr-active-config</key>
-				<data>AQAAAA==</data>
+				<string>0x0285</string>
 				<key>prev-lang:kbd</key>
-				<data>ZGU6MA==</data>
+				<string>en-US:0</string>
 				<key>run-efi-updater</key>
 				<string>No</string>
 			</dict>
