@@ -43,9 +43,9 @@
 		<array>
 			<dict>
 				<key>All</key>
-				<false/>
+				<true/>
 				<key>Comment</key>
-				<string>Delete CpuPm</string>
+				<string>Drop CpuPm</string>
 				<key>Enabled</key>
 				<false/>
 				<key>OemTableId</key>
@@ -57,9 +57,9 @@
 			</dict>
 			<dict>
 				<key>All</key>
-				<false/>
+				<true/>
 				<key>Comment</key>
-				<string>Delete Cpu0Ist</string>
+				<string>Drop Cpu0Ist</string>
 				<key>Enabled</key>
 				<false/>
 				<key>OemTableId</key>
