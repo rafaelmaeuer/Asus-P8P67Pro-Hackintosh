@@ -20,6 +20,7 @@ This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https:
 - [ASUS P8P67 PRO/EVO Hackintosh](#asus-p8p67-proevo-hackintosh)
   - [Information](#information)
     - [Hardware](#hardware)
+    - [Performance](#performance)
   - [Install macOS](#install-macos)
     - [1. Installer-Drive](#1-installer-drive)
     - [2. BIOS Settings](#2-bios-settings)
@@ -48,6 +49,17 @@ This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https:
 | Graphics  | Asus Radeon RX 570 /<br> MSI GeForce GTX 760 /<br> Sapphire Radeon R7 250X               | [www.asus.com](https://www.asus.com/motherboards-components/graphics-cards/all-series/AREZ-STRIX-RX570-O4G-GAMING) <br> [de.msi.com](https://de.msi.com/Graphics-Card/N760-TF-2GD5OC.html) <br> [www.techpowerup.com](https://www.techpowerup.com/gpu-specs/sapphire-r7-250x.b2746)                                                                                                                                        |
 | WiFi / BT | ASUS PCE-AC58BT + BCM94352Z /<br> ASUS PCE-AC55BT B1 + BCM4352 /<br> Fenvi FV T919 PCI-E | [www.amazon.de](https://re-link.info/hackintosh/ac58bt) \| [www.amazon.de](https://re-link.info/hackintosh/bcm94352z) <br> [www.asus.com](https://www.asus.com/de/Networking-IoT-Servers/Adapters/All-series/PCE-AC55BT-B1/) \| [osxlatitude.com](https://osxlatitude.com/forums/topic/2767-broadcom-bcm4352-80211-ac-wifi-and-bluetooth-combo-card/) <br>   [www.fenvi.com](https://www.fenvi.com/product_detail_16.html) |
 | USB 3.0   | Inateck USB 3.0 PCIe KT4006                                                              | [www.amazon.de](https://re-link.info/hackintosh/kt4006)                                                                                                                                                                                                                                                                                                                                                                    |
+
+#### Performance
+
+Geekbench 5 Score of Intel Core i7 2600K CPU
+![i7 11700K CPU Score](Images/cpu-score.png)
+
+Geekbench 5 Score (Metal) of Radeon R7 250X GPU
+![RX 570 GPU Score](Images/gpu-score.png)
+
+Blackmagic Disk Speed of Samsung 870 EVO SSD
+![NVMe Pro 980 Speed](Images/disk-speed.png)
 
 ---
 
