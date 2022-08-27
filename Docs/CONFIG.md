@@ -4,6 +4,12 @@ The following configurations are not essential for the Hackintosh to work, but t
 
 ## Power Management
 
+As power management is only working properly after wake from sleep, the following method isn't used any longer. Instead, no PM-SSDT is loaded and `CpuPm` and `Cpu0Ist` tables are dropped on boot (runs in high frequency mode).
+
+**Old method**
+
+*Note: will only work after wake from sleep, only kept for historical reasons*
+
 As `iMac12,2` is the closest SMBIOS to P8P67 mainboards ([link](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html#platforminfo)), it is used to generate SSDT for power-management. As `SSDT-PLUG` is only compatible with Intel's Haswell and newer CPUs ([link](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug.html)), Sandy Bridge needs to follow the [ssdtPRgen](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management) method.
 
 - OpenCore Configurator Paths
