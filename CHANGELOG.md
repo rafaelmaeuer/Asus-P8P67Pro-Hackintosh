@@ -2,6 +2,14 @@
 
 ## macOS Monterey
 
+## [4.1.0] - 2022-08-27
+
+- chore: update macOS to `v12.5.1`
+- chore: update open-core to `v0.8.3`
+- fix: remove SSDT-PM, drop cpu-tables
+- fix: country code for brcm-wifi
+- fix: gpu display name
+
 ## [4.0.0] - 2022-08-05
 
 - update macOS to `v12.5`
