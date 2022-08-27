@@ -8,7 +8,7 @@ Install macOS Monterey on ASUS P8P67 PRO/EVO (REV3.0) Mainboard with Sandy Bridg
 
 This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
-- macOS: [Monterey 12.5](https://support.apple.com/en-us/HT212585)
+- macOS: [Monterey 12.5.1](https://support.apple.com/en-us/HT212585)
 - bootloader: [OpenCore 0.8.3](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.3)
 
 <a href="https://www.buymeacoffee.com/rafaelmaeuer"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕️&slug=rafaelmaeuer&button_colour=F2F2F2&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
@@ -212,6 +212,7 @@ Basic information to run this Hackintosh. For more detailed information see [Doc
 The following bootflags are required for boot:
 
 - [alcid=7](https://github.com/acidanthera/AppleALC/blob/master/Resources/ALC882/Info.plist) for ALC882 audio config (5/6 ports)
+- [brcmfx-country=XX](https://github.com/acidanthera/AirportBrcmFixup#specific-boot-args-and-ioreg-properties) changes the wifi country code to XX (US, DE, ...)
 - [darkwake=0](https://dortania.github.io/OpenCore-Post-Install/usb/misc/keyboard.html#method-3-configuring-darkwake) fixes `Wake by RTC/Maintenance`
 - [radpg=15](https://github.com/acidanthera/WhateverGreen#features) fixes R7 250X initialisation
 
