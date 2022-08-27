@@ -219,12 +219,11 @@ The following bootflags are required for boot:
 
 Find the following SSDT patches (recommended by [dortania](https://dortania.github.io/Getting-Started-With-ACPI/ssdt-methods/ssdt-prebuilt.html#desktop-sandy-and-ivy-bridge)) in [ACPI](ACPI) folder:
 
-| Patch                    | Name               | Link                                                                                                                              |
-| ------------------------ | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| Fix Embedded Controller  | SSDT-EC-USBX.aml   | [dortania/acpi/ec-fix](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html)                                |
-| Fix Wake from Bluetooth* | SSDT-GPRW.aml      | [dortania/usb/instant-wake](https://dortania.github.io/OpenCore-Post-Install/usb/misc/instant-wake.html)                          |
-| Fix Power Management     | SSDT-PM.aml        | [dortania/universal/pm](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#sandy-and-ivy-bridge-power-management) |
-| Fix SMBus support        | SSDT-SBUS-MCHC.aml | [dortania/acpi/smbus](https://dortania.github.io/Getting-Started-With-ACPI/Universal/smbus.html)                                  |
+| Patch                    | Name               | Link                                                                                                     |
+| ------------------------ | ------------------ | -------------------------------------------------------------------------------------------------------- |
+| Fix Embedded Controller  | SSDT-EC-USBX.aml   | [dortania/acpi/ec-fix](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html)       |
+| Fix Wake from Bluetooth* | SSDT-GPRW.aml      | [dortania/usb/instant-wake](https://dortania.github.io/OpenCore-Post-Install/usb/misc/instant-wake.html) |
+| Fix SMBus support        | SSDT-SBUS-MCHC.aml | [dortania/acpi/smbus](https://dortania.github.io/Getting-Started-With-ACPI/Universal/smbus.html)         |
 
 *\*Use in combination with [GPRW to XPRW Patch](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/GPRW-Patch.plist). Not needed when using a `BCM94360CD Fenvi` card.*
 
