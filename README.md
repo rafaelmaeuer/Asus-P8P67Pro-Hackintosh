@@ -276,7 +276,7 @@ Find the following SSDT patches (recommended by [dortania](https://dortania.gith
 
 #### Troubleshooting
 
-For a list of tips and tricks for already known problems see [docs/TROUBLE](docs/TROUBLE.md).
+For a list of tips and tricks for already known problems see [Docs/TROUBLE](Docs/TROUBLE.md).
 
 ---
 
