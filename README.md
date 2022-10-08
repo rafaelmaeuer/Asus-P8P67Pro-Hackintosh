@@ -8,8 +8,8 @@ Install macOS Monterey on ASUS P8P67 PRO/EVO (REV3.0) Mainboard with Sandy Bridg
 
 This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
-- macOS: [Monterey 12.5.1](https://support.apple.com/en-us/HT212585)
-- bootloader: [OpenCore 0.8.3](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.3)
+- macOS: [Monterey 12.6](https://support.apple.com/en-us/HT212585)
+- bootloader: [OpenCore 0.8.5](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.5)
 
 <a href="https://www.buymeacoffee.com/rafaelmaeuer"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕️&slug=rafaelmaeuer&button_colour=F2F2F2&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
 
@@ -246,8 +246,8 @@ Find the following SSDT patches (recommended by [dortania](https://dortania.gith
 
 | Type               | Kext                                                                  | Version          | Author                                                                                                                              |
 | ------------------ | --------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Audio              | AppleALC /<br> VodooHDA.kext*                                         | 1.7.4 <br> 2.9.9 | [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC) <br> [sourceforge.net](https://sourceforge.net/projects/voodoohda/) |
-| Bluetooth          | BlueToolFixup.kext <br> BrcmFirmwareData.kext <br> BrcmPatchRAM3.kext | 2.6.3            | [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)                                                             |
+| Audio              | AppleALC /<br> VodooHDA.kext*                                         | 1.7.5 <br> 2.9.9 | [acidanthera/AppleALC](https://github.com/acidanthera/AppleALC) <br> [sourceforge.net](https://sourceforge.net/projects/voodoohda/) |
+| Bluetooth          | BlueToolFixup.kext <br> BrcmFirmwareData.kext <br> BrcmPatchRAM3.kext | 2.6.4            | [acidanthera/BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM)                                                             |
 | Ethernet (Intel)   | IntelMausi.kext                                                       | 1.0.7            | [Mieze/LucyRTL8125Ethernet](https://github.com/Mieze/LucyRTL8125Ethernet)                                                           |
 | Ethernet (Realtek) | AppleRTL8169Ethernet.kext                                             | 1.0.0            | [Realtek/RTL8110SC(L)](https://www.realtek.com/en/component/zoo/category/rtl8110sc-l-s)                                             |
 | Graphics           | WhateverGreen.kext                                                    | 1.6.1            | [acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)                                                           |
@@ -269,7 +269,7 @@ Find the following SSDT patches (recommended by [dortania](https://dortania.gith
 | Intel Power Gadget    | 3.7.0    | [software.intel.com](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html) |
 | IORegistryExplorer    | 2.1      | [vulgo/IORegistryExplorer](https://github.com/vulgo/IORegistryExplorer)                                     |
 | MaciASL               | 1.6.2    | [acidanthera/MaciASL](https://github.com/acidanthera/MaciASL/)                                              |
-| OpenCore Configurator | 2.62.0.0 | [mackie100projects](https://mackie100projects.altervista.org/download-opencore-configurator/)               |
+| OpenCore Configurator | 2.62.1.0 | [mackie100projects](https://mackie100projects.altervista.org/download-opencore-configurator/)               |
 | ssdtPRGen             | 17.0     | [Piker-Alpha/ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)                                        |
 
 ---
