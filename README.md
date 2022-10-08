@@ -269,7 +269,7 @@ Find the following SSDT patches (recommended by [dortania](https://dortania.gith
 | Intel Power Gadget    | 3.7.0    | [software.intel.com](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html) |
 | IORegistryExplorer    | 2.1      | [vulgo/IORegistryExplorer](https://github.com/vulgo/IORegistryExplorer)                                     |
 | MaciASL               | 1.6.2    | [acidanthera/MaciASL](https://github.com/acidanthera/MaciASL/)                                              |
-| OpenCore Configurator | 2.62.0.0 | [mackie100projects](https://mackie100projects.altervista.org/download-opencore-configurator/)               |
+| OpenCore Configurator | 2.62.1.0 | [mackie100projects](https://mackie100projects.altervista.org/download-opencore-configurator/)               |
 | ssdtPRGen             | 17.0     | [Piker-Alpha/ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)                                        |
 
 ---
