@@ -8,7 +8,7 @@ Install macOS Monterey on ASUS P8P67 PRO/EVO (REV3.0) Mainboard with Sandy Bridg
 
 This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https://github.com/Qraxin/Asus-P8P67-OpenCore-EFI) repository and OpenCore guide [Desktop Sandy Bridge](https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html) as base.
 
-- macOS: [Monterey 12.6](https://support.apple.com/en-us/HT212585)
+- macOS: [Monterey 12.6.1](https://support.apple.com/en-us/HT212585)
 - bootloader: [OpenCore 0.8.5](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.5)
 
 <a href="https://www.buymeacoffee.com/rafaelmaeuer"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕️&slug=rafaelmaeuer&button_colour=F2F2F2&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
