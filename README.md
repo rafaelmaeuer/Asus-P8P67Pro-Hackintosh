@@ -53,13 +53,13 @@ This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https:
 #### Performance
 
 Geekbench 5 Score of Intel Core i7 2600K CPU
-![i7 11700K CPU Score](Images/cpu-score.png)
+![i7 2600K CPU Score](Images/2600k-score.png)
 
-Geekbench 5 Score (Metal) of Radeon R7 250X GPU
-![RX 570 GPU Score](Images/gpu-score.png)
+Geekbench 5 Score (Metal) of Radeon RX 570 GPU
+![RX 570 GPU Score](Images/rx570-score.png)
 
 Blackmagic Disk Speed of Samsung 870 EVO SSD
-![NVMe Pro 980 Speed](Images/disk-speed.png)
+![Samsung 870 EVO Speed](Images/disk-speed.png)
 
 ---
 
@@ -226,7 +226,7 @@ The following bootflags are required for boot:
 - [alcid=7](https://github.com/acidanthera/AppleALC/blob/master/Resources/ALC882/Info.plist) for ALC882 audio config (5/6 ports)
 - [brcmfx-country=XX](https://github.com/acidanthera/AirportBrcmFixup#specific-boot-args-and-ioreg-properties) changes the wifi country code to XX (US, DE, ...)
 - [darkwake=0](https://dortania.github.io/OpenCore-Post-Install/usb/misc/keyboard.html#method-3-configuring-darkwake) fixes `Wake by RTC/Maintenance`
-- [radpg=15](https://github.com/acidanthera/WhateverGreen#features) fixes R7 250X initialisation
+- ([radpg=15](https://github.com/acidanthera/WhateverGreen#features) fixes R7 250X initialization)
 
 #### ACPI Patches
 
