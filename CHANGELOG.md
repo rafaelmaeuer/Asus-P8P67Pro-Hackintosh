@@ -2,6 +2,12 @@
 
 ## macOS Monterey
 
+## [4.2.1] - 2022-11-06
+
+- chore: update macOS to `v12.6.1`
+- chore: update Hackintool and OCC
+- feat: change gpu back to RX 570
+
 ## [4.2.0] - 2022-10-08
 
 - chore: update macOS to `v12.6`
