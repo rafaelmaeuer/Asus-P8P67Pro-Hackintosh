@@ -11,7 +11,13 @@ This Hackintosh was created with help of [Qraxin/Asus-P8P67-OpenCore-EFI](https:
 - macOS: [Monterey 12.6.1](https://support.apple.com/en-us/HT212585)
 - bootloader: [OpenCore 0.8.5](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.5)
 
-<a href="https://www.buymeacoffee.com/rafaelmaeuer"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕️&slug=rafaelmaeuer&button_colour=F2F2F2&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
+<p align="left">
+<a href="https://www.buymeacoffee.com/rafaelmaeuer" target="_blank"><img src="./Images/buy-me-a-coffee.png" alt="Buy Me A Coffee" style="height: 50px;width: 250px;"></a>
+&nbsp;&nbsp;
+<a href="https://www.paypal.com/donate/?hosted_button_id=MAF7H5NNRMFAC" target="_blank"><img src="./Images/paypal-donate.png" style="height: 50px;width: 170px;"></a>
+&nbsp;&nbsp;
+<a href="https://github.com/sponsors/rafaelmaeuer" target="_blank"><img src="./Images/github-sponsor.png" style="height: 50px;width: 160px;"></a>
+</p>
 
 ---
 
